@@ -15,6 +15,10 @@ public class EnemyShootPlayer extends Enemies{
         super(positionX, positionY, score);
     }
     
+    @Override
+    public void move() {
+        
+    }
 }
 
 // move up, down, right, left
