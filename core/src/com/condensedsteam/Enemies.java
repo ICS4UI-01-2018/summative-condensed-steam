@@ -10,5 +10,31 @@ package com.condensedsteam;
  * @author Kalsr8025
  */
 public class Enemies {
+    private float positionX;
+    private float positionY;
+    private int score;
     
+    public Enemies(float positionX, float positionY, int score) {
+        this.positionX = positionX;
+        this.positionY = positionY;
+        this.score = score;
+    }
+    
+    public void move(){
+      
+    }
+    
+    public float getPositionX() {
+        return this.positionX;
+    }
+
+    public float getPositionY() {
+        return this.positionY;
+    }
+    // add something that makes sure we add 10 points when enemy is killed but sub 5
+    // points when fixed enemy is killed
+    public int getScore() {
+       return this.score;
+    }
+        
 }
