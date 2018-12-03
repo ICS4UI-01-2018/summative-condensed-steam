@@ -12,3 +12,5 @@ package com.condensedsteam;
 public class EnemyShootPlayer extends Enemies{
     
 }
+
+// move up, down, right, left

@@ -12,3 +12,5 @@ package com.condensedsteam;
 public class Fixed extends Enemies{
     
 }
+
+//Move Up and Down 
