@@ -15,6 +15,11 @@ public class Enemy extends Enemies{
         super(positionX, positionY, score);
     }
     
+    @Override
+    public void move() {
+        
+    }
+  
 }
 
 //Move Up, Down, Right, Left
