@@ -11,4 +11,8 @@ package com.condensedsteam;
  */
 public class Fixed extends Enemies{
     
+    public Fixed(float positionX, float positionY, int score) {
+        super(positionX, positionY, score);
+    }
+    
 }

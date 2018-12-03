@@ -11,4 +11,8 @@ package com.condensedsteam;
  */
 public class EnemyShootPlayer extends Enemies{
     
+    public EnemyShootPlayer(float positionX, float positionY, int score) {
+        super(positionX, positionY, score);
+    }
+    
 }
