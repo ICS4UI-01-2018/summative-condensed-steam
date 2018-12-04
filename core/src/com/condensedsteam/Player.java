@@ -5,6 +5,7 @@
  */
 package com.condensedsteam;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g3d.particles.values.MeshSpawnShapeValue.Triangle;
 import com.badlogic.gdx.math.Rectangle;
 
@@ -17,14 +18,40 @@ public class Player {
     
     private float positionx;
     private float positiony;
+    private int width;
+    private int height;
     private float score;
-    private Triangle player;
+    private int speed;
+    private Rectangle player;
     
-    public void createPlayer(){
+    
+    public void createPlayer(float x, float y, float width, float height, int speed){
         
+        speed = this.speed;
         
+        player = new Rectangle(x,y,width,height);  //leave as a rectangle for now
         
 }
+    public Rectangle Location(){
+        return player;
+    }
+     
+    public void moveUp(){
+        
+        player.y = player.y + speed;
+    }
+    
+    public void moveDown(){
+        player.y = player.y - speed;
+    }
+    
+    public void moveForward(){
+        player.x = player.x + speed;
+    }
+    
+    public void moveBack(){
+        player.x = player.x - speed;
+    }
     
 }
 
