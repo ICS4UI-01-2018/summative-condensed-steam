@@ -7,6 +7,7 @@ package com.condensedsteam;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g3d.particles.values.MeshSpawnShapeValue.Triangle;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 
 
@@ -30,8 +31,11 @@ public class Player {
         speed = this.speed;
         
         player = new Rectangle(x,y,width,height);  //leave as a rectangle for now
+        //how to make a triangle?
         
+        //player = new Triangle();
 }
+    
     public Rectangle Location(){
         return player;
     }
@@ -53,5 +57,8 @@ public class Player {
         player.x = player.x - speed;
     }
     
+    public void draw(ShapeRenderer shapeBatch){
+        //shapeBatch.Rectangle();
+    }
 }
 
