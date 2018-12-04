@@ -17,6 +17,7 @@ public class Enemies {
     private boolean collisionEnemy;
     private boolean collisionPlayer;
     private boolean crashed;
+    private Player p;
 
     public Enemies(float positionX, float positionY, int score, boolean collisionEnemy, boolean collisionPlayer, boolean crashed) {
         this.positionX = positionX;
@@ -27,7 +28,16 @@ public class Enemies {
         this.crashed = crashed;
     }
 
-    public void move() {
+    public void moveup() {
+    }
+
+    public void movedown() {
+    }
+
+    public void moveright() {
+    }
+
+    public void moveleft() {
     }
 
     public boolean collisionEnemy() {
@@ -54,6 +64,14 @@ public class Enemies {
     // points when fixed enemy is killed
     public int getScore() {
         return this.score;
+    }
+
+    public int setScore() {
+        if (collisionPlayer = true) {
+            return this.score += 5;
+        } else {
+            return this.score;
+        }
     }
 
 }
