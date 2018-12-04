@@ -15,6 +15,10 @@ public class Fixed extends Enemies{
         super(positionX, positionY, score, collisionEnemy, collisionPlayer, crashed);
     }
     
+    @Override
+    public void move() {
+        
+    }
 }
 
 //Move Up and Down 
