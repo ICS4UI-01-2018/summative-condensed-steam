@@ -5,19 +5,33 @@
  */
 package com.condensedsteam;
 
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Rectangle;
+
 /**
  *
  * @author Kalsr8025
  */
 public class Fixed extends Enemies{
+    private Rectangle fixed;
+    
     
     public Fixed(float positionX, float positionY, int score, boolean collisionEnemy, boolean collisionPlayer, boolean crashed) {
         super(positionX, positionY, score, collisionEnemy, collisionPlayer, crashed);
+        this.fixed = new Rectangle(positionX, positionY, 20, 20);
     }
     
     @Override
-    public void move() {
-        
+     public void moveup() {
+        fixed.y += 2; 
+    }
+
+    @Override
+    public void movedown() {
+        fixed.y -= 2; 
+    }
+    public void draw(ShapeRenderer shapeBatch) {
+        shapeBatch.rect(fixed.x, fixed.y, fixed.width, fixed.height);
     }
 }
 
