@@ -27,7 +27,16 @@ public class Enemies {
         this.crashed = crashed;
     }
 
-    public void move() {
+    public void moveup() {
+    }
+
+    public void movedown() {
+    }
+
+    public void moveright() {
+    }
+
+    public void moveleft() {
     }
 
     public boolean collisionEnemy() {
