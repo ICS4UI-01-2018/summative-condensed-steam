@@ -11,8 +11,8 @@ package com.condensedsteam;
  */
 public class Enemy extends Enemies{
     
-    public Enemy(float positionX, float positionY, int score) {
-        super(positionX, positionY, score);
+    public Enemy(float positionX, float positionY, int score, boolean collisionEnemy, boolean collisionPlayer, boolean crashed) {
+        super(positionX, positionY, score, collisionEnemy, collisionPlayer, crashed);
     }
     
 }
