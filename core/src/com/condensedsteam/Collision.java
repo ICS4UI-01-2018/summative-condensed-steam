@@ -10,5 +10,8 @@ package com.condensedsteam;
  * @author Kalsr8025
  */
 public class Collision {
-    
+
+    private Player player;
+    private Enemy enemy;
+
 }

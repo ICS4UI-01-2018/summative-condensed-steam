@@ -15,7 +15,6 @@ import com.badlogic.gdx.math.Rectangle;
 public class Fixed extends Enemies{
     private Rectangle fixed;
     
-    
     public Fixed(float positionX, float positionY, int score, boolean collisionEnemy, boolean collisionPlayer, boolean crashed) {
         super(positionX, positionY, score, collisionEnemy, collisionPlayer, crashed);
         //random position and size... 
