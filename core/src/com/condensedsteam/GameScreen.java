@@ -38,7 +38,7 @@ public class GameScreen implements Screen {
         camera.update();
         
         // makes the camera fit onto available screen
-        game.gameBatch.setProjectionMatrix(camera.combined);
+        game.batch.setProjectionMatrix(camera.combined);
         
     }
     
