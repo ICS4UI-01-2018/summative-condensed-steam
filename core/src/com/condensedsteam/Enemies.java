@@ -17,7 +17,7 @@ public class Enemies {
     private boolean collisionEnemy;
     private boolean collisionPlayer;
     private boolean crashed;
-    private Player p;
+    private Player player;
 
     public Enemies(float positionX, float positionY, int score, boolean collisionEnemy, boolean collisionPlayer, boolean crashed) {
         this.positionX = positionX;
@@ -39,7 +39,7 @@ public class Enemies {
 
     public void moveleft() {
     }
-
+    
     public boolean collisionEnemy() {
         return this.collisionEnemy;
     }
@@ -48,6 +48,7 @@ public class Enemies {
         return this.collisionPlayer;
     }
 
+    //player needs to be completed in order for me to work on this. 
     public boolean crashed() {
         return this.crashed;
     }
@@ -68,7 +69,9 @@ public class Enemies {
 
     public int setScore() {
         if (collisionPlayer = true) {
-            return this.score += 5;
+            return this.score -= 5;
+        } else if (collisionEnemy = true) {
+            return this.score;
         } else {
             return this.score;
         }

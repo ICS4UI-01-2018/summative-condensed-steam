@@ -18,6 +18,7 @@ public class Fixed extends Enemies{
     
     public Fixed(float positionX, float positionY, int score, boolean collisionEnemy, boolean collisionPlayer, boolean crashed) {
         super(positionX, positionY, score, collisionEnemy, collisionPlayer, crashed);
+        //random position and size... 
         this.fixed = new Rectangle(positionX, positionY, 20, 20);
     }
     
@@ -34,5 +35,3 @@ public class Fixed extends Enemies{
         shapeBatch.rect(fixed.x, fixed.y, fixed.width, fixed.height);
     }
 }
-
-//Move Up and Down 

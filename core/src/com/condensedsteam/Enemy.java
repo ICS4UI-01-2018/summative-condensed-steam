@@ -45,4 +45,3 @@ public class Enemy extends Enemies {
     }
 }
 
-//Move Up, Down, Right, Left
