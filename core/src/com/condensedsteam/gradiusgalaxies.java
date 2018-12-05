@@ -5,16 +5,22 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import static sun.audio.AudioPlayer.player;
 
 public class gradiusgalaxies extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture img;
     
 	
+        Player player;
+        
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
 		img = new Texture("badlogic.jpg");
+                
+                           
+                
 	}
 
 	@Override
@@ -24,6 +30,8 @@ public class gradiusgalaxies extends ApplicationAdapter {
 		batch.begin();
 		batch.draw(img, 0, 0);
 		batch.end();
+                
+                
 	}
 	
 	@Override
@@ -31,4 +39,7 @@ public class gradiusgalaxies extends ApplicationAdapter {
 		batch.dispose();
 		img.dispose();
 	}
+        
+        
+        
 }

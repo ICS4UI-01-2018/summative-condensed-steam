@@ -13,14 +13,19 @@ import com.badlogic.gdx.math.Rectangle;
  * @author Kalsr8025
  */
 public class EnemyShootPlayer extends Enemies {
+    private Player player;
 
     private Rectangle enemyShootPlayer;
 
     public EnemyShootPlayer(float positionX, float positionY, int score, boolean collisionEnemy, boolean collisionPlayer, boolean crashed) {
         super(positionX, positionY, score, collisionEnemy, collisionPlayer, crashed);
-        this.enemyShootPlayer = new Rectangle(positionX, positionY, 10, 10);
+        this.enemyShootPlayer = new Rectangle(positionX, positionY, 5, 5);
     }
 
+    public void movetowardsplayer(){
+        
+    }
+    
     @Override
     public void moveup() {
         enemyShootPlayer.y += 4;
