@@ -5,20 +5,27 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import static sun.audio.AudioPlayer.player;
 
 public class gradiusgalaxies extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture img;
-	
+	private ShapeRenderer shapeBatch;
         Player player;
         
 	@Override
 	public void create () {
+            
 		batch = new SpriteBatch();
+                shapeBatch = new ShapeRenderer();
 		img = new Texture("badlogic.jpg");
                 
-                           
+                
+                
+                
+                
+                
                 
 	}
 
