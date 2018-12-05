@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class gradiusgalaxies extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture img;
+    
 	
 	@Override
 	public void create () {
