@@ -5,10 +5,16 @@
  */
 package com.condensedsteam;
 
+import static sun.audio.AudioPlayer.player;
+
 /**
  *
  * @author Kalsr8025
  */
 public class Collision {
+    
+    private Player player;
+    private Enemy Enemy;
+    
     
 }

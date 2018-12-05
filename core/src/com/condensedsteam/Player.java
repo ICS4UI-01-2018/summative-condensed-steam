@@ -53,6 +53,16 @@ public class Player {
         player.x = player.x - speed;
     }
     
+    public float getPositionX(){
+        
+        return player.x;
+    }
+    
+    public float getPositionY(){
+        
+        return player.y;
+    }
+    
     public void draw(ShapeRenderer shapeBatch){
        
         shapeBatch.rect(player.x, player.y, player.width, player.height);
