@@ -48,12 +48,12 @@ public class Enemies {
         return this.collisionPlayer;
     }
 
-    public boolean crashed() {
-        if (player.getPositionX() == this.positionX && player.getPositionY() == this.positionY) {
-            return this.crashed = true;
-        }
-        return this.crashed = false;
-    }
+//    public boolean crashed() {
+//        if (player.getPositionX() == this.positionX && player.getPositionY() == this.positionY) {
+//            return this.crashed = true;
+//        }
+//        return this.crashed = false;
+//    }
 
     public float getPositionX() {
         return this.positionX;
