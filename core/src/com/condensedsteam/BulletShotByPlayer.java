@@ -9,12 +9,6 @@ package com.condensedsteam;
  *
  * @author Kalsr8025
  */
-public class Collision {
+public class BulletShotByPlayer extends Player{
     
-    //player vs enemy 
-    //enemy vs enemy
-    //player vs bullet
-    //enemy vs bullet
-    //player vs walls
-
 }

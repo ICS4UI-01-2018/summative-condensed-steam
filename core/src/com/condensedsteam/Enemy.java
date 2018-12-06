@@ -19,6 +19,7 @@ public class Enemy extends Enemies {
     public Enemy(float positionX, float positionY, int score, boolean collisionEnemy, boolean collisionPlayer, boolean crashed) {
         super(positionX, positionY, score, collisionEnemy, collisionPlayer, crashed);
         this.enemy = new Rectangle(positionX, positionY, 20, 30);
+//        this.target = target;
     }
 
     @Override
