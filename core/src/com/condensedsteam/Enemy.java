@@ -33,15 +33,19 @@ public class Enemy extends Enemies {
 
     @Override
     public void moveright() {
-        enemy.x +=1;
+        enemy.x += 1;
+    }
+
+    public void movetowardsplayer() {
+
     }
 
     @Override
     public void moveleft() {
-        enemy.x -=1;
+        enemy.x -= 1;
     }
+
     public void draw(ShapeRenderer shapeBatch) {
         shapeBatch.rect(enemy.x, enemy.y, enemy.width, enemy.height);
     }
 }
-

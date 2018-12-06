@@ -39,7 +39,7 @@ public class Enemies {
 
     public void moveleft() {
     }
-    
+
     public boolean collisionEnemy() {
         return this.collisionEnemy;
     }
@@ -48,9 +48,11 @@ public class Enemies {
         return this.collisionPlayer;
     }
 
-    //player needs to be completed in order for me to work on this. 
     public boolean crashed() {
-        return this.crashed;
+        if (player.getPositionX() == this.positionX && player.getPositionY() == this.positionY) {
+            return this.crashed = true;
+        }
+        return this.crashed = false;
     }
 
     public float getPositionX() {
