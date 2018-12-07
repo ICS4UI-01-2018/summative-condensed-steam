@@ -9,28 +9,25 @@ package com.condensedsteam;
  *
  * @author Kalsr8025
  */
-public class BulletShotByEnemy extends Enemy {
+public class BulletShotByEnemy {
 
-    private float x;
-    private float y;
-    private float targetx;
-    private float targety;
-    private Enemy enemy;
-    private Player player;
+    private String direction;
+    private float speed = 3.0f;
+    private int x;
+    private int y;
 
-    public BulletShotByEnemy(float positionX, float positionY, int width, int height, int score, boolean collisionEnemy, boolean collisionPlayer, boolean crashed) {
-        super(positionX, positionY, width, height, score, collisionEnemy, collisionPlayer, crashed);
+    public BulletShotByEnemy(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
 
-//    public BulletShotByEnemy() {
-//        this.x = enemy.getPositionX();
-//        this.y = enemy.getPositionY();
-//    }
-//
-//    public int target() {
-//        targetx = player.getPositionX();
-//        targety = player.getPositionY();
-//        return 0;
-//    }
-//
+    public void launchBullet(String direction) {
+        this.direction = direction;
+    }
+
+    // direction we want bullet to move
+    public void moveInDirectionOfTarget() {
     }
 }
+
+
