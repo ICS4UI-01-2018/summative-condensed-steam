@@ -18,10 +18,10 @@ public class Enemies {
     private boolean collisionPlayer;
     private boolean crashed;
     private Player player;
-     private Rectangle enemies;
+    private Rectangle enemies;
 
     public Enemies(float positionX, float positionY, int width, int height, int score, boolean collisionEnemy, boolean collisionPlayer, boolean crashed) {
-        this.enemies = new Rectangle (positionX,positionY,width,height);
+        this.enemies = new Rectangle(positionX, positionY, width, height);
         this.score = score;
         this.collisionEnemy = collisionEnemy;
         this.collisionPlayer = collisionPlayer;
@@ -54,7 +54,6 @@ public class Enemies {
 //        }
 //        return this.crashed = false;
 //    }
-
     public float getLeft() {
         return this.enemies.x;
     }
@@ -62,9 +61,11 @@ public class Enemies {
     public float getRight() {
         return this.enemies.x + this.enemies.width;
     }
+
     public float getTop() {
         return this.enemies.y + this.enemies.height;
     }
+
     public float getBottom() {
         return this.enemies.y;
     }
