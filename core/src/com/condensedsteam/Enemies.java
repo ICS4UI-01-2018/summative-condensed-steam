@@ -5,23 +5,23 @@
  */
 package com.condensedsteam;
 
+import com.badlogic.gdx.math.Rectangle;
+
 /**
  *
  * @author Kalsr8025
  */
 public class Enemies {
 
-    private float positionX;
-    private float positionY;
     private int score;
     private boolean collisionEnemy;
     private boolean collisionPlayer;
     private boolean crashed;
     private Player player;
+     private Rectangle enemies;
 
-    public Enemies(float positionX, float positionY, int score, boolean collisionEnemy, boolean collisionPlayer, boolean crashed) {
-        this.positionX = positionX;
-        this.positionY = positionY;
+    public Enemies(float positionX, float positionY, int width, int height, int score, boolean collisionEnemy, boolean collisionPlayer, boolean crashed) {
+        this.enemies = new Rectangle (positionX,positionY,width,height);
         this.score = score;
         this.collisionEnemy = collisionEnemy;
         this.collisionPlayer = collisionPlayer;
@@ -55,12 +55,18 @@ public class Enemies {
 //        return this.crashed = false;
 //    }
 
-    public float getPositionX() {
-        return this.positionX;
+    public float getLeft() {
+        return this.enemies.x;
     }
 
-    public float getPositionY() {
-        return this.positionY;
+    public float getRight() {
+        return this.enemies.x + this.enemies.width;
+    }
+    public float getTop() {
+        return this.enemies.y + this.enemies.height;
+    }
+    public float getBottom() {
+        return this.enemies.y;
     }
 
     // add something that makes sure we add 10 points when enemy is killed but sub 5
