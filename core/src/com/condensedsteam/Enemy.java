@@ -16,8 +16,8 @@ public class Enemy extends Enemies {
 
     private Rectangle enemy;
 
-    public Enemy(float positionX, float positionY, int score, boolean collisionEnemy, boolean collisionPlayer, boolean crashed) {
-        super(positionX, positionY, score, collisionEnemy, collisionPlayer, crashed);
+    public Enemy(float positionX, float positionY, int width, int height, int score, boolean collisionEnemy, boolean collisionPlayer, boolean crashed) {
+        super(positionX, positionY, width, height, score, collisionEnemy, collisionPlayer, crashed);
         this.enemy = new Rectangle(positionX, positionY, 20, 30);
 //        this.target = target;
     }
@@ -38,7 +38,7 @@ public class Enemy extends Enemies {
     }
 
     public void movetowardsplayer() {
-
+//work on this 
     }
 
     @Override
