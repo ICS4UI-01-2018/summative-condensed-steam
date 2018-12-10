@@ -7,6 +7,7 @@ package com.condensedsteam;
 
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
+import java.util.ArrayList;
 
 /**
  *
@@ -36,9 +37,9 @@ public class Enemy extends Enemies {
     public void moveright() {
         enemy.x += 1;
     }
-
-    public void movetowardsplayer() {
 //work on this 
+    public void movetowardsplayer() {
+
     }
 
     @Override
@@ -49,4 +50,15 @@ public class Enemy extends Enemies {
     public void draw(ShapeRenderer shapeBatch) {
         shapeBatch.rect(enemy.x, enemy.y, enemy.width, enemy.height);
     }
+    
+    private ArrayList<BulletShotByEnemy> projectiles = new ArrayList<BulletShotByEnemy>();
+    
+    public void shoot() {
+//		BulletShotByEnemy shoot = new BulletShotByEnemy();
+//		projectiles.add(shoot);
+	}
+    public ArrayList getBulletShotByEnemy() {
+		return projectiles;
+	}
+    
 }
