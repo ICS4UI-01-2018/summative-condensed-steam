@@ -5,6 +5,7 @@
  */
 package com.condensedsteam;
 
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 
 /**
@@ -69,4 +70,7 @@ public class BulletShotByEnemy {
         this.visible = visible;
     }
 
+    public void draw(ShapeRenderer shapeBatch) {
+        shapeBatch.rect(bullet.x, bullet.y, bullet.width, bullet.height);
+    }
 }
