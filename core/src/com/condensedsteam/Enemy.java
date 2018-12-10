@@ -38,6 +38,7 @@ public class Enemy extends Enemies {
         enemy.x += 1;
     }
 //work on this 
+
     public void movetowardsplayer() {
 
     }
@@ -50,15 +51,17 @@ public class Enemy extends Enemies {
     public void draw(ShapeRenderer shapeBatch) {
         shapeBatch.rect(enemy.x, enemy.y, enemy.width, enemy.height);
     }
-    
+
     private ArrayList<BulletShotByEnemy> projectiles = new ArrayList<BulletShotByEnemy>();
-    
+
     public void shoot() {
-//		BulletShotByEnemy shoot = new BulletShotByEnemy();
-//		projectiles.add(shoot);
-	}
+        BulletShotByEnemy shoot;
+        shoot = new BulletShotByEnemy((int) (enemy.x + Math.random()), (int) (enemy.y + Math.random()));
+        projectiles.add(shoot);
+    }
+
     public ArrayList getBulletShotByEnemy() {
-		return projectiles;
-	}
-    
+        return projectiles;
+    }
+
 }
