@@ -10,8 +10,15 @@ package com.condensedsteam;
  * @author Kalsr8025
  */
 public class Collision {
+    private Player player;
+    private Enemy enemy;
+    private BulletShotByPlayer playerbullet;
+    private BulletShotByEnemy enemybullet;
+    
     
     //player vs enemy 
+    
+    
     //enemy vs enemy
     //player vs bullet
     //enemy vs bullet

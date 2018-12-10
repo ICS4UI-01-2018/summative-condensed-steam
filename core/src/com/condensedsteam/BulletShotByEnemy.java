@@ -5,6 +5,8 @@
  */
 package com.condensedsteam;
 
+import com.badlogic.gdx.math.Rectangle;
+
 /**
  *
  * @author Kalsr8025
@@ -15,6 +17,7 @@ public class BulletShotByEnemy {
     private int x;
     private int y;
     private boolean visible;
+    private Rectangle bullet;
 
     public BulletShotByEnemy(int x, int y) {
         this.x = x;
@@ -28,6 +31,10 @@ public class BulletShotByEnemy {
         if (x > 800) {
             visible = false;
         }
+    }
+
+    public Rectangle getBounds() {
+        return bullet;
     }
 
     public int getX() {

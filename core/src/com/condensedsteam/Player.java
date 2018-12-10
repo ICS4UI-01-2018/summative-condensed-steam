@@ -12,71 +12,74 @@ import com.badlogic.gdx.graphics.g3d.particles.values.MeshSpawnShapeValue.Triang
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 
-
 /**
  *
  * @author maxid2657
  */
 public class Player {
-    
+
     private int speed;
     private Rectangle player;
-    
-    
-    public void createPlayer(float x, float y, float width, float height, int speed){
-        
+    private BulletShotByPlayer bullet;
+
+    public Player(float x, float y, float width, float height, int speed) {
+
         speed = this.speed;
-        
-        player = new Rectangle(x,y,width,height);  
-        
-        
-}
-    
-    public Rectangle Location(){
+
+        player = new Rectangle(x, y, width, height);
+
+    }
+
+    public Rectangle Location() {
         return player;
     }
-     
-    public void moveUp(){
-        
+
+    public void moveUp() {
+
         player.y = player.y + speed;
     }
-    
-    public void moveDown(){
+
+    public void moveDown() {
         player.y = player.y - speed;
     }
-    
-    public void moveForward(){
+
+    public void moveForward() {
         player.x = player.x + speed;
     }
-    
-    public void moveBack(){
+
+    public void moveBack() {
         player.x = player.x - speed;
     }
-    
-    public float getBottomLeft(){           //may have some errors
-        
-        return player.x;
-        
+
+    public Rectangle getBounds() {
+        return player;
     }
-    public float getBottomRight(){
-        
+
+    public float getBottomLeft() {           //may have some errors
+
+        return player.x;
+
+    }
+
+    public float getBottomRight() {
+
         return player.x + player.width;
     }
-    
-    public float getTopLeft(){
-        
+
+    public float getTopLeft() {
+
         return player.y;
     }
-    
-    public float getTopRight(){
+
+    public float getTopRight() {
         return player.y + player.width;
     }
-    public void draw(ShapeRenderer shapeBatch){ //may have some errors
-       
+
+    public void draw(ShapeRenderer shapeBatch) { //may have some errors
+
         shapeBatch.rect(player.x, player.y, player.width, player.height);
-        
-        shapeBatch.setColor(Color.CLEAR); 
-        
+
+        shapeBatch.setColor(Color.CLEAR);
+
     }
 }
-
