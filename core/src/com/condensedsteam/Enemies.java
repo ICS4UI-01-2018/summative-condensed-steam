@@ -28,6 +28,10 @@ public class Enemies {
         this.crashed = crashed;
     }
 
+    public Rectangle getBounds() {
+        return enemies;
+    }
+
     public void moveup() {
     }
 
