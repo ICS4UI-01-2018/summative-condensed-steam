@@ -19,6 +19,7 @@ public class BulletShotByEnemy {
     public BulletShotByEnemy(int x, int y) {
         this.x = x;
         this.y = y;
+        this.speed = speed;
         this.visible = true;
     }
 
