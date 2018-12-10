@@ -21,15 +21,15 @@ public class Player {
     
     private int speed;
     private Rectangle player;
+    private BulletShotByPlayer bullet;
     
     
-    public void createPlayer(float x, float y, float width, float height, int speed){
+    public Player(float x, float y, float width, float height, int speed){
         
         speed = this.speed;
         
         player = new Rectangle(x,y,width,height);  
-        
-        
+
 }
     
     public Rectangle Location(){
