@@ -27,6 +27,7 @@ public class BulletShotByEnemy {
         this.visible = true;
     }
 
+    //update x AND Y..............
     public void update() {
         x += speed;
         if (x > 800) {
