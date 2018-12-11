@@ -16,6 +16,7 @@ public class Enemies {
     private int score;
     private boolean collisionEnemy;
     private boolean collisionPlayer;
+    private boolean collisionWalls;
     private boolean crashed;
     private Player player;
     private Rectangle enemies;
