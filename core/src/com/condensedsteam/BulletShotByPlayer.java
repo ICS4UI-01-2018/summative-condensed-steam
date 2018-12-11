@@ -37,7 +37,7 @@ public class BulletShotByPlayer {
     public Rectangle getBounds() {
         return bullet;
     }
-
+    
     public void move() {
         bullet.x = bullet.x + speed * x;
         bullet.y = bullet.y + speed * y;
