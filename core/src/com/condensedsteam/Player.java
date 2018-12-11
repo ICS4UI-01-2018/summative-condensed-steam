@@ -56,6 +56,16 @@ public class Player {
         return player;
     }
 
+    public boolean collisionEnemy(Enemy enemy, Fixed fixed) {
+        if (player.overlaps(enemy.getBounds())) {
+            return true;
+        } else if (player.overlaps(fixed.getBounds())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public float getBottomLeft() {           //may have some errors
 
         return player.x;
@@ -83,13 +93,12 @@ public class Player {
         shapeBatch.setColor(Color.CLEAR);
 
     }
-    
+
     public int getScore() {
         return this.score;
     }
 
     // 10 points added when player shoots enemy
-    
 //    public int setScore() {
 //        if (collisionPlayer = true) {
 //            return this.score -= 5;

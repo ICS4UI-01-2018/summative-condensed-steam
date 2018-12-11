@@ -44,12 +44,22 @@ public class Enemies {
     public void moveleft() {
     }
 
-    public boolean collisionEnemy() {
-        return this.collisionEnemy;
+    public boolean collisionEnemy(Enemy enemy, Fixed fixed) {
+        if (enemies.overlaps(enemy.getBounds())) {
+            return true;
+        } else if (enemies.overlaps(fixed.getBounds())) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    public boolean collisionPlayer() {
-        return this.collisionPlayer;
+    public boolean collisionPlayer(Player player) {
+        if (enemies.overlaps(player.getBounds())) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 //    public boolean crashed() {
@@ -89,5 +99,4 @@ public class Enemies {
 //            return this.score;
 //        }
 //    }
-
 }

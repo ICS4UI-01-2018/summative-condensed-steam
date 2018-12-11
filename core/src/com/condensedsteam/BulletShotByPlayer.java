@@ -22,8 +22,6 @@ public class BulletShotByPlayer {
     private int speed = 3;
     private Rectangle bullet;
     private Player player;
-    
-    
 
     public void BulletShotByPlayer(float x, float y, float width, float height, int speed) {
         this.x = x;
@@ -36,6 +34,16 @@ public class BulletShotByPlayer {
 
     public Rectangle getBounds() {
         return bullet;
+    }
+
+    public boolean collidesWithEnemy(Enemy enemy, Fixed fixed) {
+        if (bullet.overlaps(enemy.getBounds())) {
+            return true;
+        } else if (bullet.overlaps(fixed.getBounds())) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public void move() {
