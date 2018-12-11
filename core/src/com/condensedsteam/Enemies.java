@@ -16,16 +16,16 @@ public class Enemies {
     private int score;
     private boolean collisionEnemy;
     private boolean collisionPlayer;
-    private boolean crashed;
+    private boolean collisionWalls;
     private Player player;
     private Rectangle enemies;
 
-    public Enemies(float positionX, float positionY, int width, int height, int score, boolean collisionEnemy, boolean collisionPlayer, boolean crashed) {
+    public Enemies(float positionX, float positionY, int width, int height, int score, boolean collisionEnemy, boolean collisionPlayer, boolean collisionWalls) {
         this.enemies = new Rectangle(positionX, positionY, width, height);
         this.score = score;
         this.collisionEnemy = collisionEnemy;
         this.collisionPlayer = collisionPlayer;
-        this.crashed = crashed;
+        this.collisionWalls = collisionWalls;
     }
 
     public Rectangle getBounds() {
@@ -61,13 +61,7 @@ public class Enemies {
             return false;
         }
     }
-
-//    public boolean crashed() {
-//        if (player.getPositionX() == this.positionX && player.getPositionY() == this.positionY) {
-//            return this.crashed = true;
-//        }
-//        return this.crashed = false;
-//    }
+    
     public float getLeft() {
         return this.enemies.x;
     }
