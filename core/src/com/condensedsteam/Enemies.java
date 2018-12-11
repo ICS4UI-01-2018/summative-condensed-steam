@@ -80,14 +80,14 @@ public class Enemies {
         return this.score;
     }
 
-    public int setScore() {
-        if (collisionPlayer = true) {
-            return this.score -= 5;
-        } else if (collisionEnemy = true) {
-            return this.score;
-        } else {
-            return this.score;
-        }
-    }
+//    public int setScore() {
+//        if (collisionPlayer = true) {
+//            return this.score -= 5;
+//        } else if (collisionEnemy = true) {
+//            return this.score;
+//        } else {
+//            return this.score;
+//        }
+//    }
 
 }

@@ -25,12 +25,19 @@ public class BulletShotByEnemy {
         this.y = y;
         this.speed = speed;
         this.visible = true;
+        bullet = new Rectangle(x, y, 5, 5);
     }
 
     //update x AND Y..............
     public void update() {
         x += speed;
+        // find out dimensions of the game and sub them for 800
         if (x > 800) {
+            visible = false;
+        }
+        y += speed;
+        // find out dimensions of the game and sub them for 800
+        if (y > 800) {
             visible = false;
         }
     }

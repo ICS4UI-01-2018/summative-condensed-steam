@@ -18,14 +18,15 @@ import com.badlogic.gdx.math.Rectangle;
  */
 public class Player {
 
+    private int score;
     private int speed;
     private Rectangle player;
     private BulletShotByPlayer bullet;
 
-    public Player(float x, float y, float width, float height, int speed) {
+    public Player(float x, float y, float width, float height, int speed, int score) {
 
         speed = this.speed;
-
+        this.score = score;
         player = new Rectangle(x, y, width, height);
 
     }
@@ -82,4 +83,20 @@ public class Player {
         shapeBatch.setColor(Color.CLEAR);
 
     }
+    
+    public int getScore() {
+        return this.score;
+    }
+
+    // 10 points added when player shoots enemy
+    
+//    public int setScore() {
+//        if (collisionPlayer = true) {
+//            return this.score -= 5;
+//        } else if (collisionEnemy = true) {
+//            return this.score;
+//        } else {
+//            return this.score;
+//        }
+//    }
 }
