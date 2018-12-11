@@ -38,6 +38,12 @@ public class BulletShotByEnemy {
     public Rectangle getBounds() {
         return bullet;
     }
+    
+    
+    
+    public boolean collidesWithPlayer(Player player){
+       return bullet.overlaps(player.getBounds());
+    }
 
     public int getX() {
         return x;
