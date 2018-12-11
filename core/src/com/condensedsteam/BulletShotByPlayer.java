@@ -22,6 +22,8 @@ public class BulletShotByPlayer {
     private int speed = 3;
     private Rectangle bullet;
     private Player player;
+    
+    
 
     public void BulletShotByPlayer(float x, float y, float width, float height, int speed) {
         this.x = x;
@@ -30,7 +32,6 @@ public class BulletShotByPlayer {
         this.height = height;
         this.speed = speed;
         bullet = new Rectangle(x, y, 5, 5);
-
     }
 
     public Rectangle getBounds() {

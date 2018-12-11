@@ -9,19 +9,24 @@ package com.condensedsteam;
  *
  * @author Kalsr8025
  */
-public class Collision {
+public class CollisionMayNeedIt {
+
     private Player player;
-    private Enemy enemy;
+    private Enemies enemies;
     private BulletShotByPlayer playerbullet;
     private BulletShotByEnemy enemybullet;
-    
-    
+
+    public void Collision(Player player, Enemies enemies, BulletShotByPlayer playerbullet, BulletShotByEnemy enemybullet) {
+        this.player = player;
+        this.enemies = enemies;
+        this.enemybullet = enemybullet;
+        this.playerbullet = playerbullet;
+    }
+
+
     //player vs enemy 
-    
-    
     //enemy vs enemy
     //player vs bullet
     //enemy vs bullet
     //player vs walls
-
 }
