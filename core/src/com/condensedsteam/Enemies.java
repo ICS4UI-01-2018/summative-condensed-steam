@@ -19,6 +19,7 @@ public class Enemies {
     private boolean collisionWalls;
     private Player player;
     private Rectangle enemies;
+    private boolean visible;
 
     public Enemies(float positionX, float positionY, int width, int height, int score, boolean collisionEnemy, boolean collisionPlayer, boolean collisionWalls) {
         this.enemies = new Rectangle(positionX, positionY, width, height);
@@ -61,7 +62,7 @@ public class Enemies {
             return false;
         }
     }
-    
+
     public float getLeft() {
         return this.enemies.x;
     }
@@ -84,13 +85,21 @@ public class Enemies {
         return this.score;
     }
 
-//    public int setScore() {
-//        if (collisionPlayer = true) {
-//            return this.score -= 5;
-//        } else if (collisionEnemy = true) {
-//            return this.score;
-//        } else {
-//            return this.score;
-//        }
-//    }
+    public boolean isVisible() {
+        return visible;
+    }
+
+    public void setVisible(boolean visible) {
+        this.visible = visible;
+    }
+
+    public int setScore() {
+        if (collisionPlayer = true) {
+            return this.score -= 5;
+        } else if (collisionEnemy = true) {
+            return this.score;
+        } else {
+            return this.score;
+        }
+    }
 }
