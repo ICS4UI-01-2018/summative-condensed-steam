@@ -1,15 +1,12 @@
 package com.condensedsteam;
 
-import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import static sun.audio.AudioPlayer.player;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -21,6 +18,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 public class gradiusgalaxies extends ApplicationAdapter implements InputProcessor {
 
     SpriteBatch batch;
+    private ShapeRenderer shapeBatch;
     TiledMap tiledMap;
     OrthographicCamera camera;
    // TiledMapRenderer tiledMapRenderer;
@@ -47,14 +45,19 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
 
     @Override
     public void render() {
-        Gdx.gl.glClearColor(1, 0, 0, 1);
+        
+        Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         camera.update();
        // tiledMapRenderer.setView(camera);
        // tiledMapRenderer.render();
         
-       // player.draw(shapeBatch);
+        player.draw(shapeBatch);
+        
+        shapeBatch.setColor(Color.WHITE);
+        player.draw(shapeBatch);
+        
     }
 
         @Override
@@ -110,5 +113,10 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         return false;
   
     }
+   
+    
+    
+    
+    
 
 }
