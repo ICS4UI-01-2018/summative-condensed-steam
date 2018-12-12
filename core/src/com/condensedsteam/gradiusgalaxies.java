@@ -39,7 +39,7 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         spaceshipPic = new Texture("spaceship.png");
         tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
         Gdx.input.setInputProcessor(this);
-        player = new Player(100,100,100,100,10);
+        player = new Player(100,100,20,20,2,0);
     }
 
     @Override
@@ -51,7 +51,7 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         tiledMapRenderer.setView(camera);
         tiledMapRenderer.render();
         
-        player.draw(batch);
+       // player.draw(shapeBatch);
     }
 
         @Override
