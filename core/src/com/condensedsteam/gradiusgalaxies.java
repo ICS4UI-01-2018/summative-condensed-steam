@@ -24,6 +24,9 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
     TiledMapRenderer tiledMapRenderer;
     private Texture spaceshipPic;
     private Player player;
+    private Enemy enemy;
+    private Fixed fixed;
+    
     
     @Override
     public void create() {
@@ -100,14 +103,15 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         if(keycode == Input.Keys.RIGHT)
             camera.translate(16,0);
         if(keycode == Input.Keys.UP)
-            camera.translate(0,-16);
-        if(keycode == Input.Keys.DOWN)
             camera.translate(0,16);
+        if(keycode == Input.Keys.DOWN)
+            camera.translate(0,-16);
         if(keycode == Input.Keys.NUM_1)
             tiledMap.getLayers().get(0).setVisible(!tiledMap.getLayers().get(0).isVisible());
         if(keycode == Input.Keys.NUM_2)
             tiledMap.getLayers().get(1).setVisible(!tiledMap.getLayers().get(1).isVisible());
         return false;
+  
     }
    
     
