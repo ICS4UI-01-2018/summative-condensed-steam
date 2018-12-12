@@ -22,12 +22,14 @@ public class Player {
     private int speed;
     private Rectangle player;
     private BulletShotByPlayer bullet;
+    private boolean collisionEnemy;
 
-    public Player(float x, float y, float width, float height, int speed, int score) {
+    public Player(float x, float y, float width, float height, int speed, int score, boolean collisionEnemy) {
 
         speed = this.speed;
         this.score = score;
         player = new Rectangle(x, y, width, height);
+        this.collisionEnemy = collisionEnemy;
 
     }
 
@@ -99,13 +101,11 @@ public class Player {
     }
 
     // 10 points added when player shoots enemy
-//    public int setScore() {
-//        if (collisionPlayer = true) {
-//            return this.score -= 5;
-//        } else if (collisionEnemy = true) {
-//            return this.score;
-//        } else {
-//            return this.score;
-//        }
-//    }
+    public int setScore() {
+        if (collisionEnemy = true) {
+            return this.score += 10;
+        } else {
+            return this.score;
+        }
+    }
 }
