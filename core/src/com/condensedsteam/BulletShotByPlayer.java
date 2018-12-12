@@ -30,11 +30,20 @@ public class BulletShotByPlayer {
         this.height = height;
         this.speed = speed;
         bullet = new Rectangle(x, y, 5, 5);
-
     }
 
     public Rectangle getBounds() {
         return bullet;
+    }
+
+    public boolean collidesWithEnemy(Enemy enemy, Fixed fixed) {
+        if (bullet.overlaps(enemy.getBounds())) {
+            return true;
+        } else if (bullet.overlaps(fixed.getBounds())) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public void move() {

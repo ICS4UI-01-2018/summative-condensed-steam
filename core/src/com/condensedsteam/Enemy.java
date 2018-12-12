@@ -16,6 +16,7 @@ import java.util.ArrayList;
 public class Enemy extends Enemies {
 
     private Rectangle enemy;
+    private BulletShotByEnemy bullet;
 
     public Enemy(float positionX, float positionY, int width, int height, int score, boolean collisionEnemy, boolean collisionPlayer, boolean crashed) {
         super(positionX, positionY, width, height, score, collisionEnemy, collisionPlayer, crashed);

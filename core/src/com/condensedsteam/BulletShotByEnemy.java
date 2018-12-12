@@ -25,18 +25,38 @@ public class BulletShotByEnemy {
         this.y = y;
         this.speed = speed;
         this.visible = true;
+        bullet = new Rectangle(x, y, 5, 5);
     }
 
     //update x AND Y..............
     public void update() {
         x += speed;
+        // find out dimensions of the game and sub them for 800
         if (x > 800) {
+            visible = false;
+        }
+        y += speed;
+        // find out dimensions of the game and sub them for 800
+        if (y > 800) {
             visible = false;
         }
     }
 
     public Rectangle getBounds() {
         return bullet;
+    }
+    
+    //need to work on this 
+    public void moveTowardsPlayer(Player player){
+        
+        
+    }
+    
+    public boolean collidesWithPlayer(Player player){
+       if (bullet.overlaps(player.getBounds())){
+           return true;
+       }else 
+           return false;
     }
 
     public int getX() {
