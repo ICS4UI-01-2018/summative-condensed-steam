@@ -54,7 +54,6 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
        // tiledMapRenderer.render();
         
         player.draw(shapeBatch);
-        
         shapeBatch.setColor(Color.WHITE);
         player.draw(shapeBatch);
         
