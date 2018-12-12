@@ -8,6 +8,7 @@ package com.condensedsteam;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g3d.particles.values.MeshSpawnShapeValue.Triangle;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
@@ -24,7 +25,7 @@ public class Player {
     private BulletShotByPlayer bullet;
     private boolean collisionEnemy;
 
-    public Player(float x, float y, float width, float height, int speed, int score, boolean collisionEnemy) {
+    public Player(float x, float y, float width, float height, int speed, int score) {
 
         speed = this.speed;
         this.score = score;

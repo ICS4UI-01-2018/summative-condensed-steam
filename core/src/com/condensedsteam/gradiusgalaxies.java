@@ -24,7 +24,9 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
     TiledMap tiledMap;
     OrthographicCamera camera;
     TiledMapRenderer tiledMapRenderer;
-
+    private Texture spaceshipPic;
+    private Player player;
+    
     @Override
     public void create() {
         float w = Gdx.graphics.getWidth();
@@ -34,8 +36,10 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         camera.setToOrtho(false, 192, 192);
         camera.update();
         tiledMap = new TmxMapLoader().load("Level1.tmx");
+        spaceshipPic = new Texture("spaceship.png");
         tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
         Gdx.input.setInputProcessor(this);
+        player = new Player(100,100,20,20,2,0);
     }
 
     @Override
@@ -46,6 +50,8 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         camera.update();
         tiledMapRenderer.setView(camera);
         tiledMapRenderer.render();
+        
+       // player.draw(shapeBatch);
     }
 
         @Override
