@@ -23,9 +23,12 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
     SpriteBatch batch;
     TiledMap tiledMap;
     OrthographicCamera camera;
-    TiledMapRenderer tiledMapRenderer;
+
     private Texture spaceshipPic;
     private Player player;
+    private Enemy enemy;
+    private Fixed fixed;
+    
     
     @Override
     public void create() {
@@ -37,7 +40,7 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         camera.update();
         tiledMap = new TmxMapLoader().load("Level1.tmx");
         spaceshipPic = new Texture("spaceship.png");
-        tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
+
         Gdx.input.setInputProcessor(this);
         player = new Player(100,100,20,20,2,0);
     }
@@ -48,8 +51,7 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         camera.update();
-        tiledMapRenderer.setView(camera);
-        tiledMapRenderer.render();
+
         
        // player.draw(shapeBatch);
     }
@@ -97,14 +99,15 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         if(keycode == Input.Keys.RIGHT)
             camera.translate(16,0);
         if(keycode == Input.Keys.UP)
-            camera.translate(0,-16);
-        if(keycode == Input.Keys.DOWN)
             camera.translate(0,16);
+        if(keycode == Input.Keys.DOWN)
+            camera.translate(0,-16);
         if(keycode == Input.Keys.NUM_1)
             tiledMap.getLayers().get(0).setVisible(!tiledMap.getLayers().get(0).isVisible());
         if(keycode == Input.Keys.NUM_2)
             tiledMap.getLayers().get(1).setVisible(!tiledMap.getLayers().get(1).isVisible());
         return false;
+  
     }
 
 }
