@@ -14,20 +14,22 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 
 public class gradiusgalaxies extends ApplicationAdapter implements InputProcessor {
 
     SpriteBatch batch;
     private ShapeRenderer shapeBatch;
     TiledMap tiledMap;
-    OrthographicCamera camera;
+    private OrthographicCamera camera;
     // TiledMapRenderer tiledMapRenderer;
     private Texture spaceshipPic;
     private Player player;
     private Enemy enemy;
     private Fixed fixed;
     private Texture fixedPic;
-
+    private FitViewport viewport;
+    
     @Override
     public void create() {
 
@@ -36,7 +38,7 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
 
         float w = Gdx.graphics.getWidth();
         float h = Gdx.graphics.getHeight();
-
+        
         camera = new OrthographicCamera();
         // camera.setToOrtho(false, 192, 192);
         camera.update();
@@ -45,7 +47,7 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         fixedPic = new Texture("rockfixed.png");
         // tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
         Gdx.input.setInputProcessor(this);
-        player = new Player(100, 100, 20, 20, 2, 0);
+        player = new Player(700, 500, 20, 20, 2, 0);
     }
 
     @Override
@@ -58,6 +60,15 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         // tiledMapRenderer.setView(camera);
         // tiledMapRenderer.render();
 
+        camera = new OrthographicCamera();
+        viewport = new FitViewport(800,600,camera);
+        viewport.apply();
+        
+        camera.position.x = 400;
+        camera.position.y = 300;
+        camera.update();
+        
+        
         shapeBatch.setColor(Color.WHITE);
         shapeBatch.begin(ShapeRenderer.ShapeType.Line);
         player.draw(shapeBatch);
@@ -82,6 +93,11 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         if(Gdx.input.isKeyPressed(Input.Keys.LEFT)){
                    player.moveBack();
                 }
+        if(Gdx.input.isKeyPressed(Input.Keys.SPACE)){
+            //shoot
+                }
+        
+        
     }
 
     @Override
@@ -149,5 +165,6 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         return false;
 
     }
+    
 
 }
