@@ -20,7 +20,7 @@ import com.badlogic.gdx.math.Rectangle;
 public class Player {
 
     private int score;
-    private int speed;
+    private int speed = 3;
     private Rectangle player;
     private BulletShotByPlayer bullet;
 
