@@ -38,7 +38,7 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         float h = Gdx.graphics.getHeight();
 
         camera = new OrthographicCamera();
-        camera.setToOrtho(false, w, h);
+      //  camera.setToOrtho(false, w, h);
         camera.update();
         //   tiledMap = new TmxMapLoader().load("Level1.tmx");
         spaceshipPic = new Texture("spaceship.png");
