@@ -49,7 +49,6 @@ public class BulletShotByEnemy {
     //need to work on this 
     public void moveTowardsPlayer(Player player){
         
-        
     }
     
     public boolean collidesWithPlayer(Player player){

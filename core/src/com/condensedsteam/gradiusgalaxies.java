@@ -21,63 +21,62 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
     private ShapeRenderer shapeBatch;
     TiledMap tiledMap;
     OrthographicCamera camera;
-   // TiledMapRenderer tiledMapRenderer;
+    // TiledMapRenderer tiledMapRenderer;
     private Texture spaceshipPic;
     private Player player;
     private Enemy enemy;
     private Fixed fixed;
-    
-    
+    private Texture fixedPic;
+
     @Override
     public void create() {
-        
+
         batch = new SpriteBatch();
         shapeBatch = new ShapeRenderer();
-        
+
         float w = Gdx.graphics.getWidth();
         float h = Gdx.graphics.getHeight();
 
-       camera = new OrthographicCamera();
-       camera.setToOrtho(false, 192, 192);
-       camera.update();
-    //   tiledMap = new TmxMapLoader().load("Level1.tmx");
-       spaceshipPic = new Texture("spaceship.png");
-      // tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
-       Gdx.input.setInputProcessor(this);
-       player = new Player(100,100,20,20,2,0);
+        camera = new OrthographicCamera();
+        // camera.setToOrtho(false, 192, 192);
+        camera.update();
+        //   tiledMap = new TmxMapLoader().load("Level1.tmx");
+        spaceshipPic = new Texture("spaceship.png");
+        fixedPic = new Texture("rockfixed.png");
+        // tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
+        Gdx.input.setInputProcessor(this);
+        player = new Player(100, 100, 20, 20, 2, 0);
     }
 
     @Override
     public void render() {
-        
+
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         camera.update();
-       // tiledMapRenderer.setView(camera);
-       // tiledMapRenderer.render();
-        
-       
+        // tiledMapRenderer.setView(camera);
+        // tiledMapRenderer.render();
+
         shapeBatch.setColor(Color.WHITE);
         shapeBatch.begin(ShapeRenderer.ShapeType.Line);
         player.draw(shapeBatch);
-        
+
         shapeBatch.end();
-        
-        
+
         shapeBatch.setProjectionMatrix(camera.combined);
         batch.begin();
-        batch.draw(spaceshipPic, 100, 100);
+        batch.draw(spaceshipPic, player.getBottomLeft(), player.getTopLeft());
         batch.end();
-        
+
     }
-    
+
     @Override
-    public void dispose(){
+    public void dispose() {
         batch.dispose();
     }
 
-        @Override
+    @Override
     public boolean keyTyped(char character) {
 
         return false;
@@ -115,25 +114,27 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
 
     @Override
     public boolean keyUp(int keycode) {
-       if(keycode == Input.Keys.LEFT)
-            camera.translate(-16,0);
-        if(keycode == Input.Keys.RIGHT)
-            camera.translate(16,0);
-        if(keycode == Input.Keys.UP)
-            camera.translate(0,16);
-        if(keycode == Input.Keys.DOWN)
-            camera.translate(0,-16);
-     //   if(keycode == Input.Keys.NUM_1)
-      //      tiledMap.getLayers().get(0).setVisible(!tiledMap.getLayers().get(0).isVisible());
-      //  if(keycode == Input.Keys.NUM_2)
-      //      tiledMap.getLayers().get(1).setVisible(!tiledMap.getLayers().get(1).isVisible());
+        if (keycode == Input.Keys.DOWN) {
+            player.moveDown();
+        }
+        if (keycode == Input.Keys.UP) {
+            player.moveUp();
+        }
+
+//       if(keycode == Input.Keys.LEFT)
+//            camera.translate(-16,0);
+//        if(keycode == Input.Keys.RIGHT)
+//            camera.translate(16,0);
+//        if(keycode == Input.Keys.UP)
+//            camera.translate(0,16);
+//        if(keycode == Input.Keys.DOWN)
+//            camera.translate(0,-16);
+        //   if(keycode == Input.Keys.NUM_1)
+        //      tiledMap.getLayers().get(0).setVisible(!tiledMap.getLayers().get(0).isVisible());
+        //  if(keycode == Input.Keys.NUM_2)
+        //      tiledMap.getLayers().get(1).setVisible(!tiledMap.getLayers().get(1).isVisible());
         return false;
-  
+
     }
-   
-    
-    
-    
-    
 
 }
