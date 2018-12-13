@@ -17,6 +17,7 @@ public class Enemy extends Enemies {
 
     private Rectangle enemy;
     private BulletShotByEnemy bullet;
+    private ArrayList<BulletShotByEnemy> projectiles = new ArrayList<BulletShotByEnemy>();
 
     public Enemy(float positionX, float positionY, int width, int height, int score, boolean collisionEnemy, boolean collisionPlayer, boolean crashed) {
         super(positionX, positionY, width, height, score, collisionEnemy, collisionPlayer, crashed);
@@ -52,8 +53,6 @@ public class Enemy extends Enemies {
     public void draw(ShapeRenderer shapeBatch) {
         shapeBatch.rect(enemy.x, enemy.y, enemy.width, enemy.height);
     }
-
-    private ArrayList<BulletShotByEnemy> projectiles = new ArrayList<BulletShotByEnemy>();
 
     public void shoot() {
         BulletShotByEnemy shoot;
