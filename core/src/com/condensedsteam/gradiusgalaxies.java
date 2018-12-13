@@ -66,9 +66,22 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
 
         shapeBatch.setProjectionMatrix(camera.combined);
         batch.begin();
-        batch.draw(spaceshipPic, player.getBottomLeft(), player.getTopLeft());
+        batch.draw(spaceshipPic, player.getBottomLeft(), player.getTopLeft(),60,60);
         batch.end();
 
+        
+        if(Gdx.input.isKeyPressed(Input.Keys.UP)){
+                   player.moveUp();
+                }
+        if(Gdx.input.isKeyPressed(Input.Keys.DOWN)){
+                   player.moveDown();
+                }
+        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
+                   player.moveForward();
+                }
+        if(Gdx.input.isKeyPressed(Input.Keys.LEFT)){
+                   player.moveBack();
+                }
     }
 
     @Override
@@ -114,12 +127,12 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
 
     @Override
     public boolean keyUp(int keycode) {
-        if (keycode == Input.Keys.DOWN) {
-            player.moveDown();
-        }
-        if (keycode == Input.Keys.UP) {
-            player.moveUp();
-        }
+//        if (keycode == Input.Keys.DOWN) {
+//            player.moveDown();
+//        }
+//        if (keycode == Input.Keys.UP) {
+//            player.moveUp();
+//        }
 
 //       if(keycode == Input.Keys.LEFT)
 //            camera.translate(-16,0);
