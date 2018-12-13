@@ -29,15 +29,19 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
 
     @Override
     public void create() {
+
+        batch = new SpriteBatch();
+        shapeBatch = new ShapeRenderer();
+
         float w = Gdx.graphics.getWidth();
         float h = Gdx.graphics.getHeight();
 
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 192, 192);
         camera.update();
-        tiledMap = new TmxMapLoader().load("Level1.tmx");
+        //tiledMap = new TmxMapLoader().load("Level1.tmx");
         spaceshipPic = new Texture("spaceship.png");
-        // tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
+        //tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
         Gdx.input.setInputProcessor(this);
         player = new Player(100, 100, 20, 20, 2, 0);
     }
@@ -49,14 +53,24 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         camera.update();
-        // tiledMapRenderer.setView(camera);
-        // tiledMapRenderer.render();
-
-        player.draw(shapeBatch);
+//         tiledMapRenderer.setView(camera);
+//         tiledMapRenderer.render();
 
         shapeBatch.setColor(Color.WHITE);
         player.draw(shapeBatch);
 
+        shapeBatch.end();
+
+        shapeBatch.setProjectionMatrix(camera.combined);
+        batch.begin();
+        batch.draw(spaceshipPic, 100, 100);
+        batch.end();
+
+    }
+
+    @Override
+    public void dispose() {
+        batch.dispose();
     }
 
     @Override
