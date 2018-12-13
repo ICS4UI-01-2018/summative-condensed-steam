@@ -59,6 +59,7 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         
        
         shapeBatch.setColor(Color.WHITE);
+        shapeBatch.begin(ShapeRenderer.ShapeType.Line);
         player.draw(shapeBatch);
         
         shapeBatch.end();
