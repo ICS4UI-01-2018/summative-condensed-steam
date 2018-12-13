@@ -114,12 +114,6 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
 
     @Override
     public boolean keyUp(int keycode) {
-        if (keycode == Input.Keys.DOWN) {
-            player.moveDown();
-        }
-        if (keycode == Input.Keys.UP) {
-            player.moveUp();
-        }
 
 //       if(keycode == Input.Keys.LEFT)
 //            camera.translate(-16,0);
