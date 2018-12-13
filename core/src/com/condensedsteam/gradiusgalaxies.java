@@ -40,7 +40,7 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         float h = Gdx.graphics.getHeight();
         
         camera = new OrthographicCamera();
-        // camera.setToOrtho(false, 192, 192);
+        camera.setToOrtho(false, w, h);
         camera.update();
         //   tiledMap = new TmxMapLoader().load("Level1.tmx");
         spaceshipPic = new Texture("spaceship.png");
@@ -77,7 +77,7 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
 
         shapeBatch.setProjectionMatrix(camera.combined);
         batch.begin();
-        batch.draw(spaceshipPic, player.getBottomLeft(), player.getTopLeft(),60,60);
+        batch.draw(spaceshipPic, player.getBottomLeft(), player.getTopLeft(), 60, 60);
         batch.end();
 
         
@@ -143,17 +143,12 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
 
     @Override
     public boolean keyUp(int keycode) {
-//        if (keycode == Input.Keys.DOWN) {
-//            player.moveDown();
+//        if (keycode == Input.Keys.LEFT) {
+//            camera.translate(-16, 0);
 //        }
-//        if (keycode == Input.Keys.UP) {
-//            player.moveUp();
+//        if (keycode == Input.Keys.RIGHT) {
+//            camera.translate(16, 0);
 //        }
-
-//       if(keycode == Input.Keys.LEFT)
-//            camera.translate(-16,0);
-//        if(keycode == Input.Keys.RIGHT)
-//            camera.translate(16,0);
 //        if(keycode == Input.Keys.UP)
 //            camera.translate(0,16);
 //        if(keycode == Input.Keys.DOWN)
