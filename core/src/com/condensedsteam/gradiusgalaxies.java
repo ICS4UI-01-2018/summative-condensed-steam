@@ -14,6 +14,8 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.utils.TimeUtils;
+import java.util.ArrayList;
 
 public class gradiusgalaxies extends ApplicationAdapter implements InputProcessor {
 
@@ -24,13 +26,16 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
     // TiledMapRenderer tiledMapRenderer;
     private Texture spaceshipPic;
     private Player player;
+//    ArrayList<Enemy> enemy = new ArrayList<Enemy>(5);
+//    ArrayList<Fixed> fixed = new ArrayList<Fixed>(10);
     private Enemy enemy;
     private Fixed fixed;
     private Texture fixedPic;
 
     @Override
     public void create() {
-
+        //start time. 
+        long time = TimeUtils.millis();
         batch = new SpriteBatch();
         shapeBatch = new ShapeRenderer();
 
@@ -38,7 +43,7 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         float h = Gdx.graphics.getHeight();
 
         camera = new OrthographicCamera();
-      //  camera.setToOrtho(false, w, h);
+        //  camera.setToOrtho(false, w, h);
         camera.update();
         //   tiledMap = new TmxMapLoader().load("Level1.tmx");
         spaceshipPic = new Texture("spaceship.png");
@@ -46,6 +51,9 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         // tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
         Gdx.input.setInputProcessor(this);
         player = new Player(100, 100, 20, 20, 2, 0);
+        //positionX, positionY, width, height, score, collisionEnemy, collisionPlayer, crashed
+        enemy = new Enemy (20,30,50,40,0,false,false,false);
+        fixed = new Fixed (10,10,20,20,0,false, false,false);
     }
 
     @Override
@@ -60,12 +68,14 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
 
         shapeBatch.setColor(Color.WHITE);
         shapeBatch.begin(ShapeRenderer.ShapeType.Line);
-        player.draw(shapeBatch);
-
+     //   player.draw(shapeBatch);
+        shapeBatch.setColor(Color.BLUE);
+        enemy.draw(shapeBatch);
         shapeBatch.end();
 
         shapeBatch.setProjectionMatrix(camera.combined);
         batch.begin();
+        batch.draw(fixedPic, fixed.getBottomLeft(), enemy.getTopLeft(), 30, 40);
         batch.draw(spaceshipPic, player.getBottomLeft(), player.getTopLeft(), 60, 60);
         batch.end();
 
