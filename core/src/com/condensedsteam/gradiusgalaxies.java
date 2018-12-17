@@ -14,6 +14,8 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.utils.TimeUtils;
+import java.util.ArrayList;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
 public class gradiusgalaxies extends ApplicationAdapter implements InputProcessor {
@@ -25,6 +27,8 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
     // TiledMapRenderer tiledMapRenderer;
     private Texture spaceshipPic;
     private Player player;
+//    ArrayList<Enemy> enemy = new ArrayList<Enemy>(5);
+//    ArrayList<Fixed> fixed = new ArrayList<Fixed>(10);
     private Enemy enemy;
     private Fixed fixed;
     private Texture fixedPic;
@@ -32,7 +36,8 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
     
     @Override
     public void create() {
-
+        //start time. 
+        long time = TimeUtils.millis();
         batch = new SpriteBatch();
         shapeBatch = new ShapeRenderer();
 
@@ -40,14 +45,20 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         float h = Gdx.graphics.getHeight();
         
         camera = new OrthographicCamera();
-        camera.setToOrtho(false, w, h);
+        //  camera.setToOrtho(false, w, h);
         camera.update();
-        //   tiledMap = new TmxMapLoader().load("Level1.tmx");
+        
+//        camera.translate(3, 0);
+//        camera.update();
+        
         spaceshipPic = new Texture("spaceship.png");
         fixedPic = new Texture("rockfixed.png");
-        // tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
+        
         Gdx.input.setInputProcessor(this);
-        player = new Player(700, 500, 20, 20, 2, 0);
+        player = new Player(100, 100, 20, 20, 2, 0);
+        //positionX, positionY, width, height, score, collisionEnemy, collisionPlayer, crashed
+        enemy = new Enemy (20,30,50,40,0,false,false,false);
+        fixed = new Fixed (10,10,20,20,0,false, false,false);
     }
 
     @Override
@@ -71,33 +82,35 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         
         shapeBatch.setColor(Color.WHITE);
         shapeBatch.begin(ShapeRenderer.ShapeType.Line);
-        player.draw(shapeBatch);
-
+     //   player.draw(shapeBatch);
+        shapeBatch.setColor(Color.BLUE);
+        enemy.draw(shapeBatch);
         shapeBatch.end();
 
         shapeBatch.setProjectionMatrix(camera.combined);
         batch.begin();
+        batch.draw(fixedPic, fixed.getBottomLeft(), enemy.getTopLeft(), 30, 40);
         batch.draw(spaceshipPic, player.getBottomLeft(), player.getTopLeft(), 60, 60);
         batch.end();
 
         
-        if(Gdx.input.isKeyPressed(Input.Keys.UP)){
-                   player.moveUp();
-                }
-        if(Gdx.input.isKeyPressed(Input.Keys.DOWN)){
-                   player.moveDown();
-                }
-        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
-                   player.moveForward();
-                }
-        if(Gdx.input.isKeyPressed(Input.Keys.LEFT)){
-                   player.moveBack();
-                }
-        if(Gdx.input.isKeyPressed(Input.Keys.SPACE)){
-            //shoot
-                }
         
+        if(player.getYPosition() < viewport.getWorldHeight()){
+            
+        if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+            player.moveUp();
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+            player.moveDown();
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+            player.moveForward();
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+            player.moveBack();
+        }
         
+        }
     }
 
     @Override
