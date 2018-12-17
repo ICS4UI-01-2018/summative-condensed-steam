@@ -20,11 +20,11 @@ import com.badlogic.gdx.math.Rectangle;
 public class Player {
 
     private int score;
-    private int speed = 3;
+    private float speed = 3;
     private Rectangle player;
     private BulletShotByPlayer bullet;
 
-    public Player(float x, float y, float width, float height, int speed, int score) {
+    public Player(float x, float y, float width, float height, float speed, int score) {
 
         speed = this.speed;
         this.score = score;
@@ -72,7 +72,14 @@ public class Player {
         return player.x;
 
     }
-
+    
+    public float getYPosition(){
+        return player.y;
+    }
+    
+    public float getXPosition(){
+        return player.x;
+    }
     public float getBottomRight() {
 
         return player.x + player.width;

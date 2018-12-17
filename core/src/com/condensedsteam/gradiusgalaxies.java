@@ -17,13 +17,14 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import java.util.ArrayList;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 
 public class gradiusgalaxies extends ApplicationAdapter implements InputProcessor {
 
     SpriteBatch batch;
     private ShapeRenderer shapeBatch;
     TiledMap tiledMap;
-    OrthographicCamera camera;
+    private OrthographicCamera camera;
     // TiledMapRenderer tiledMapRenderer;
     private Texture spaceshipPic;
     private Player player;
@@ -44,7 +45,7 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
 
         float w = Gdx.graphics.getWidth();
         float h = Gdx.graphics.getHeight();
-
+        
         camera = new OrthographicCamera();
         camera.setToOrtho(false, w, h);
         viewport = new FitViewport(800, 480, camera);
@@ -68,6 +69,7 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         camera.update();
 
+        
         shapeBatch.setColor(Color.WHITE);
         shapeBatch.begin(ShapeRenderer.ShapeType.Line);
         shapeBatch.setColor(Color.BLUE);
@@ -81,6 +83,10 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         batch.draw(spaceshipPic, player.getBottomLeft(), player.getTopLeft(), 60, 60);
         batch.end();
 
+        
+        
+        if(player.getYPosition() < viewport.getWorldHeight()){
+            
         if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
             player.moveUp();
         }
@@ -92,6 +98,8 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         }
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
             player.moveBack();
+        }
+        
         }
     }
 
@@ -153,5 +161,6 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         return false;
 
     }
+    
 
 }
