@@ -48,6 +48,14 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         //  camera.setToOrtho(false, w, h);
         camera.update();
         
+        camera = new OrthographicCamera();
+        viewport = new FitViewport(800,600,camera);
+        viewport.apply();
+        
+        camera.position.x = 400;
+        camera.position.y = 300;
+        camera.update();
+        
 //        camera.translate(3, 0);
 //        camera.update();
         
@@ -59,6 +67,9 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         //positionX, positionY, width, height, score, collisionEnemy, collisionPlayer, crashed
         enemy = new Enemy (20,30,50,40,0,false,false,false);
         fixed = new Fixed (10,10,20,20,0,false, false,false);
+        
+        
+        
     }
 
     @Override
@@ -71,14 +82,6 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         // tiledMapRenderer.setView(camera);
         // tiledMapRenderer.render();
 
-        camera = new OrthographicCamera();
-        viewport = new FitViewport(800,600,camera);
-        viewport.apply();
-        
-        camera.position.x = 400;
-        camera.position.y = 300;
-        camera.update();
-        
         
         shapeBatch.setColor(Color.WHITE);
         shapeBatch.begin(ShapeRenderer.ShapeType.Line);
