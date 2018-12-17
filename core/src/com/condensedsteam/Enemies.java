@@ -32,7 +32,8 @@ public class Enemies {
     public Rectangle getBounds() {
         return enemies;
     }
-
+    
+    
     public void moveup() {
     }
 
