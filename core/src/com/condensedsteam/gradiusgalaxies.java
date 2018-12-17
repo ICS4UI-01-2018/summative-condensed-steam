@@ -35,6 +35,7 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
     private Texture fixedPic;
     private Texture gamemap;
     private FitViewport viewport;
+    private BulletShotByPlayer bullet;
 
     @Override
     public void create() {
@@ -59,6 +60,7 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         //positionX, positionY, width, height, score, collisionEnemy, collisionPlayer, crashed
         enemy = new Enemy(20, 30, 50, 40, 0, false, false, false);
         fixed = new Fixed(10, 10, 20, 20, 0, false, false, false);
+        bullet = new BulletShotByPlayer();
     }
 
     @Override
@@ -83,7 +85,16 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         batch.draw(spaceshipPic, player.getBottomLeft(), player.getTopLeft(), 60, 60);
         batch.end();
 
-        
+        //not working
+        while(Gdx.input.isKeyJustPressed(Input.Keys.SPACE)){
+            
+            shapeBatch.setProjectionMatrix(camera.combined);
+            shapeBatch.begin();
+            bullet.BulletShotByPlayer(player.getXPosition(), player.getYPosition(), 3, 3, 3);
+            bullet.draw(shapeBatch);
+            shapeBatch.end();
+            
+        }
         
         if(player.getYPosition() < viewport.getWorldHeight()){
             
