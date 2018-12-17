@@ -33,7 +33,7 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
     private Enemy enemy;
     private Fixed fixed;
     private Texture fixedPic;
-    private Texture gamemap;
+    private Texture background;
     private FitViewport viewport;
 
     @Override
@@ -45,13 +45,14 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
 
         float w = Gdx.graphics.getWidth();
         float h = Gdx.graphics.getHeight();
-        
+
         camera = new OrthographicCamera();
-        camera.setToOrtho(false, w, h);
+        //working on this
+        camera.setToOrtho(true);
         viewport = new FitViewport(800, 480, camera);
         viewport.apply();
         camera.update();
-        gamemap = new Texture("GameMap.png");
+        background = new Texture("back.png");
         spaceshipPic = new Texture("spaceship.png");
         fixedPic = new Texture("rockfixed.png");
         Gdx.input.setInputProcessor(this);
@@ -69,7 +70,6 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         camera.update();
 
-        
         shapeBatch.setColor(Color.WHITE);
         shapeBatch.begin(ShapeRenderer.ShapeType.Line);
         shapeBatch.setColor(Color.BLUE);
@@ -79,28 +79,28 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         shapeBatch.setProjectionMatrix(camera.combined);
         batch.begin();
         batch.draw(fixedPic, fixed.getBottomLeft(), enemy.getTopLeft(), 30, 40);
-        batch.draw(gamemap, 0, 0, viewport.getWorldWidth(), viewport.getWorldHeight());
+        batch.draw(background, 0, 0, viewport.getWorldWidth(), viewport.getWorldHeight());
         batch.draw(spaceshipPic, player.getBottomLeft(), player.getTopLeft(), 60, 60);
         batch.end();
 
-        
-        
-        if(player.getYPosition() < viewport.getWorldHeight()){
-            
-        if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-            player.moveUp();
+        if (player.getYPosition() < viewport.getWorldHeight()) {
+
+            if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+                player.moveUp();
+            }
+            if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+                player.moveDown();
+            }
+            if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+                player.moveForward();
+            }
+            if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+                player.moveBack();
+            }
+
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-            player.moveDown();
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-            player.moveForward();
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-            player.moveBack();
-        }
-        
-        }
+        camera.translate(player.getXPosition() + 50, player.getYPosition() + 50);
+
     }
 
     @Override
@@ -146,21 +146,8 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
 
     @Override
     public boolean keyUp(int keycode) {
-        if (keycode == Input.Keys.LEFT) {
-            camera.translate(-16, 0);
-        }
-        if (keycode == Input.Keys.RIGHT) {
-            camera.translate(16, 0);
-        }
-        if (keycode == Input.Keys.UP) {
-            camera.translate(0, 16);
-        }
-        if (keycode == Input.Keys.DOWN) {
-            camera.translate(0, -16);
-        }
         return false;
 
     }
-    
 
 }
