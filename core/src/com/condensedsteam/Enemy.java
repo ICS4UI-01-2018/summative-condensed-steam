@@ -18,6 +18,7 @@ public class Enemy extends Enemies {
     private Rectangle enemy;
     private BulletShotByEnemy bullet;
     private ArrayList<BulletShotByEnemy> projectiles = new ArrayList<BulletShotByEnemy>();
+    private Player player;
 
     public Enemy(float positionX, float positionY, int width, int height, int score, boolean collisionEnemy, boolean collisionPlayer, boolean crashed) {
         super(positionX, positionY, width, height, score, collisionEnemy, collisionPlayer, crashed);
@@ -26,28 +27,25 @@ public class Enemy extends Enemies {
     }
 
     @Override
-    public void moveup() {
+    public void move() {
         enemy.y += 1;
-    }
-
-    @Override
-    public void movedown() {
-        enemy.y -= 1;
-    }
-
-    @Override
-    public void moveright() {
-        enemy.x += 1;
     }
 //work on this 
 
     public void movetowardsplayer() {
+        float pX = player.getXPosition();
+        float pY = player.getYPosition();
+        if (pX > this.enemy.x) {
+            this.enemy.x = this.enemy.x + 1;
+        } else if (pX < this.enemy.x) {
+            this.enemy.x = this.enemy.x - 1;
+        }
+        if (pY > this.enemy.y) {
+            this.enemy.y = this.enemy.y + 1;
+        } else if (pY < this.enemy.y) {
+            this.enemy.y = this.enemy.y - 1;
+        }
 
-    }
-
-    @Override
-    public void moveleft() {
-        enemy.x -= 1;
     }
 
     public void draw(ShapeRenderer shapeBatch) {

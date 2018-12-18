@@ -33,16 +33,7 @@ public class Enemies {
         return enemies;
     }
 
-    public void moveup() {
-    }
-
-    public void movedown() {
-    }
-
-    public void moveright() {
-    }
-
-    public void moveleft() {
+    public void move() {
     }
 
     public boolean collisionEnemy(Enemy enemy, Fixed fixed) {

@@ -50,7 +50,6 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         float h = Gdx.graphics.getHeight();
 
         camera = new OrthographicCamera();
-        //working on this
         camera.setToOrtho(true);
         viewport = new FitViewport(800, 480, camera);
         viewport.apply();
@@ -88,6 +87,16 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         batch.draw(background, 0, 0, viewport.getWorldWidth(), viewport.getWorldHeight());
         batch.draw(spaceshipPic, player.getBottomLeft(), player.getTopLeft(), 60, 60);
         batch.end();
+
+        //not working
+        while (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+
+            shapeBatch.setProjectionMatrix(camera.combined);
+            shapeBatch.begin();
+            bullet.BulletShotByPlayer(player.getXPosition(), player.getYPosition(), 3, 3, 3);
+            bullet.draw(shapeBatch);
+            shapeBatch.end();
+        }
 
         if (player.getYPosition() < viewport.getWorldHeight()) {
         
@@ -161,6 +170,9 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
 
     @Override
     public boolean keyDown(int keycode) {
+        if (Gdx.input.isKeyPressed(Input.Keys.UP)){
+            fixed.moveup();
+        }
         return false;
     }
 
