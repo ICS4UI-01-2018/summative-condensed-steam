@@ -98,6 +98,16 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
             shapeBatch.end();
         }
 
+        //not working
+        while (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+
+            shapeBatch.setProjectionMatrix(camera.combined);
+            shapeBatch.begin();
+            bullet.BulletShotByPlayer(player.getXPosition(), player.getYPosition(), 3, 3, 3);
+            bullet.draw(shapeBatch);
+            shapeBatch.end();
+        }
+
         if (player.getYPosition() < viewport.getWorldHeight()) {
         
             if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
