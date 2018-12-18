@@ -14,6 +14,7 @@ import com.badlogic.gdx.math.Rectangle;
  */
 public class Fixed extends Enemies{
     private Rectangle fixed;
+    private int speed = 2;
     
     public Fixed(float positionX, float positionY, int width, int height, int score, boolean collisionEnemy, boolean collisionPlayer, boolean crashed) {
         super(positionX, positionY, width, height, score, collisionEnemy, collisionPlayer, crashed);
@@ -22,10 +23,10 @@ public class Fixed extends Enemies{
     }
     
      public void moveup() {
-        fixed.y += 5 * 1;
+        fixed.y += speed;
     }
      public void movedown() {
-        fixed.y -= 5 * 1;
+        fixed.y -= speed;
     }
      
     public void draw(ShapeRenderer shapeBatch) {
