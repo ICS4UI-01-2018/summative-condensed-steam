@@ -35,12 +35,14 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
     private Enemy enemy;
     private Fixed fixed;
     private Texture fixedPic;
-    private Texture gamemap;
+    private Texture background;
     private FitViewport viewport;
+    private BulletShotByPlayer bullet;
 
     @Override
     public void create() {
         //start time. 
+        long time = TimeUtils.millis();
         batch = new SpriteBatch();
         shapeBatch = new ShapeRenderer();
 
@@ -48,19 +50,19 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         float h = Gdx.graphics.getHeight();
 
         camera = new OrthographicCamera();
-        camera.setToOrtho(false, w, h);
+        //working on this
+        camera.setToOrtho(true);
         viewport = new FitViewport(800, 480, camera);
         viewport.apply();
-        camera.update();
-        gamemap = new Texture("GameMap.png");
+        background = new Texture("back.png");
         spaceshipPic = new Texture("spaceship.png");
         fixedPic = new Texture("rockfixed.png");
         Gdx.input.setInputProcessor(this);
-
         player = new Player(100, 100, 20, 20, 2, 0);
         //positionX, positionY, width, height, score, collisionEnemy, collisionPlayer, crashed
         enemy = new Enemy(20, 30, 50, 40, 0, false, false, false);
         fixed = new Fixed(10, 10, 20, 20, 0, false, false, false);
+        bullet = new BulletShotByPlayer();
     }
 
     @Override
@@ -80,83 +82,83 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         shapeBatch.setProjectionMatrix(camera.combined);
         batch.begin();
         batch.draw(fixedPic, fixed.getBottomLeft(), enemy.getTopLeft(), 30, 40);
-        batch.draw(gamemap, 0, 0, viewport.getWorldWidth(), viewport.getWorldHeight());
+        batch.draw(background, 0, 0, viewport.getWorldWidth(), viewport.getWorldHeight());
         batch.draw(spaceshipPic, player.getBottomLeft(), player.getTopLeft(), 60, 60);
         batch.end();
 
         if (player.getYPosition() < viewport.getWorldHeight()) {
 
-            if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-                player.moveUp();
-                camera.translate(0, 10);
-                camera.update();
-            }
-            if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-                player.moveDown();
-                camera.translate(0, -10);
-                camera.update();
-            }
-            if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-                player.moveForward();
-                camera.translate(10, 0);
-                camera.update();
-            }
-            if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-                player.moveBack();
-                camera.translate(-10, 0);
-                camera.update();
-            }
+        if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+            player.moveUp();
+            camera.translate(viewport.getWorldWidth(), viewport.getWorldHeight()+10);
+
         }
+        if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+            player.moveDown();
+            camera.translate(viewport.getWorldWidth(), viewport.getWorldHeight()-10);
+
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+            player.moveForward();
+            camera.translate(viewport.getWorldWidth()+10, viewport.getWorldHeight());
+      
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+            player.moveBack();
+            camera.translate(viewport.getWorldWidth()-10, viewport.getWorldHeight());
+        }
+
+    }
 
 //        shapeBatch.setProjectionMatrix(camera.combined);
 //        batch.begin();
 //        batch.draw(fixedPic, fixed.getBottom(), fixed.getTop());
 //        batch.end();
-    }
+}
 
     @Override
-    public void dispose() {
+        public void dispose() {
         batch.dispose();
     }
 
     @Override
-    public boolean keyTyped(char character) {
+        public boolean keyTyped(char character) {
 
         return false;
     }
 
     @Override
-    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         return false;
     }
 
     @Override
-    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+        public boolean touchUp(int screenX, int screenY, int pointer, int button) {
         return false;
     }
 
     @Override
-    public boolean touchDragged(int screenX, int screenY, int pointer) {
+        public boolean touchDragged(int screenX, int screenY, int pointer) {
         return false;
     }
 
     @Override
-    public boolean mouseMoved(int screenX, int screenY) {
+        public boolean mouseMoved(int screenX, int screenY) {
         return false;
     }
 
     @Override
-    public boolean scrolled(int amount) {
+        public boolean scrolled(int amount) {
         return false;
     }
 
     @Override
-    public boolean keyDown(int keycode) {
+        public boolean keyDown(int keycode) {
         return false;
     }
 
     @Override
-    public boolean keyUp(int keycode) {
+        public boolean keyUp(int keycode) {
 //        if (keycode == Input.Keys.LEFT) {
 //            camera.translate(-16, 0);
 //        }
