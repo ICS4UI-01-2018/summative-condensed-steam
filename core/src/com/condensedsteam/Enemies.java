@@ -63,34 +63,26 @@ public class Enemies {
         }
     }
 
-    public float getLeft() {
+    public float getBottomLeft() {
         return this.enemies.x;
     }
 
-    public float getRight() {
+    public float getBottomRight() {
         return this.enemies.x + this.enemies.width;
     }
 
-    public float getTop() {
-        return this.enemies.y + this.enemies.height;
+    public float getTopLeft() {
+        return this.enemies.y;
     }
 
-    public float getBottom() {
-        return this.enemies.y;
+    public float getTopRight() {
+        return this.enemies.y + +this.enemies.height;
     }
 
     // add something that makes sure we add 10 points when enemy is killed but sub 5
     // points when fixed enemy is killed
     public int getScore() {
         return this.score;
-    }
-
-    public boolean isVisible() {
-        return visible;
-    }
-
-    public void setVisible(boolean visible) {
-        this.visible = visible;
     }
 
 
@@ -103,4 +95,13 @@ public class Enemies {
             return this.score;
         }
     }
+
+    public boolean isVisible() {
+        return visible;
+    }
+
+    public void setVisible(boolean visible) {
+        this.visible = visible;
+    }
+
 }
