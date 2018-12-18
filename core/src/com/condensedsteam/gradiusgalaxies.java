@@ -10,10 +10,12 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import java.util.ArrayList;
@@ -51,7 +53,6 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         camera.setToOrtho(true);
         viewport = new FitViewport(800, 480, camera);
         viewport.apply();
-        camera.update();
         background = new Texture("back.png");
         spaceshipPic = new Texture("spaceship.png");
         fixedPic = new Texture("rockfixed.png");
@@ -96,47 +97,67 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
 
         if (player.getYPosition() < viewport.getWorldHeight()) {
 
-            if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-                player.moveUp();
-            }
-            camera.translate(player.getXPosition() + 50, player.getYPosition() + 50);
+        if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+            player.moveUp();
+            camera.translate(viewport.getWorldWidth(), viewport.getWorldHeight()+10);
 
         }
+        if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+            player.moveDown();
+            camera.translate(viewport.getWorldWidth(), viewport.getWorldHeight()-10);
+
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+            player.moveForward();
+            camera.translate(viewport.getWorldWidth()+10, viewport.getWorldHeight());
+      
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+            player.moveBack();
+            camera.translate(viewport.getWorldWidth()-10, viewport.getWorldHeight());
+        }
+
     }
 
+//        shapeBatch.setProjectionMatrix(camera.combined);
+//        batch.begin();
+//        batch.draw(fixedPic, fixed.getBottom(), fixed.getTop());
+//        batch.end();
+}
+
     @Override
-    public void dispose() {
+        public void dispose() {
         batch.dispose();
     }
 
     @Override
-    public boolean keyTyped(char character) {
+        public boolean keyTyped(char character) {
 
         return false;
     }
 
     @Override
-    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         return false;
     }
 
     @Override
-    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+        public boolean touchUp(int screenX, int screenY, int pointer, int button) {
         return false;
     }
 
     @Override
-    public boolean touchDragged(int screenX, int screenY, int pointer) {
+        public boolean touchDragged(int screenX, int screenY, int pointer) {
         return false;
     }
 
     @Override
-    public boolean mouseMoved(int screenX, int screenY) {
+        public boolean mouseMoved(int screenX, int screenY) {
         return false;
     }
 
     @Override
-    public boolean scrolled(int amount) {
+        public boolean scrolled(int amount) {
         return false;
     }
 
@@ -149,9 +170,19 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
     }
 
     @Override
-    public boolean keyUp(int keycode) {
+        public boolean keyUp(int keycode) {
+//        if (keycode == Input.Keys.LEFT) {
+//            camera.translate(-16, 0);
+//        }
+//        if (keycode == Input.Keys.RIGHT) {
+//            camera.translate(16, 0);
+//        }
+//        if (keycode == Input.Keys.UP) {
+//            camera.translate(0, 16);
+//        }
+//        if (keycode == Input.Keys.DOWN) {
+//            camera.translate(0, -16);
+//        }
         return false;
-
     }
-
 }

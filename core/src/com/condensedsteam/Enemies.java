@@ -67,7 +67,7 @@ public class Enemies {
     }
 
     public float getTopRight() {
-        return this.enemies.y + + this.enemies.height;
+        return this.enemies.y + +this.enemies.height;
     }
 
     // add something that makes sure we add 10 points when enemy is killed but sub 5
@@ -76,13 +76,6 @@ public class Enemies {
         return this.score;
     }
 
-    public boolean isVisible() {
-        return visible;
-    }
-
-    public void setVisible(boolean visible) {
-        this.visible = visible;
-    }
 
     public int setScore() {
         if (collisionPlayer = true) {
@@ -93,4 +86,13 @@ public class Enemies {
             return this.score;
         }
     }
+
+    public boolean isVisible() {
+        return visible;
+    }
+
+    public void setVisible(boolean visible) {
+        this.visible = visible;
+    }
+
 }
