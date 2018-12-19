@@ -13,40 +13,82 @@ import java.util.ArrayList;
  *
  * @author Kalsr8025
  */
-public class Enemy extends Enemies {
+public class Enemy {
 
     private Rectangle enemy;
     private BulletShotByEnemy bullet;
     private ArrayList<BulletShotByEnemy> projectiles = new ArrayList<BulletShotByEnemy>();
     private Player player;
     private int speed = 5;
+    private boolean collisionfixed;
+    private boolean collisionPlayer;
+    private boolean visible;
+    
 
-    public Enemy(float positionX, float positionY, int width, int height, int score, boolean collisionEnemy, boolean collisionPlayer, boolean crashed) {
-        super(positionX, positionY, width, height, score, collisionEnemy, collisionPlayer, crashed);
+    public Enemy(float positionX, float positionY, int speed) {
+        this.speed = speed;
         this.enemy = new Rectangle(positionX, positionY, 20, 30);
 //        this.target = target;
     }
 
-    @Override
-    public void move() {
-        enemy.y += 1;
-    }
 //work on this 
-
     public void movetowardsplayer() {
-        float pX = player.getXPosition();
-        float pY = player.getYPosition();
-        if (pX > this.enemy.x) {
-            this.enemy.x += speed;
-        } else if (pX < this.enemy.x) {
-            this.enemy.x -= speed;
-        }
-        if (pY > this.enemy.y) {
-            this.enemy.y += speed;
-        } else if (pY < this.enemy.y) {
-            this.enemy.y -= speed;
-        }
+//        float pX = player.getXPosition();
+//        float pY = player.getYPosition();
+//        if (pX > this.enemy.x) {
+//            this.enemy.x += speed;
+//        } else if (pX < this.enemy.x) {
+//            this.enemy.x -= speed;
+//        }
+//        if (pY > this.enemy.y) {
+//            this.enemy.y += speed;
+//        } else if (pY < this.enemy.y) {
+//            this.enemy.y -= speed;
+//        }
 
+    }
+
+    public Rectangle getBounds() {
+        return enemy;
+    }
+
+    public boolean collisionPlayer(Player player) {
+          if (enemy.overlaps(player.getBounds())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+     public boolean collisionfixed(Fixed fixed) {
+          if (enemy.overlaps(fixed.getBounds())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public float getBottomLeft() {
+        return this.enemy.x;
+    }
+
+    public float getBottomRight() {
+        return this.enemy.x + this.enemy.width;
+    }
+
+    public float getTopLeft() {
+        return this.enemy.y;
+    }
+
+    public float getTopRight() {
+        return this.enemy.y + +this.enemy.height;
+    }
+
+    public boolean isVisible() {
+        return visible;
+    }
+
+    public void setVisible(boolean visible) {
+        this.visible = visible;
     }
 
     public void draw(ShapeRenderer shapeBatch) {
