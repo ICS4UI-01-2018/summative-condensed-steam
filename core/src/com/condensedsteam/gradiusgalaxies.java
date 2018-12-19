@@ -96,7 +96,6 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
             shapeBatch.end();
         }
         if (player.getYPosition() < viewport.getWorldHeight()) {
-
             if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
                 player.moveUp();
                 camera.translate(0, 20);
