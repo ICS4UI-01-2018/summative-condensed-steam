@@ -57,12 +57,12 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         background = new Texture("back.png");
         spaceshipPic = new Texture("spaceship.png");
         fixedPic = new Texture("rockfixed.png");
-        enemypic = new Texture ("Enemy.png");
+        enemypic = new Texture("enemy.png");
         Gdx.input.setInputProcessor(this);
         player = new Player(100, 100, 20, 20, 2, 0);
         //positionX, positionY, width, height, score, collisionEnemy, collisionPlayer, crashed
-        enemy = new Enemy(20, 30, 50, 40, 0, false, false, false);
-        fixed = new Fixed(10, 10, 20, 20, 0, false, false, false);
+        enemy = new Enemy(20, 20, 5);
+        fixed = new Fixed(50, 100, 2);
         bullet = new BulletShotByPlayer();
     }
 
@@ -72,21 +72,18 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-     
+
         shapeBatch.setColor(Color.WHITE);
         shapeBatch.begin(ShapeRenderer.ShapeType.Line);
         shapeBatch.end();
 
         shapeBatch.setProjectionMatrix(camera.combined);
-        camera.position.set(player.getXPosition(),player.getYPosition(),0);
-        camera.translate(player.getXPosition(),player.getYPosition(),0);
-        camera.update();
-        
+
         batch.begin();
         batch.draw(background, 0, 0, viewport.getWorldWidth(), viewport.getWorldHeight());
         batch.draw(fixedPic, fixed.getBottomLeft(), fixed.getTopLeft(), 50, 100);
         batch.draw(spaceshipPic, player.getBottomLeft(), player.getTopLeft(), 60, 60);
-        batch.draw (enemypic, enemy.getBottomLeft(), enemy.getTopLeft(), 40, 40);
+        batch.draw(enemypic, enemy.getBottomLeft(), enemy.getTopLeft(), 40, 40);
         batch.end();
 
         //not working
@@ -98,38 +95,73 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
             bullet.draw(shapeBatch);
             shapeBatch.end();
         }
+        if (player.getYPosition() < viewport.getWorldHeight()) {
 
-        //not working
-        while (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+            //not working
+            while (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
 
-            shapeBatch.setProjectionMatrix(camera.combined);
-            shapeBatch.begin();
-            bullet.BulletShotByPlayer(player.getXPosition(), player.getYPosition(), 3, 3, 3);
-            bullet.draw(shapeBatch);
-            shapeBatch.end();
+                shapeBatch.setProjectionMatrix(camera.combined);
+                shapeBatch.begin();
+                bullet.BulletShotByPlayer(player.getXPosition(), player.getYPosition(), 3, 3, 3);
+                bullet.draw(shapeBatch);
+                shapeBatch.end();
+            }
+
+//            if (player.getYPosition() < 423 && player.getYPosition() > 0 && player.getXPosition() < 578 && player.getXPosition() > 0) {
+            if (player.getYPosition() < 423) {
+                if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+                    player.moveUp();
+                    camera.translate(0, 20);
+                    enemy.movetowardsplayer();
+                    fixed.movedown();
+                }
+            }
+            if (player.getYPosition() > 0) {
+
+                if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+                    player.moveDown();
+                    camera.translate(0, -20);
+                    enemy.movetowardsplayer();
+                    fixed.moveup();
+                }
+            }
+//            if (player.getXPosition() < 578) {
+//                if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+//                    player.moveForward();
+//                    camera.translate(20, 0);
+//                    enemy.movetowardsplayer();
+//                    fixed.moveup();
+//                }
+//            }
+            if (player.getXPosition() > 0) {
+                if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+                    player.moveBack();
+                    camera.translate(-20, 0);
+                    enemy.movetowardsplayer();
+                    fixed.movedown();
+                }
+            }
+            camera.position.set(player.getXPosition(), player.getYPosition(), 0);
+            camera.update();
+
+            batch.begin();
+            batch.draw(background, 0, 0, viewport.getWorldWidth(), viewport.getWorldHeight());
+            batch.draw(fixedPic, fixed.getBottomLeft(), fixed.getTopLeft(), 50, 100);
+            batch.draw(spaceshipPic, player.getBottomLeft(), player.getTopLeft(), 60, 60);
+            batch.draw(enemypic, enemy.getBottomLeft(), enemy.getTopLeft(), 40, 40);
+            batch.end();
+
+            //not working
+            while (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+
+                shapeBatch.setProjectionMatrix(camera.combined);
+                shapeBatch.begin();
+                bullet.BulletShotByPlayer(player.getXPosition(), player.getYPosition(), 3, 3, 3);
+                bullet.draw(shapeBatch);
+                shapeBatch.end();
+            }
+
         }
-
-        if (player.getYPosition() < 400 && player.getYPosition() > 0 && player.getXPosition() < 450 && player.getXPosition() > 0) {
-        
-            if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-                player.moveUp();
-
-            }
-            if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-                player.moveDown();
-
-            }
-            if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-                player.moveForward();
-
-            }
-            if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-                player.moveBack();
-            }
-
-        }
-  
-        
 
 //        shapeBatch.setProjectionMatrix(camera.combined);
 //        batch.begin();
