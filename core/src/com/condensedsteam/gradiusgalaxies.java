@@ -54,7 +54,7 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         camera.setToOrtho(true);
         viewport = new FitViewport(800, 480, camera);
         viewport.apply();
-     //   background = new Texture("back.png");
+        background = new Texture("back.png");
         spaceshipPic = new Texture("spaceship.png");
         fixedPic = new Texture("rockfixed.png");
         enemypic = new Texture("enemy.png");
@@ -130,7 +130,7 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
             camera.update();
             
             batch.begin();
-       //     batch.draw(background, 0, 0, viewport.getWorldWidth(), viewport.getWorldHeight());
+            batch.draw(background, 0, 0, viewport.getWorldWidth(), viewport.getWorldHeight());
             batch.draw(fixedPic, fixed.getBottomLeft(), fixed.getTopLeft(), 50, 100);
             batch.draw(spaceshipPic, player.getBottomLeft(), player.getTopLeft(), 60, 60);
             batch.draw(enemypic, enemy.getBottomLeft(), enemy.getTopLeft(), 40, 40);
