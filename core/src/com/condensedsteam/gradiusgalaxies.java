@@ -54,10 +54,10 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         camera.setToOrtho(true);
         viewport = new FitViewport(800, 480, camera);
         viewport.apply();
-        background = new Texture("back.png");
+     //   background = new Texture("back.png");
         spaceshipPic = new Texture("spaceship.png");
         fixedPic = new Texture("rockfixed.png");
-        enemypic = new Texture ("Enemy.png");
+        enemypic = new Texture("Enemy.png");
         Gdx.input.setInputProcessor(this);
         player = new Player(100, 100, 20, 20, 2, 0);
         //positionX, positionY, width, height, score, collisionEnemy, collisionPlayer, crashed
@@ -72,45 +72,15 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-     
+
         shapeBatch.setColor(Color.WHITE);
         shapeBatch.begin(ShapeRenderer.ShapeType.Line);
         shapeBatch.end();
 
         shapeBatch.setProjectionMatrix(camera.combined);
-        camera.position.set(player.getXPosition(),player.getYPosition(),0);
-        camera.translate(player.getXPosition(),player.getYPosition(),0);
-        camera.update();
-        
-        batch.begin();
-        batch.draw(background, 0, 0, viewport.getWorldWidth(), viewport.getWorldHeight());
-        batch.draw(fixedPic, fixed.getBottomLeft(), fixed.getTopLeft(), 50, 100);
-        batch.draw(spaceshipPic, player.getBottomLeft(), player.getTopLeft(), 60, 60);
-        batch.draw (enemypic, enemy.getBottomLeft(), enemy.getTopLeft(), 40, 40);
-        batch.end();
-
-        //not working
-        while (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
-
-            shapeBatch.setProjectionMatrix(camera.combined);
-            shapeBatch.begin();
-            bullet.BulletShotByPlayer(player.getXPosition(), player.getYPosition(), 3, 3, 3);
-            bullet.draw(shapeBatch);
-            shapeBatch.end();
-        }
-
-        //not working
-        while (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
-
-            shapeBatch.setProjectionMatrix(camera.combined);
-            shapeBatch.begin();
-            bullet.BulletShotByPlayer(player.getXPosition(), player.getYPosition(), 3, 3, 3);
-            bullet.draw(shapeBatch);
-            shapeBatch.end();
-        }
 
         if (player.getYPosition() < viewport.getWorldHeight()) {
-        
+
             if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
                 player.moveUp();
 
@@ -127,9 +97,27 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
                 player.moveBack();
             }
 
+            camera.position.set(player.getXPosition(), player.getYPosition(), 0);
+            camera.update();
+            
+            batch.begin();
+       //     batch.draw(background, 0, 0, viewport.getWorldWidth(), viewport.getWorldHeight());
+            batch.draw(fixedPic, fixed.getBottomLeft(), fixed.getTopLeft(), 50, 100);
+            batch.draw(spaceshipPic, player.getBottomLeft(), player.getTopLeft(), 60, 60);
+            batch.draw(enemypic, enemy.getBottomLeft(), enemy.getTopLeft(), 40, 40);
+            batch.end();
+
+            //not working
+            while (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+
+                shapeBatch.setProjectionMatrix(camera.combined);
+                shapeBatch.begin();
+                bullet.BulletShotByPlayer(player.getXPosition(), player.getYPosition(), 3, 3, 3);
+                bullet.draw(shapeBatch);
+                shapeBatch.end();
+            }
+
         }
-  
-        
 
 //        shapeBatch.setProjectionMatrix(camera.combined);
 //        batch.begin();
