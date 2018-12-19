@@ -12,23 +12,54 @@ import com.badlogic.gdx.math.Rectangle;
  *
  * @author Kalsr8025
  */
-public class Fixed extends Enemies{
+public class Fixed {
+
     private Rectangle fixed;
     private int speed = 2;
-    
-    public Fixed(float positionX, float positionY, int width, int height, int score, boolean collisionEnemy, boolean collisionPlayer, boolean crashed) {
-        super(positionX, positionY, width, height, score, collisionEnemy, collisionPlayer, crashed);
-        //random position and size... 
+    private boolean collisionPlayer;
+    private Enemy enemy ;
+
+    public Fixed(float positionX, float positionY, int speed) {
+        this.speed = speed;
         this.fixed = new Rectangle(positionX, positionY, 20, 20);
     }
-    
-     public void moveup() {
+
+    public Rectangle getBounds() {
+        return fixed;
+    }
+
+    public boolean collisionPlayer(Player player) {
+        if (fixed.overlaps(player.getBounds())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public float getBottomLeft() {
+        return this.fixed.x;
+    }
+
+    public float getBottomRight() {
+        return this.fixed.x + this.fixed.width;
+    }
+
+    public float getTopLeft() {
+        return this.fixed.y;
+    }
+
+    public float getTopRight() {
+        return this.fixed.y + +this.fixed.height;
+    }
+
+    public void moveup() {
         fixed.y += speed;
     }
-     public void movedown() {
+
+    public void movedown() {
         fixed.y -= speed;
     }
-     
+
     public void draw(ShapeRenderer shapeBatch) {
         shapeBatch.rect(fixed.x, fixed.y, fixed.width, fixed.height);
     }

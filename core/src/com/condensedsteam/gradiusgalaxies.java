@@ -61,8 +61,8 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         Gdx.input.setInputProcessor(this);
         player = new Player(100, 100, 20, 20, 2, 0);
         //positionX, positionY, width, height, score, collisionEnemy, collisionPlayer, crashed
-        enemy = new Enemy(20, 30, 50, 40, 0, false, false, false);
-        fixed = new Fixed(10, 10, 20, 20, 0, false, false, false);
+        enemy = new Enemy(20, 20, 5);
+        fixed = new Fixed(50, 100, 2);
         bullet = new BulletShotByPlayer();
     }
 
@@ -79,22 +79,51 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
 
         shapeBatch.setProjectionMatrix(camera.combined);
 
+        batch.begin();
+        batch.draw(background, 0, 0, viewport.getWorldWidth(), viewport.getWorldHeight());
+        batch.draw(fixedPic, fixed.getBottomLeft(), fixed.getTopLeft(), 50, 100);
+        batch.draw(spaceshipPic, player.getBottomLeft(), player.getTopLeft(), 60, 60);
+        batch.draw(enemypic, enemy.getBottomLeft(), enemy.getTopLeft(), 40, 40);
+        batch.end();
+
+        //not working
+        while (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+
+            shapeBatch.setProjectionMatrix(camera.combined);
+            shapeBatch.begin();
+            bullet.BulletShotByPlayer(player.getXPosition(), player.getYPosition(), 3, 3, 3);
+            bullet.draw(shapeBatch);
+            shapeBatch.end();
+        }
         if (player.getYPosition() < viewport.getWorldHeight()) {
 
             if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
                 player.moveUp();
+                camera.translate(0, 20);
+                enemy.movetowardsplayer();
+                fixed.movedown();
 
             }
             if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
                 player.moveDown();
+                camera.translate(0, -20);
+                enemy.movetowardsplayer();
+                fixed.moveup();
 
             }
             if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
                 player.moveForward();
+                camera.translate(20, 0);
+                enemy.movetowardsplayer();
+                fixed.moveup();
 
             }
             if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
                 player.moveBack();
+                camera.translate(-20, 0);
+                enemy.movetowardsplayer();
+                fixed.movedown();
+
             }
 
             camera.position.set(player.getXPosition(), player.getYPosition(), 0);
