@@ -37,7 +37,7 @@ public class BulletShotByEnemy {
         }
         y += speed;
         // find out dimensions of the game and sub them for 800
-        if (y > 800) {
+        if (y > 480) {
             visible = false;
         }
     }

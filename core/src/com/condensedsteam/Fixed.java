@@ -21,16 +21,15 @@ public class Fixed extends Enemies{
         this.fixed = new Rectangle(positionX, positionY, 20, 20);
     }
     
-    @Override
      public void moveup() {
-        fixed.y += 2; 
+        fixed.y += 5 * 1;
     }
-
-    @Override
-    public void movedown() {
-        fixed.y -= 2; 
+     public void movedown() {
+        fixed.y -= 5 * 1;
     }
+     
     public void draw(ShapeRenderer shapeBatch) {
         shapeBatch.rect(fixed.x, fixed.y, fixed.width, fixed.height);
     }
+    
 }
