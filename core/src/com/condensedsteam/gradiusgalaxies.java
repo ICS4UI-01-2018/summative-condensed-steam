@@ -36,6 +36,7 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
     private Fixed fixed;
     private Texture fixedPic;
     private Texture background;
+    private Texture enemypic;
     private FitViewport viewport;
     private BulletShotByPlayer bullet;
 
@@ -56,6 +57,7 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         background = new Texture("back.png");
         spaceshipPic = new Texture("spaceship.png");
         fixedPic = new Texture("rockfixed.png");
+        enemypic = new Texture ("Enemy.png");
         Gdx.input.setInputProcessor(this);
         player = new Player(100, 100, 20, 20, 2, 0);
         //positionX, positionY, width, height, score, collisionEnemy, collisionPlayer, crashed
@@ -70,19 +72,21 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        camera.update();
-
+     
         shapeBatch.setColor(Color.WHITE);
         shapeBatch.begin(ShapeRenderer.ShapeType.Line);
-        shapeBatch.setColor(Color.BLUE);
-        enemy.draw(shapeBatch);
         shapeBatch.end();
 
         shapeBatch.setProjectionMatrix(camera.combined);
+        camera.position.set(player.getXPosition(),player.getYPosition(),0);
+        camera.translate(player.getXPosition(),player.getYPosition(),0);
+        camera.update();
+        
         batch.begin();
-        batch.draw(fixedPic, fixed.getBottomLeft(), enemy.getTopLeft(), 30, 40);
         batch.draw(background, 0, 0, viewport.getWorldWidth(), viewport.getWorldHeight());
+        batch.draw(fixedPic, fixed.getBottomLeft(), fixed.getTopLeft(), 50, 100);
         batch.draw(spaceshipPic, player.getBottomLeft(), player.getTopLeft(), 60, 60);
+        batch.draw (enemypic, enemy.getBottomLeft(), enemy.getTopLeft(), 40, 40);
         batch.end();
 
         //not working
@@ -95,82 +99,93 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
             shapeBatch.end();
         }
 
+        //not working
+        while (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+
+            shapeBatch.setProjectionMatrix(camera.combined);
+            shapeBatch.begin();
+            bullet.BulletShotByPlayer(player.getXPosition(), player.getYPosition(), 3, 3, 3);
+            bullet.draw(shapeBatch);
+            shapeBatch.end();
+        }
+
         if (player.getYPosition() < viewport.getWorldHeight()) {
+        
+            if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+                player.moveUp();
 
-        if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-            player.moveUp();
-            camera.translate(viewport.getWorldWidth(), viewport.getWorldHeight()+10);
+            }
+            if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+                player.moveDown();
+
+            }
+            if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+                player.moveForward();
+
+            }
+            if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+                player.moveBack();
+            }
 
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-            player.moveDown();
-            camera.translate(viewport.getWorldWidth(), viewport.getWorldHeight()-10);
-
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-            player.moveForward();
-            camera.translate(viewport.getWorldWidth()+10, viewport.getWorldHeight());
-      
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-            player.moveBack();
-            camera.translate(viewport.getWorldWidth()-10, viewport.getWorldHeight());
-        }
-
-    }
+  
+        
 
 //        shapeBatch.setProjectionMatrix(camera.combined);
 //        batch.begin();
 //        batch.draw(fixedPic, fixed.getBottom(), fixed.getTop());
 //        batch.end();
-}
+    }
 
     @Override
-        public void dispose() {
+    public void resize(int width, int height) {
+        camera.viewportWidth = width;
+        camera.viewportHeight = height;
+    }
+
+    @Override
+    public void dispose() {
         batch.dispose();
     }
 
     @Override
-        public boolean keyTyped(char character) {
+    public boolean keyTyped(char character) {
 
         return false;
     }
 
     @Override
-        public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         return false;
     }
 
     @Override
-        public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
         return false;
     }
 
     @Override
-        public boolean touchDragged(int screenX, int screenY, int pointer) {
+    public boolean touchDragged(int screenX, int screenY, int pointer) {
         return false;
     }
 
     @Override
-        public boolean mouseMoved(int screenX, int screenY) {
+    public boolean mouseMoved(int screenX, int screenY) {
         return false;
     }
 
     @Override
-        public boolean scrolled(int amount) {
+    public boolean scrolled(int amount) {
         return false;
     }
 
     @Override
     public boolean keyDown(int keycode) {
-        if (Gdx.input.isKeyPressed(Input.Keys.UP)){
-            fixed.moveup();
-        }
         return false;
     }
 
     @Override
-        public boolean keyUp(int keycode) {
+    public boolean keyUp(int keycode) {
 //        if (keycode == Input.Keys.LEFT) {
 //            camera.translate(-16, 0);
 //        }
