@@ -63,4 +63,5 @@ public class Fixed {
     public void draw(ShapeRenderer shapeBatch) {
         shapeBatch.rect(fixed.x, fixed.y, fixed.width, fixed.height);
     }
+    
 }
