@@ -56,7 +56,7 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         viewport.apply();
         background = new Texture("GAME MAP (2).png");
         spaceshipPic = new Texture("spaceship.png");
-        fixedPic = new Texture("rockfixed.png");
+        fixedPic = new Texture("asteroid-icon.png");
         enemypic = new Texture("enemy.png");
         Gdx.input.setInputProcessor(this);
         player = new Player(100, 100, 20, 20, 2, 0);
@@ -130,7 +130,7 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
 
             batch.begin();
             batch.draw(background, 0, 0, viewport.getWorldWidth(), viewport.getWorldHeight());
-            batch.draw(fixedPic, fixed.getBottomLeft(), fixed.getTopLeft(), 50, 100);
+            batch.draw(fixedPic, fixed.getBottomLeft(), fixed.getTopLeft(), 120, 120);
             batch.draw(spaceshipPic, player.getBottomLeft(), player.getTopLeft(), 60, 60);
             batch.draw(enemypic, enemy.getBottomLeft(), enemy.getTopLeft(), 40, 40);
             batch.end();
