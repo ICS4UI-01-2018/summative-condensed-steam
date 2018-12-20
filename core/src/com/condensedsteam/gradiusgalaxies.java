@@ -52,7 +52,7 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
 
         camera = new OrthographicCamera();
         camera.setToOrtho(true);
-        viewport = new FitViewport(8, 8, camera);
+        viewport = new FitViewport(800, 460, camera);
         viewport.apply();
         background = new Texture("GAME MAP (2).png");
         spaceshipPic = new Texture("spaceship.png");
@@ -95,7 +95,7 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
             bullet.draw(shapeBatch);
             shapeBatch.end();
         }
-      //  if (player.getYPosition() < viewport.getWorldHeight()) {
+        if (player.getYPosition() < viewport.getWorldHeight()) {
             if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
                 player.moveUp();
                 fixed.movedown();
@@ -115,13 +115,13 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
                 player.moveBack();
                 fixed.movedown();
 
-         //   }
+           }
 
             camera.position.set(player.getXPosition(), player.getYPosition(), 0);
             camera.update();
 
             batch.begin();
-            batch.draw(background, 0, 0, viewport.getWorldWidth(), viewport.getWorldHeight());
+            batch.draw(background, 0, 0);
             batch.draw(fixedPic, fixed.getBottomLeft(), fixed.getTopLeft(), 120, 120);
             batch.draw(spaceshipPic, player.getBottomLeft(), player.getTopLeft(), 60, 60);
             batch.draw(enemypic, enemy.getBottomLeft(), enemy.getTopLeft(), 40, 40);
