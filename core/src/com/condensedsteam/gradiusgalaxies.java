@@ -62,7 +62,7 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         player = new Player(100, 100, 20, 20, 2, 0);
         //positionX, positionY, width, height, score, collisionEnemy, collisionPlayer, crashed
         enemy = new Enemy(20, 20, 5);
-        fixed = new Fixed(50, 100, 2);
+        fixed = new Fixed(100, 100, 2);
         bullet = new BulletShotByPlayer();
     }
 
@@ -81,7 +81,7 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
 
         batch.begin();
         batch.draw(background, 0, 0);
-        batch.draw(fixedPic, fixed.getBottomLeft(), fixed.getTopLeft(), 50, 100);
+        batch.draw(fixedPic, fixed.getBottomLeft(), fixed.getTopLeft(), 120, 120);
         batch.draw(spaceshipPic, player.getBottomLeft(), player.getTopLeft(), 60, 60);
         batch.draw(enemypic, enemy.getBottomLeft(), enemy.getTopLeft(), 40, 40);
         batch.end();
