@@ -24,7 +24,7 @@ public class Player {
     private int score;
     private float speed = 3;
     private Rectangle player;
-    private BulletShotByPlayer bullet;
+    private Bullet bullet;
     private boolean collisionEnemy;
 
     public Player(float x, float y, float width, float height, float speed, int score) {
