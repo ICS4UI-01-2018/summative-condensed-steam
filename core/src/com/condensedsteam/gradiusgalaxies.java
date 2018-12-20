@@ -159,7 +159,7 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
 //        batch.draw(fixedPic, fixed.getBottom(), fixed.getTop());
 //        batch.end();
     }
-    }
+    
     @Override
     public void resize(int width, int height) {
         camera.viewportWidth = width;
