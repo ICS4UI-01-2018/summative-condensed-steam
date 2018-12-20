@@ -55,10 +55,10 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         camera.setToOrtho(true);
         viewport = new FitViewport(800, 460, camera);
         viewport.apply();
-        background = new Texture("GAME MAP (2).png");
+        background = new Texture("GAME MAP (3).png");
         spaceshipPic = new Texture("spaceship.png");
         fixedPic = new Texture("asteroid-icon.png");
-        enemypic = new Texture("enemy.png");
+        enemypic = new Texture("enemy1.png");
         Gdx.input.setInputProcessor(this);
         player = new Player(100, 100, 20, 20, 2, 0);
         //positionX, positionY, width, height, score, collisionEnemy, collisionPlayer, crashed
