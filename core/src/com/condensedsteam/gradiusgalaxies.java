@@ -11,10 +11,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -25,7 +22,6 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
 
     SpriteBatch batch;
     private ShapeRenderer shapeBatch;
-    TiledMap tiledMap;
     private OrthographicCamera camera;
     // TiledMapRenderer tiledMapRenderer;
     private Texture spaceshipPic;
@@ -64,7 +60,7 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         //positionX, positionY, width, height, score, collisionEnemy, collisionPlayer, crashed
         enemy = new Enemy(20, 20, 5);
         fixed = new Fixed(100, 100, 2);
-     //   bullet = new BulletShotByPlayer();
+        //   bullet = new BulletShotByPlayer();
     }
 
     @Override
@@ -95,21 +91,20 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
 //            bullet.BulletShotByPlayer(player.getXPosition(), player.getYPosition(), 3, 3, 3);
 //            bullet.draw(shapeBatch);
 //            shapeBatch.end();
-        
-      //  if (player.getYPosition() < viewport.getWorldHeight()) {
-            if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-                player.moveUp();
-                fixed.movedown();
+        //  if (player.getYPosition() < viewport.getWorldHeight()) {
+        if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+            player.moveUp();
+            fixed.movedown();
 
 //            if (player.getYPosition() < 423 && player.getYPosition() > 0 && player.getXPosition() < 578 && player.getXPosition() > 0) {
-            if (player.getYPosition() < 423) {
-                if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-                    player.moveUp();
-                    camera.translate(0, 20);
-                    enemy.movetowardsplayer();
-                    fixed.movedown();
-                }
+            //   if (player.getYPosition() < 423) {
+            if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+                player.moveUp();
+                camera.translate(0, 20);
+                enemy.movetowardsplayer();
+                fixed.movedown();
             }
+
             if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
                 player.moveDown();
                 fixed.moveup();
@@ -130,7 +125,7 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
                 player.moveBack();
                 fixed.movedown();
 
-           }
+            }
 
             camera.position.set(player.getXPosition(), player.getYPosition(), 0);
             camera.update();
@@ -151,7 +146,6 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
 //                bullet.draw(shapeBatch);
 //                shapeBatch.end();
 //            }
-
         }
 
 //        shapeBatch.setProjectionMatrix(camera.combined);
@@ -159,7 +153,7 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
 //        batch.draw(fixedPic, fixed.getBottom(), fixed.getTop());
 //        batch.end();
     }
-    
+
     @Override
     public void resize(int width, int height) {
         camera.viewportWidth = width;
