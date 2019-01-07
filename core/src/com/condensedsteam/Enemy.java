@@ -31,17 +31,29 @@ public class Enemy {
     }
 
 //work on this 
-    public void movetowardsplayer() {
-//        if (pX > this.enemy.x) {
-//            this.enemy.x += speed;
-//        } else if (pX < this.enemy.x) {
-//            this.enemy.x -= speed;
-//        }
-//        if (pY > this.enemy.y) {
-//            this.enemy.y += speed;
-//        } else if (pY < this.enemy.y) {
-//            this.enemy.y -= speed;
-//        }
+    public void movetowardsplayer(Player player) {
+        if (player.getYPosition() == this.enemy.y && player.getXPosition()< this.enemy.x) {
+            this.enemy.x -= 1;
+        } else if (player.getYPosition() == this.enemy.y &&  player.getXPosition() > this.enemy.x) {
+            this.enemy.x += 1;
+        } else if ( player.getXPosition() == this.enemy.x && player.getYPosition() > this.enemy.y) {
+           this.enemy.y  += 1;
+        } else if ( player.getXPosition() == this.enemy.x && player.getYPosition() < this.enemy.y) {
+            this.enemy.y  -= 1;
+        } else if ( player.getXPosition() <this.enemy.x && player.getYPosition() > this.enemy.y) {
+            this.enemy.y  += 1;
+            this.enemy.x -= 1;
+        } else if ( player.getXPosition() < this.enemy.x && player.getYPosition() < this.enemy.y) {
+            this.enemy.y  -= 1;
+            this.enemy.x -= 1;
+        } else if ( player.getXPosition() > this.enemy.x && player.getYPosition() > this.enemy.y) {
+            this.enemy.y  += 1;
+            this.enemy.x += 1;
+        } else if ( player.getXPosition() > this.enemy.x && player.getYPosition() < this.enemy.y) {
+            this.enemy.y  -= 1;
+            this.enemy.x+= 1;
+        }
+
     }
 
     public Rectangle getBounds() {

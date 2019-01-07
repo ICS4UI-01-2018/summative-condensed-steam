@@ -91,53 +91,52 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
 //            bullet.BulletShotByPlayer(player.getXPosition(), player.getYPosition(), 3, 3, 3);
 //            bullet.draw(shapeBatch);
 //            shapeBatch.end();
-        //  if (player.getYPosition() < viewport.getWorldHeight()) {
+//            if (player.getYPosition() < 423 && player.getYPosition() > 0 && player.getXPosition() < 578 && player.getXPosition() > 0) {
+        //   if (player.getYPosition() < 423) {
         if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
             player.moveUp();
+            camera.translate(0, 20);
+            enemy.movetowardsplayer(player);
             fixed.movedown();
+        }
 
-//            if (player.getYPosition() < 423 && player.getYPosition() > 0 && player.getXPosition() < 578 && player.getXPosition() > 0) {
-            //   if (player.getYPosition() < 423) {
-            if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-                player.moveUp();
-                camera.translate(0, 20);
-                enemy.movetowardsplayer();
-                fixed.movedown();
-            }
+        if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+            player.moveDown();
+            fixed.moveup();
+            enemy.movetowardsplayer(player);
 
-            if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-                player.moveDown();
-                fixed.moveup();
+//
+//                if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+//                    player.moveDown();
+//                    camera.translate(0, -20);
+//                    enemy.movetowardsplayer(player);
+//                    fixed.moveup();
+//                }
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+            player.moveForward();
+            fixed.moveup();
+            enemy.movetowardsplayer(player);
 
-                if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-                    player.moveDown();
-                    camera.translate(0, -20);
-                    enemy.movetowardsplayer();
-                    fixed.moveup();
-                }
-            }
-            if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-                player.moveForward();
-                fixed.moveup();
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+            player.moveBack();
+            fixed.movedown();
+            enemy.movetowardsplayer(player);
 
-            }
-            if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-                player.moveBack();
-                fixed.movedown();
+        }
 
-            }
+        camera.position.set(player.getXPosition(), player.getYPosition(), 0);
+        camera.update();
 
-            camera.position.set(player.getXPosition(), player.getYPosition(), 0);
-            camera.update();
+        batch.begin();
+        batch.draw(background, 0, 0);
+        batch.draw(fixedPic, fixed.getBottomLeft(), fixed.getTopLeft(), 120, 120);
+        batch.draw(spaceshipPic, player.getBottomLeft(), player.getTopLeft(), 60, 60);
+        batch.draw(enemypic, enemy.getBottomLeft(), enemy.getTopLeft(), 40, 40);
+        batch.end();
 
-            batch.begin();
-            batch.draw(background, 0, 0);
-            batch.draw(fixedPic, fixed.getBottomLeft(), fixed.getTopLeft(), 120, 120);
-            batch.draw(spaceshipPic, player.getBottomLeft(), player.getTopLeft(), 60, 60);
-            batch.draw(enemypic, enemy.getBottomLeft(), enemy.getTopLeft(), 40, 40);
-            batch.end();
-
-            //not working
+        //not working
 //            while (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
 //
 //                shapeBatch.setProjectionMatrix(camera.combined);
@@ -146,14 +145,12 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
 //                bullet.draw(shapeBatch);
 //                shapeBatch.end();
 //            }
-        }
+    }
 
 //        shapeBatch.setProjectionMatrix(camera.combined);
 //        batch.begin();
 //        batch.draw(fixedPic, fixed.getBottom(), fixed.getTop());
 //        batch.end();
-    }
-
     @Override
     public void resize(int width, int height) {
         camera.viewportWidth = width;
