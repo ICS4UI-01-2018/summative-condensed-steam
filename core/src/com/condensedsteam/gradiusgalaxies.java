@@ -39,8 +39,6 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
 
     @Override
     public void create() {
-        //start time. 
-        long time = TimeUtils.millis();
         batch = new SpriteBatch();
         shapeBatch = new ShapeRenderer();
 
@@ -51,6 +49,8 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         camera.setToOrtho(true);
         viewport = new FitViewport(800, 460, camera);
         viewport.apply();
+        //set the game
+        camera.position.set(viewport.getScreenWidth() / 2, viewport.getScreenHeight() / 2, 0);
         background = new Texture("GAME MAP (3).png");
         spaceshipPic = new Texture("spaceship.png");
         fixedPic = new Texture("asteroid-icon.png");
@@ -65,7 +65,7 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
 
     @Override
     public void render() {
-
+        camera.update();
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -93,25 +93,21 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
 //            shapeBatch.end();
 //            if (player.getYPosition() < 423 && player.getYPosition() > 0 && player.getXPosition() < 578 && player.getXPosition() > 0) {
         //   if (player.getYPosition() < 423) {
-        
-        
         enemy.movetowardsplayer(player);
-        
+
         if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
             player.moveUp();
-            camera.translate(0, 20);
             fixed.movedown();
         }
 
         if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
             player.moveDown();
             fixed.moveup();
-           // enemy.movetowardsplayer(player);
+            // enemy.movetowardsplayer(player);
 
 //
 //                if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
 //                    player.moveDown();
-//                    camera.translate(0, -20);
 //                    enemy.movetowardsplayer(player);
 //                    fixed.moveup();
 //                }
@@ -119,20 +115,15 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
             player.moveForward();
             fixed.moveup();
-          //  enemy.movetowardsplayer(player);
+            //  enemy.movetowardsplayer(player);
 
         }
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
             player.moveBack();
             fixed.movedown();
-          //  enemy.movetowardsplayer(player);
-            
-           
+            //  enemy.movetowardsplayer(player);
+
         }
-
-        camera.position.set(player.getXPosition(), player.getYPosition(), 0);
-        camera.update();
-
         batch.begin();
         batch.draw(background, 0, 0);
         batch.draw(fixedPic, fixed.getBottomLeft(), fixed.getTopLeft(), 120, 120);
