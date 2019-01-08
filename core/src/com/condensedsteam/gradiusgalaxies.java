@@ -11,11 +11,9 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import java.util.ArrayList;
@@ -25,7 +23,6 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
 
     SpriteBatch batch;
     private ShapeRenderer shapeBatch;
-    TiledMap tiledMap;
     private OrthographicCamera camera;
     // TiledMapRenderer tiledMapRenderer;
     private Texture spaceshipPic;
@@ -40,6 +37,7 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
     private FitViewport viewport;
 //    private BulletShotByPlayer bullet;
     private ArrayList<Bullet> bullets;
+    public static final float PIXEL_PER_METER = 32f;
 
     @Override
     public void create() {
@@ -64,7 +62,7 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         //positionX, positionY, width, height, score, collisionEnemy, collisionPlayer, crashed
         enemy = new Enemy(20, 20, 5);
         fixed = new Fixed(100, 100, 2);
-     //   bullet = new BulletShotByPlayer();
+        //   bullet = new BulletShotByPlayer();
     }
 
     @Override
@@ -73,7 +71,8 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
+        //camera.combined.scl(PIXEL_PER_METER));
+        
         shapeBatch.setColor(Color.WHITE);
         shapeBatch.begin(ShapeRenderer.ShapeType.Line);
         shapeBatch.end();
@@ -95,24 +94,23 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
 //            bullet.BulletShotByPlayer(player.getXPosition(), player.getYPosition(), 3, 3, 3);
 //            bullet.draw(shapeBatch);
 //            shapeBatch.end();
-        
-      //  if (player.getYPosition() < viewport.getWorldHeight()) {
-            if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-                player.moveUp();
-                fixed.movedown();
+        //  if (player.getYPosition() < viewport.getWorldHeight()) {
+        if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+            player.moveUp();
+            fixed.movedown();
 
 //            if (player.getYPosition() < 423 && player.getYPosition() > 0 && player.getXPosition() < 578 && player.getXPosition() > 0) {
-            if (player.getYPosition() < 423) {
-                if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-                    player.moveUp();
-//                    camera.translate(0, 20);
-//                    enemy.movetowardsplayer();
-                    fixed.movedown();
-                }
+            //   if (player.getYPosition() < 423) {
+            if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+                player.moveUp();
+                camera.translate(0, 20);
+                enemy.movetowardsplayer();
+//                fixed.movedown();
             }
+
             if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
                 player.moveDown();
-                fixed.moveup();
+//                fixed.moveup();
 
 //                if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
 //                    player.moveDown();
@@ -130,7 +128,7 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
                 player.moveBack();
        
 
-           }
+            }
 
             camera.position.set(player.getXPosition(), player.getYPosition(), 0);
             camera.update();
@@ -151,16 +149,20 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
 //                bullet.draw(shapeBatch);
 //                shapeBatch.end();
 //            }
-
         }
 
 //        shapeBatch.setProjectionMatrix(camera.combined);
 //        batch.begin();
 //        batch.draw(fixedPic, fixed.getBottom(), fixed.getTop());
 //        batch.end();
-    
 
-    
+    private void cameraUpdate() {
+      Vector3 position = camera.position;
+      position.x = player.getXPosition() * PIXEL_PER_METER;
+      position.y = player.getYPosition()* PIXEL_PER_METER;
+      camera.position.set(position);
+      camera.update();
+   }
     @Override
     public void resize(int width, int height) {
         camera.viewportWidth = width;

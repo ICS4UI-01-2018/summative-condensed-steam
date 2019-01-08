@@ -23,7 +23,6 @@ public class Enemy {
     private boolean collisionfixed;
     private boolean collisionPlayer;
     private boolean visible;
-    
 
     public Enemy(float positionX, float positionY, int speed) {
         this.speed = speed;
@@ -33,8 +32,6 @@ public class Enemy {
 
 //work on this 
     public void movetowardsplayer() {
-//        float pX = player.getXPosition();
-//        float pY = player.getYPosition();
 //        if (pX > this.enemy.x) {
 //            this.enemy.x += speed;
 //        } else if (pX < this.enemy.x) {
@@ -45,7 +42,6 @@ public class Enemy {
 //        } else if (pY < this.enemy.y) {
 //            this.enemy.y -= speed;
 //        }
-
     }
 
     public Rectangle getBounds() {
@@ -53,14 +49,15 @@ public class Enemy {
     }
 
     public boolean collisionPlayer(Player player) {
-          if (enemy.overlaps(player.getBounds())) {
+        if (enemy.overlaps(player.getBounds())) {
             return true;
         } else {
             return false;
         }
     }
-     public boolean collisionfixed(Fixed fixed) {
-          if (enemy.overlaps(fixed.getBounds())) {
+
+    public boolean collisionfixed(Fixed fixed) {
+        if (enemy.overlaps(fixed.getBounds())) {
             return true;
         } else {
             return false;

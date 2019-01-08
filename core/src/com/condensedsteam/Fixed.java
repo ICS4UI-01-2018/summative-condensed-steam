@@ -18,6 +18,7 @@ public class Fixed {
     private int speed = 2;
     private boolean collisionPlayer;
     private Enemy enemy ;
+    private Player player;
 
     public Fixed(float positionX, float positionY, int speed) {
         this.speed = speed;
