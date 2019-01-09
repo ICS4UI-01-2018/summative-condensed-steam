@@ -37,8 +37,6 @@ public class Bullet {
         bullet.y = bullet.y + speed *dy;
     }
     
-    
-    
     public void spawnedIn(){
         this.spawned = true;
     }  
