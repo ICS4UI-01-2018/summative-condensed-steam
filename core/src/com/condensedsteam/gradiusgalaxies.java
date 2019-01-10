@@ -125,8 +125,10 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
             player.moveForward();
 
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-            player.moveBack();
+        if (player.getXPosition() > 0) {
+            if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+                player.moveBack();
+            }
         }
 //            } else if (player.getXPosition() > 300) {
 //                player.moveBack();
