@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import java.util.ArrayList;
@@ -34,6 +35,7 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
     private Texture background;
     private Texture enemypic;
     private FitViewport viewport;
+    private Vector3 offset;
 //    private BulletShotByPlayer bullet;
     private ArrayList<Bullet> bullets;
 
@@ -46,11 +48,15 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         float h = Gdx.graphics.getHeight();
 
         camera = new OrthographicCamera();
-        camera.setToOrtho(true);
-        viewport = new FitViewport(800, 460, camera);
-        viewport.apply();
+        camera.setToOrtho(false);
+       // viewport = new FitViewport(800, 460, camera);
+       // viewport.apply();
         //set the game
-        camera.position.set(viewport.getScreenX() /2, viewport.getScreenY() /2, 0);
+       // camera.position.set(viewport.getScreenX() /2, viewport.getScreenY() /2, 0);
+        
+        
+        
+        
         background = new Texture("GAME MAP (3).png");
         spaceshipPic = new Texture("spaceship.png");
         fixedPic = new Texture("asteroid-icon.png");
@@ -65,7 +71,11 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
 
     @Override
     public void render() {
+        
+        camera.position.set(player.getXPosition(), player.getYPosition(),0);
         camera.update();
+        batch.setProjectionMatrix(camera.combined);
+        
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -141,6 +151,7 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         camera.viewportWidth = width;
         camera.viewportHeight = height;
     }
+    
 
     @Override
     public void dispose() {
@@ -180,24 +191,27 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
 
     @Override
     public boolean keyDown(int keycode) {
-        return false;
+        
+if(keycode == Input.Keys.UP){
+            camera.translate(0f,1f);
+        }
+        if(keycode == Input.Keys.DOWN){
+            camera.translate(0f,-1f);
+        }
+        if(keycode == Input.Keys.RIGHT){
+            camera.translate(1f,0f);
+        }
+        if(keycode == Input.Keys.LEFT){
+            camera.translate(-1f,0f);
+        }
+        return true;    
     }
+
 
     @Override
     public boolean keyUp(int keycode) {
-//        if (keycode == Input.Keys.LEFT) {
-//            camera.translate(-16, 0);
-//        }
-//        if (keycode == Input.Keys.RIGHT) {
-//            camera.translate(16, 0);
-//        }
-//        if (keycode == Input.Keys.UP) {
-//            camera.translate(0, 16);
-//        }
-//        if (keycode == Input.Keys.DOWN) {
-//            camera.translate(0, -16);
-//        }
-
         return false;
-    }
 }
+    
+}
+
