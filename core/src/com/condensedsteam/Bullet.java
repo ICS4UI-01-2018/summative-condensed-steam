@@ -51,6 +51,40 @@ public class Bullet {
 //        return shape.overlaps(p.getBounds());
 //    }
     
+//    public void spawnedIn(){
+//        this.spawned = true;
+//    }  
+//    public boolean getSpawned(){
+//        return this.spawned;
+//    }
+//    
+//    public float getLeft() {
+//        return bullet.x;
+//    }
+//
+//    public float getBottom() {
+//        return bullet.y;
+//    }
+//    
+//    public float getX(){
+//        return bullet.x;
+//    }
+//    
+//    public float getY(){
+//        return bullet.y;
+//    }
+//
+//    public float getRight() {
+//        return bullet.x + bullet.width;
+//    }
+//
+//    public float getTop() {
+//        return bullet.y + bullet.height;
+//    }
+//
+//    public void drawBullet(ShapeRenderer shapeBatch) {
+//        shapeBatch.rect(bullet.x, bullet.y, bullet.width, bullet.height);
+//    }
     
-    
+
 }
