@@ -10,69 +10,47 @@ import com.badlogic.gdx.math.Rectangle;
 
 /**
  *
- * @author Kalsr8025
+ * @author lamon
  */
 public class Bullet {
-
-    private Rectangle bullet;
+    private Rectangle shape;
     private int speed;
-    private float dx;
-    private float dy;
-    private int damage;    
-    private boolean spawned;
-
-    public Bullet(float x, float y, int width, int height, int speed, int damage, float dx, float dy) {
+    
+    public Bullet(int x, int y, int width, int height, int speed){
         this.speed = speed;
-        this.damage = damage;
-        bullet = new Rectangle(x, y, width, height);
-        bullet.x = x;
-        bullet.y = y;
-        this.dx = dx;
-        this.dy = dy;
-        spawned = false;
-    }
+        shape = new Rectangle(x,y,width,height);
 
-    public void bulletMovement() {
-        bullet.x = bullet.x + speed *dx;
-        bullet.y = bullet.y + speed *dy;
     }
+    
+    public void move(){
+        shape.x = shape.x + speed;
+        shape.y = shape.y + speed;
+    }
+    
+    public float getLeft(){
+        return shape.x;
+    }
+    
+    public float getBottom(){
+        return shape.y;
+    }
+    
+    public float getRight(){
+        return shape.x + shape.width;
+    }
+    
+    public float getTop(){
+        return shape.y + shape.height;
+    }
+    
+    public void draw(ShapeRenderer shapeBatch){
+        shapeBatch.rect(shape.x, shape.y, shape.width, shape.height);
+    }
+//    
+//    public boolean collidesWith(Paddle p){
+//        return shape.overlaps(p.getBounds());
+//    }
     
     
     
-    public void spawnedIn(){
-        this.spawned = true;
-    }  
-    public boolean getSpawned(){
-        return this.spawned;
-    }
-    
-    public float getLeft() {
-        return bullet.x;
-    }
-
-    public float getBottom() {
-        return bullet.y;
-    }
-    
-    public float getX(){
-        return bullet.x;
-    }
-    
-    public float getY(){
-        return bullet.y;
-    }
-
-    public float getRight() {
-        return bullet.x + bullet.width;
-    }
-
-    public float getTop() {
-        return bullet.y + bullet.height;
-    }
-
-    public void drawBullet(ShapeRenderer shapeBatch) {
-        shapeBatch.rect(bullet.x, bullet.y, bullet.width, bullet.height);
-    }
-    
-
 }

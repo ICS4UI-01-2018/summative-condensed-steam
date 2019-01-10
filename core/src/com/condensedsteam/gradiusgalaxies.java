@@ -20,7 +20,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 
 public class gradiusgalaxies extends ApplicationAdapter implements InputProcessor {
 
-    SpriteBatch batch;
+    private SpriteBatch batch;
     private ShapeRenderer shapeBatch;
     private OrthographicCamera camera;
     // TiledMapRenderer tiledMapRenderer;
@@ -30,12 +30,12 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
 //    ArrayList<Fixed> fixed = new ArrayList<Fixed>(10);
     private Enemy enemy;
     private Fixed fixed;
+    private Bullet bullet;
     private Texture fixedPic;
     private Texture background;
     private Texture enemypic;
+    private Texture bulletPic;
     private FitViewport viewport;
-//    private BulletShotByPlayer bullet;
-    private ArrayList<Bullet> bullets;
 
     @Override
     public void create() {
@@ -53,6 +53,7 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         camera.position.set(viewport.getScreenWidth() / 2, viewport.getScreenHeight() / 2, 0);
         background = new Texture("GAME MAP (3).png");
         spaceshipPic = new Texture("spaceship.png");
+        bulletPic = new Texture("bullet.png");
         fixedPic = new Texture("asteroid-icon.png");
         enemypic = new Texture("enemy1.png");
         Gdx.input.setInputProcessor(this);
@@ -60,7 +61,9 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         //positionX, positionY, width, height, score, collisionEnemy, collisionPlayer, crashed
         enemy = new Enemy(20, 20, 5);
         fixed = new Fixed(100, 100, 2);
-        //   bullet = new BulletShotByPlayer();
+        if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
+            bullet = new Bullet(100, 100, 3, 3, 3);
+        }
     }
 
     @Override
@@ -82,7 +85,14 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         batch.draw(spaceshipPic, player.getBottomLeft(), player.getTopLeft(), 60, 60);
         batch.draw(enemypic, enemy.getBottomLeft(), enemy.getTopLeft(), 40, 40);
         batch.end();
+        
 
+        batch.begin();
+        if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
+            batch.draw(bulletPic, bullet.getLeft(), bullet.getBottom(), 3, 3);
+        }
+        batch.end();
+        
         //not working
 //        while (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
 //
