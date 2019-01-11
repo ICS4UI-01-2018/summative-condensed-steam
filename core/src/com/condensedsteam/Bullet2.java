@@ -29,7 +29,7 @@ public class Bullet2 {
 
     public void move() {
         bullet.y = bullet.y + speed;
-        bullet.x = bullet.y + speed;
+        bullet.x = bullet.x + speed;
     }
 
     public boolean collisionEnemy(Enemy enemy) {

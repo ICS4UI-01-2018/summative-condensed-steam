@@ -51,18 +51,18 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
 
         camera = new OrthographicCamera();
         camera.setToOrtho(false);
-        // viewport = new FitViewport(800, 460, camera);
-        // viewport.apply();
+        viewport = new FitViewport(800, 660, camera);
+        viewport.apply();
         //set the game
-        // camera.position.set(viewport.getScreenX() /2, viewport.getScreenY() /2, 0);
+       // camera.position.set(viewport.getScreenX() /2, viewport.getScreenY() /2, 0);
 
         background = new Texture("GAME MAP (3).png");
         spaceshipPic = new Texture("spaceship.png");
         bulletPic = new Texture("bullet.png");
         fixedPic = new Texture("asteroid-icon.png");
-        enemypic = new Texture("alien.png");
+        enemypic = new Texture("enemyspaceship.png");
         Gdx.input.setInputProcessor(this);
-        player = new Player(100, 100, 20, 20, 2, 0);
+        player = new Player(100, 200, 20, 20, 2, 0);
         //positionX, positionY, width, height, score, collisionEnemy, collisionPlayer, crashed
         enemy = new Enemy(20, 20, 5);
         fixed = new Fixed(100, 100, 2);
@@ -90,7 +90,7 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         shapeBatch.setProjectionMatrix(camera.combined);
 
         batch.begin();
-        batch.draw(background, 0, 0);
+        batch.draw(background, 0, -150);
         batch.draw(fixedPic, fixed.getBottomLeft(), fixed.getTopLeft(), 120, 120);
         batch.draw(spaceshipPic, player.getBottomLeft(), player.getTopLeft(), 60, 60);
         batch.draw(enemypic, enemy.getBottomLeft(), enemy.getTopLeft(), 40, 40);
