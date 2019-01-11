@@ -27,8 +27,6 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
     // TiledMapRenderer tiledMapRenderer;
     private Texture spaceshipPic;
     private Player player;
-//    ArrayList<Enemy> enemy = new ArrayList<Enemy>(5);
-//    ArrayList<Fixed> fixed = new ArrayList<Fixed>(10);
     private Enemy enemy;
     private Fixed fixed;
     private Bullet bullet;
@@ -38,7 +36,6 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
     private Texture bulletPic;
     private FitViewport viewport;
     private Vector3 offset;
-//    private BulletShotByPlayer bullet;
     private ArrayList<Bullet> bullets;
 
     @Override
@@ -53,8 +50,6 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         camera.setToOrtho(false);
         viewport = new FitViewport(800, 660, camera);
         viewport.apply();
-        //set the game
-       // camera.position.set(viewport.getScreenX() /2, viewport.getScreenY() /2, 0);
 
         background = new Texture("GAME MAP (3).png");
         spaceshipPic = new Texture("spaceship.png");
@@ -63,7 +58,6 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         enemypic = new Texture("enemyspaceship.png");
         Gdx.input.setInputProcessor(this);
         player = new Player(100, 200, 20, 20, 2, 0);
-        //positionX, positionY, width, height, score, collisionEnemy, collisionPlayer, crashed
         enemy = new Enemy(20, 20, 5);
         fixed = new Fixed(100, 100, 2);
         if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
@@ -73,9 +67,9 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
 
     @Override
     public void render() {
-        
+
         fixed.movedown();
-        camera.position.set(player.getXPosition(), 100,0);
+        camera.position.set(player.getXPosition(), 100, 0);
         camera.update();
         batch.setProjectionMatrix(camera.combined);
 
@@ -102,16 +96,8 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         }
         batch.end();
 
-        //not working
-//        while (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
-//            shapeBatch.setProjectionMatrix(camera.combined);
-//            shapeBatch.begin();
-//            bullet.BulletShotByPlayer(player.getXPosition(), player.getYPosition(), 3, 3, 3);
-//            bullet.draw(shapeBatch);
-//            shapeBatch.end();
-//            if (player.getYPosition() < 423 && player.getYPosition() > 0 && player.getXPosition() < 578 && player.getXPosition() > 0) {
         enemy.movetowardsplayer(player);
-        if (player.getYPosition() < 460) {
+        if (player.getYPosition() < 660) {
 
             if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
                 player.moveUp();
@@ -131,9 +117,6 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
                 player.moveBack();
             }
         }
-//            } else if (player.getXPosition() > 300) {
-//                player.moveBack();
-//            }
 
         batch.begin();
         batch.draw(background, 0, 0);
@@ -141,22 +124,8 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         batch.draw(spaceshipPic, player.getBottomLeft(), player.getTopLeft(), 60, 60);
         batch.draw(enemypic, enemy.getBottomLeft(), enemy.getTopLeft(), 40, 40);
         batch.end();
-
-        //not working
-//            while (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
-//
-//                shapeBatch.setProjectionMatrix(camera.combined);
-//                shapeBatch.begin();
-//                bullet.BulletShotByPlayer(player.getXPosition(), player.getYPosition(), 3, 3, 3);
-//                bullet.draw(shapeBatch);
-//                shapeBatch.end();
-//            }
     }
 
-//        shapeBatch.setProjectionMatrix(camera.combined);
-//        batch.begin();
-//        batch.draw(fixedPic, fixed.getBottom(), fixed.getTop());
-//        batch.end();
     @Override
     public void resize(int width, int height) {
         camera.viewportWidth = width;
