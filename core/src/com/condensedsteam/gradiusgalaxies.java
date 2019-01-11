@@ -114,12 +114,6 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
             }
 
         }
-        batch.begin();
-        batch.draw(background, 0, 0);
-        batch.draw(fixedPic, fixed.getBottomLeft(), fixed.getTopLeft(), 120, 120);
-        batch.draw(spaceshipPic, player.getBottomLeft(), player.getTopLeft(), 60, 60);
-        batch.draw(enemypic, enemy.getBottomLeft(), enemy.getTopLeft(), 40, 40);
-        batch.end();
 
         //not working
 //            while (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
@@ -180,6 +174,10 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
 
     @Override
     public boolean keyDown(int keycode) {
+        if (keycode == Input.Keys.SPACE){
+            player.fire();
+        }
+        
         return false;
     }
 

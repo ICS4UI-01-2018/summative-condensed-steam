@@ -25,11 +25,28 @@ public class Bullet2 {
 
     public Bullet2(float x, float y) {
         bullet = new Rectangle(x, y, width, height);
+        visible = true;
     }
 
     public void move() {
         bullet.y = bullet.y + speed;
         bullet.x = bullet.y + speed;
+
+        if (x > 800) {
+            visible = false;
+        }
+    }
+
+    public float x() {
+        return this.x;
+    }
+
+    public float y() {
+        return this.y;
+    }
+
+    public boolean visible() {
+        return this.visible;
     }
 
     public boolean collisionEnemy(Enemy enemy) {
@@ -39,7 +56,8 @@ public class Bullet2 {
             return false;
         }
     }
-     public void drawBullet(ShapeRenderer shapeBatch) {
+
+    public void drawBullet(ShapeRenderer shapeBatch) {
         shapeBatch.rect(bullet.x, bullet.y, bullet.width, bullet.height);
     }
 

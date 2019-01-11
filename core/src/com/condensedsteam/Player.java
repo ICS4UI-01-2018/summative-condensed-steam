@@ -14,6 +14,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g3d.particles.values.MeshSpawnShapeValue.Triangle;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
+import java.util.ArrayList;
 
 /**
  *
@@ -24,8 +25,8 @@ public class Player {
     private int score;
     private float speed = 3;
     private Rectangle player;
-    private Bullet bullet;
     private boolean collisionEnemy;
+    private ArrayList<Bullet2> bullet2;
 
     public Player(float x, float y, float width, float height, float speed, int score) {
 
@@ -33,7 +34,13 @@ public class Player {
         this.score = score;
         player = new Rectangle(x, y, width, height);
         this.collisionEnemy = collisionEnemy;
+        bullet2 = new ArrayList();
 
+    }
+
+    public void fire() {
+        Bullet2 z = new Bullet2(player.width / 2, player.height / 2);
+        bullet2.add(z);
     }
 
     public Rectangle Location() {
@@ -76,14 +83,15 @@ public class Player {
         return player.x;
 
     }
-    
-    public float getYPosition(){
+
+    public float getYPosition() {
         return player.y;
     }
-    
-    public float getXPosition(){
+
+    public float getXPosition() {
         return player.x;
     }
+
     public float getBottomRight() {
 
         return player.x + player.width;
@@ -118,6 +126,5 @@ public class Player {
             return this.score;
         }
     }
-
 
 }
