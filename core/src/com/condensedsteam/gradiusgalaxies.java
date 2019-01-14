@@ -23,6 +23,7 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
 
     SpriteBatch batch;
     private ShapeRenderer shapeBatch;
+    public SpriteBatch showTime;
     private OrthographicCamera camera;
     // TiledMapRenderer tiledMapRenderer;
     private Texture spaceshipPic;
@@ -38,11 +39,14 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
 //    private BulletShotByPlayer bullet;
     private ArrayList<Bullet> bullets;
     public static final float PIXEL_PER_METER = 32f;
+    public ArrayList<Enemy> enemyMonster = new ArrayList<Enemy>();
+    boolean summoned = false;
 
     @Override
     public void create() {
         batch = new SpriteBatch();
         shapeBatch = new ShapeRenderer();
+        enemy = new Enemy(20);
 
         float w = Gdx.graphics.getWidth();
         float h = Gdx.graphics.getHeight();
@@ -63,6 +67,8 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         enemy = new Enemy(20, 20, 5);
         fixed = new Fixed(100, 100, 2);
         //   bullet = new BulletShotByPlayer();
+        showTime = new SpriteBatch();
+
     }
 
     @Override
@@ -72,7 +78,7 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         //camera.combined.scl(PIXEL_PER_METER));
-        
+
         shapeBatch.setColor(Color.WHITE);
         shapeBatch.begin(ShapeRenderer.ShapeType.Line);
         shapeBatch.end();
@@ -132,6 +138,7 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         batch.draw(fixedPic, fixed.getBottomLeft(), fixed.getTopLeft(), 120, 120);
         batch.draw(spaceshipPic, player.getBottomLeft(), player.getTopLeft(), 60, 60);
         batch.draw(enemypic, enemy.getBottomLeft(), enemy.getTopLeft(), 40, 40);
+        summonEnemy(showTime);
         batch.end();
 
         //not working
@@ -149,14 +156,31 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
 //        batch.begin();
 //        batch.draw(fixedPic, fixed.getBottom(), fixed.getTop());
 //        batch.end();
+    public void setUpEnemy() {
+        for (int i = 0; i < enemy.NUMBER_OF_ENEMIES; i++) {
+            Enemy enemy = new Enemy(20);
+            Enemy.add(enemy);
+        }
+    }
 
-    private void cameraUpdate() {
-      Vector3 position = camera.position;
-      position.x = player.getXPosition() * PIXEL_PER_METER;
-      position.y = player.getYPosition()* PIXEL_PER_METER;
-      camera.position.set(position);
-      camera.update();
-   }
+    public void summonEnemy(SpriteBatch batch) {
+    //    if (roundTime == 0) {
+            if (summoned == false) {
+                for (int i = 0; i < enemy.NUMBER_OF_ENEMIES; i++) {
+                    batch.draw(enemypic, enemy.getBottomLeft(), enemy.getTopLeft());
+                }
+            }
+            summoned = true;
+        }
+  
+private void cameraUpdate() {
+        Vector3 position = camera.position;
+        position.x = player.getXPosition() * PIXEL_PER_METER;
+        position.y = player.getYPosition() * PIXEL_PER_METER;
+        camera.position.set(position);
+        camera.update();
+    }
+
     @Override
     public void resize(int width, int height) {
         camera.viewportWidth = width;
