@@ -5,6 +5,7 @@
  */
 package com.condensedsteam;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 
@@ -16,8 +17,8 @@ public class Bullet2 {
 
     private float x;
     private float y;
-    private float width = 8;
-    private float height = 4;
+    private float width = 80;
+    private float height = 40;
     private int speed = 5;
     private boolean visible;
     private Player player;
@@ -31,7 +32,7 @@ public class Bullet2 {
     public void move() {
         bullet.y = bullet.y + speed;
         bullet.x = bullet.y + speed;
-
+        visible = true;
         if (x > 800) {
             visible = false;
         }
@@ -57,8 +58,15 @@ public class Bullet2 {
         }
     }
 
+    public void update() {
+        this.x += speed;
+        this.y += speed;
+    }
+
     public void drawBullet(ShapeRenderer shapeBatch) {
         shapeBatch.rect(bullet.x, bullet.y, bullet.width, bullet.height);
+        shapeBatch.setColor(Color.CLEAR);
+
     }
 
 }

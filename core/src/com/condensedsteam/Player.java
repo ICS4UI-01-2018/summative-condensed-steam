@@ -68,16 +68,6 @@ public class Player {
         return player;
     }
 
-    public boolean collisionEnemy(Enemy enemy, Fixed fixed) {
-        if (player.overlaps(enemy.getBounds())) {
-            return true;
-        } else if (player.overlaps(fixed.getBounds())) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     public float getBottomLeft() {           //may have some errors
 
         return player.x;
