@@ -23,7 +23,7 @@ import java.util.ArrayList;
 public class Player {
 
     private int score;
-    private float speed = 3;
+    private float speed = 25;
     private Rectangle player;
     private boolean collisionEnemy;
     private ArrayList<Bullet2> bullet2;
