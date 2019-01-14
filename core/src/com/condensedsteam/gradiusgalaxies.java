@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Vector;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -117,12 +118,24 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
                 player.moveBack();
             }
         }
-
+        
+        
+        
         batch.begin();
         batch.draw(background, 0, 0);
-        batch.draw(fixedPic, fixed.getBottomLeft(), fixed.getTopLeft(), 120, 120);
+        batch.draw(background, -450, -150);
+        batch.draw(background, 2000, -150);
+        batch.draw(background, 3000, -150);
+        batch.draw(background, 4000, -150);
+        batch.draw(background, 5000, -150);
+        batch.draw(background, 6000, -150);
+        batch.draw(background, 7000, -150);
+        batch.draw(background, 8000, -150);
+        batch.draw(background, 9000, -150);
+        batch.draw(background, 10000, -150);
+      //  batch.draw(fixedPic, fixed.getBottomLeft(), fixed.getTopLeft(), 120, 120);
         batch.draw(spaceshipPic, player.getBottomLeft(), player.getTopLeft(), 60, 60);
-        batch.draw(enemypic, enemy.getBottomLeft(), enemy.getTopLeft(), 40, 40);
+     //   batch.draw(enemypic, enemy.getBottomLeft(), enemy.getTopLeft(), 40, 40);
         batch.end();
     }
 
