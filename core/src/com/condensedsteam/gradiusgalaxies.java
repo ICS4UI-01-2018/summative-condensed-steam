@@ -120,7 +120,9 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         }
         
         
-        
+        /*
+        entednds background
+        */
         batch.begin();
         batch.draw(background, 0, 0);
         batch.draw(background, -450, -150);
@@ -133,6 +135,7 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         batch.draw(background, 8000, -150);
         batch.draw(background, 9000, -150);
         batch.draw(background, 10000, -150);
+        
       //  batch.draw(fixedPic, fixed.getBottomLeft(), fixed.getTopLeft(), 120, 120);
         batch.draw(spaceshipPic, player.getBottomLeft(), player.getTopLeft(), 60, 60);
      //   batch.draw(enemypic, enemy.getBottomLeft(), enemy.getTopLeft(), 40, 40);
