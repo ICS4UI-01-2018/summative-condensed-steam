@@ -17,7 +17,6 @@ public class Enemy {
 
     private Rectangle enemy;
     private BulletShotByEnemy bullet;
-    private ArrayList<BulletShotByEnemy> projectiles = new ArrayList<BulletShotByEnemy>();
     private Player player;
     private int speed = 5;
     private boolean collisionPlayer;
@@ -96,14 +95,5 @@ public class Enemy {
         shapeBatch.rect(enemy.x, enemy.y, enemy.width, enemy.height);
     }
 
-    public void shoot() {
-        BulletShotByEnemy shoot;
-        shoot = new BulletShotByEnemy((int) (enemy.x + Math.random()), (int) (enemy.y + Math.random()));
-        projectiles.add(shoot);
-    }
-
-    public ArrayList getBulletShotByEnemy() {
-        return projectiles;
-    }
 
 }
