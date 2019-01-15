@@ -22,8 +22,9 @@ import java.util.ArrayList;
  */
 public class Player {
 
+  
     private int score;
-    private float speed = 3;
+    private float speed = 25;
     private Rectangle player;
     private boolean collisionEnemy;
     private ArrayList<Bullet2> bullet2;
@@ -39,9 +40,9 @@ public class Player {
     }
 
     public void fire() {
-        Bullet2 z = new Bullet2(player.width / 2, player.height / 2);
-        bullet2.add(z);
-    }
+//        Bullet3 z = new Bullet3(player.width / 2, player.height / 2);
+//        Bullet3.add(z);
+ }
 
     public Rectangle Location() {
         return player;
@@ -66,16 +67,6 @@ public class Player {
 
     public Rectangle getBounds() {
         return player;
-    }
-
-    public boolean collisionEnemy(Enemy enemy, Fixed fixed) {
-        if (player.overlaps(enemy.getBounds())) {
-            return true;
-        } else if (player.overlaps(fixed.getBounds())) {
-            return true;
-        } else {
-            return false;
-        }
     }
 
     public float getBottomLeft() {           //may have some errors

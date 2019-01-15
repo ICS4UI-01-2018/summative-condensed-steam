@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Vector;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -21,7 +22,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 
 public class gradiusgalaxies extends ApplicationAdapter implements InputProcessor {
 
-    private SpriteBatch batch;
+    SpriteBatch batch;
     private ShapeRenderer shapeBatch;
     public SpriteBatch showTime;
     private OrthographicCamera camera;
@@ -29,24 +30,19 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
     private Texture spaceshipPic;
     private Player player;
     private Enemy enemy;
-    private Fixed fixed;
-    private Bullet bullet;
+    private Bullet2 bullet;
     private Texture fixedPic;
     private Texture background;
     private Texture enemypic;
     private Texture bulletPic;
     private FitViewport viewport;
     private Vector3 offset;
-    private ArrayList<Bullet> bullets;
-    public static final float PIXEL_PER_METER = 32f;
-//    public ArrayList<Enemy> enemyMonster = new ArrayList<Enemy>();
-//    boolean summoned = false;
+    // private ArrayList<Bullet> bullets;
 
     @Override
     public void create() {
         batch = new SpriteBatch();
         shapeBatch = new ShapeRenderer();
-
 
         float w = Gdx.graphics.getWidth();
         float h = Gdx.graphics.getHeight();
@@ -58,25 +54,20 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
 
         background = new Texture("GAME MAP (3).png");
         spaceshipPic = new Texture("spaceship.png");
-        bulletPic = new Texture("bullet.png");
-        fixedPic = new Texture("asteroid-icon.png");
+//        bulletPic = new Texture("bullet.png");
+
         enemypic = new Texture("enemyspaceship.png");
         Gdx.input.setInputProcessor(this);
         player = new Player(100, 200, 20, 20, 2, 0);
         enemy = new Enemy(20, 20, 5);
-        fixed = new Fixed(100, 100, 2);
-        if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
-            bullet = new Bullet(100, 100, 3, 3, 3);
-        }
-        //   bullet = new BulletShotByPlayer();
-//        showTime = new SpriteBatch();
+
+        bullet = new Bullet2(player.getXPosition(), player.getYPosition());
 
     }
 
     @Override
     public void render() {
 
-        fixed.movedown();
         camera.position.set(player.getXPosition(), 100, 0);
         camera.update();
         batch.setProjectionMatrix(camera.combined);
@@ -94,14 +85,11 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
 
         batch.begin();
         batch.draw(background, 0, -150);
-        batch.draw(fixedPic, fixed.getBottomLeft(), fixed.getTopLeft(), 120, 120);
         batch.draw(spaceshipPic, player.getBottomLeft(), player.getTopLeft(), 60, 60);
         batch.draw(enemypic, enemy.getBottomLeft(), enemy.getTopLeft(), 40, 40);
-        batch.end();
-
-        batch.begin();
-        if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
-            batch.draw(bulletPic, bullet.getLeft(), bullet.getBottom(), 3, 3);
+        if (Gdx.input.isKeyPressed(Input.Keys.F)) {
+            batch.draw(bulletPic, 0, 0);
+            bullet.update();
         }
         batch.end();
 
@@ -112,7 +100,7 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
                 player.moveUp();
             }
         }
-        if (player.getYPosition() > 0) {
+        if (player.getYPosition() > -150) {
             if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
                 player.moveDown();
             }
@@ -127,13 +115,34 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
             }
         }
 
+        /*
+        entednds background
+         */
         batch.begin();
         batch.draw(background, 0, 0);
-        batch.draw(fixedPic, fixed.getBottomLeft(), fixed.getTopLeft(), 120, 120);
+        batch.draw(background, -450, -150);
+        batch.draw(background, 2000, -150);
+        batch.draw(background, 3000, -150);
+        batch.draw(background, 4000, -150);
+        batch.draw(background, 5000, -150);
+        batch.draw(background, 6000, -150);
+        batch.draw(background, 7000, -150);
+        batch.draw(background, 8000, -150);
+        batch.draw(background, 9000, -150);
+        batch.draw(background, 10000, -150);
+
+        //  batch.draw(fixedPic, fixed.getBottomLeft(), fixed.getTopLeft(), 120, 120);
         batch.draw(spaceshipPic, player.getBottomLeft(), player.getTopLeft(), 60, 60);
-//        batch.draw(enemypic, enemy.getBottomLeft(), enemy.getTopLeft(), 40, 40);
-//        summonEnemy(showTime);
+        //   batch.draw(enemypic, enemy.getBottomLeft(), enemy.getTopLeft(), 40, 40);
         batch.end();
+    }
+
+    private void drawBullets() {
+//        ArrayList bullets = player.getBullets();
+//        for (int w = 0; w < bullets.size(); w++) {
+//            Bullet m = (Bullet) bullets.get(w);
+
+        }
     }
 
 //        shapeBatch.setProjectionMatrix(camera.combined);
@@ -156,15 +165,13 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
 //            }
 //            summoned = true;
 //        }
-  
-private void cameraUpdate() {
-        Vector3 position = camera.position;
-        position.x = player.getXPosition() * PIXEL_PER_METER;
-        position.y = player.getYPosition() * PIXEL_PER_METER;
-        camera.position.set(position);
-        camera.update();
-    }
-
+//private void cameraUpdate() {
+//        Vector3 position = camera.position;
+//        position.x = player.getXPosition() * PIXEL_PER_METER;
+//        position.y = player.getYPosition() * PIXEL_PER_METER;
+//        camera.position.set(position);
+//        camera.update();
+//    }
     @Override
     public void resize(int width, int height) {
         camera.viewportWidth = width;

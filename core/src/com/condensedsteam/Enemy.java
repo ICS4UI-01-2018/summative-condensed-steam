@@ -26,7 +26,6 @@ public class Enemy {
     private ArrayList<BulletShotByEnemy> projectiles = new ArrayList<BulletShotByEnemy>();
     private Player player;
     private int speed = 5;
-    private boolean collisionfixed;
     private boolean collisionPlayer;
     private boolean visible;
     public int spawnTime = 2;
@@ -81,13 +80,6 @@ public class Enemy {
         }
     }
 
-    public boolean collisionfixed(Fixed fixed) {
-        if (enemy.overlaps(fixed.getBounds())) {
-            return true;
-        } else {
-            return false;
-        }
-    }
 
     public float getBottomLeft() {
         return this.enemy.x;
