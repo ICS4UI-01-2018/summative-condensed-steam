@@ -21,59 +21,66 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 
 public class gradiusgalaxies extends ApplicationAdapter implements InputProcessor {
 
-    SpriteBatch batch;
+    private SpriteBatch batch;
     private ShapeRenderer shapeBatch;
     public SpriteBatch showTime;
     private OrthographicCamera camera;
     // TiledMapRenderer tiledMapRenderer;
     private Texture spaceshipPic;
     private Player player;
-//    ArrayList<Enemy> enemy = new ArrayList<Enemy>(5);
-//    ArrayList<Fixed> fixed = new ArrayList<Fixed>(10);
     private Enemy enemy;
     private Fixed fixed;
+    private Bullet bullet;
     private Texture fixedPic;
     private Texture background;
     private Texture enemypic;
+    private Texture bulletPic;
     private FitViewport viewport;
-//    private BulletShotByPlayer bullet;
+    private Vector3 offset;
     private ArrayList<Bullet> bullets;
     public static final float PIXEL_PER_METER = 32f;
-    public ArrayList<Enemy> enemyMonster = new ArrayList<Enemy>();
-    boolean summoned = false;
+//    public ArrayList<Enemy> enemyMonster = new ArrayList<Enemy>();
+//    boolean summoned = false;
 
     @Override
     public void create() {
         batch = new SpriteBatch();
         shapeBatch = new ShapeRenderer();
-        enemy = new Enemy(20);
+
 
         float w = Gdx.graphics.getWidth();
         float h = Gdx.graphics.getHeight();
 
         camera = new OrthographicCamera();
-        camera.setToOrtho(true);
-        viewport = new FitViewport(800, 460, camera);
+        camera.setToOrtho(false);
+        viewport = new FitViewport(800, 660, camera);
         viewport.apply();
-        //set the game
-        camera.position.set(viewport.getScreenWidth() / 2, viewport.getScreenHeight() / 2, 0);
+
         background = new Texture("GAME MAP (3).png");
         spaceshipPic = new Texture("spaceship.png");
+        bulletPic = new Texture("bullet.png");
         fixedPic = new Texture("asteroid-icon.png");
-        enemypic = new Texture("enemy1.png");
+        enemypic = new Texture("enemyspaceship.png");
         Gdx.input.setInputProcessor(this);
-        player = new Player(100, 100, 20, 20, 2, 0);
-        //positionX, positionY, width, height, score, collisionEnemy, collisionPlayer, crashed
+        player = new Player(100, 200, 20, 20, 2, 0);
         enemy = new Enemy(20, 20, 5);
         fixed = new Fixed(100, 100, 2);
+        if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
+            bullet = new Bullet(100, 100, 3, 3, 3);
+        }
         //   bullet = new BulletShotByPlayer();
-        showTime = new SpriteBatch();
+//        showTime = new SpriteBatch();
 
     }
 
     @Override
     public void render() {
+
+        fixed.movedown();
+        camera.position.set(player.getXPosition(), 100, 0);
         camera.update();
+        batch.setProjectionMatrix(camera.combined);
+
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -86,92 +93,69 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         shapeBatch.setProjectionMatrix(camera.combined);
 
         batch.begin();
-        batch.draw(background, 0, 0);
+        batch.draw(background, 0, -150);
         batch.draw(fixedPic, fixed.getBottomLeft(), fixed.getTopLeft(), 120, 120);
         batch.draw(spaceshipPic, player.getBottomLeft(), player.getTopLeft(), 60, 60);
         batch.draw(enemypic, enemy.getBottomLeft(), enemy.getTopLeft(), 40, 40);
         batch.end();
 
-        //not working
-//        while (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
-//
-//            shapeBatch.setProjectionMatrix(camera.combined);
-//            shapeBatch.begin();
-//            bullet.BulletShotByPlayer(player.getXPosition(), player.getYPosition(), 3, 3, 3);
-//            bullet.draw(shapeBatch);
-//            shapeBatch.end();
-//            if (player.getYPosition() < 423 && player.getYPosition() > 0 && player.getXPosition() < 578 && player.getXPosition() > 0) {
-        //   if (player.getYPosition() < 423) {
-        enemy.movetowardsplayer(player);
-
-        if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-            player.moveUp();
-            fixed.movedown();
+        batch.begin();
+        if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
+            batch.draw(bulletPic, bullet.getLeft(), bullet.getBottom(), 3, 3);
         }
+        batch.end();
 
-        if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-            player.moveDown();
-            fixed.moveup();
-            // enemy.movetowardsplayer(player);
+        enemy.movetowardsplayer(player);
+        if (player.getYPosition() < 660) {
 
-//
-//                if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-//                    player.moveDown();
-//                    enemy.movetowardsplayer(player);
-//                    fixed.moveup();
-//                }
+            if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+                player.moveUp();
+            }
+        }
+        if (player.getYPosition() > 0) {
+            if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+                player.moveDown();
+            }
         }
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
             player.moveForward();
-            fixed.moveup();
-            //  enemy.movetowardsplayer(player);
 
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-            player.moveBack();
-            fixed.movedown();
-            //  enemy.movetowardsplayer(player);
-
+        if (player.getXPosition() > 0) {
+            if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+                player.moveBack();
+            }
         }
+
         batch.begin();
         batch.draw(background, 0, 0);
         batch.draw(fixedPic, fixed.getBottomLeft(), fixed.getTopLeft(), 120, 120);
         batch.draw(spaceshipPic, player.getBottomLeft(), player.getTopLeft(), 60, 60);
-        batch.draw(enemypic, enemy.getBottomLeft(), enemy.getTopLeft(), 40, 40);
-        summonEnemy(showTime);
+//        batch.draw(enemypic, enemy.getBottomLeft(), enemy.getTopLeft(), 40, 40);
+//        summonEnemy(showTime);
         batch.end();
-
-        //not working
-//            while (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
-//
-//                shapeBatch.setProjectionMatrix(camera.combined);
-//                shapeBatch.begin();
-//                bullet.BulletShotByPlayer(player.getXPosition(), player.getYPosition(), 3, 3, 3);
-//                bullet.draw(shapeBatch);
-//                shapeBatch.end();
-//            }
     }
 
 //        shapeBatch.setProjectionMatrix(camera.combined);
 //        batch.begin();
 //        batch.draw(fixedPic, fixed.getBottom(), fixed.getTop());
 //        batch.end();
-    public void setUpEnemy() {
-        for (int i = 0; i < enemy.NUMBER_OF_ENEMIES; i++) {
-            Enemy enemy = new Enemy(20);
-            Enemy.add(enemy);
-        }
-    }
-
-    public void summonEnemy(SpriteBatch batch) {
-    //    if (roundTime == 0) {
-            if (summoned == false) {
-                for (int i = 0; i < enemy.NUMBER_OF_ENEMIES; i++) {
-                    batch.draw(enemypic, enemy.getBottomLeft(), enemy.getTopLeft());
-                }
-            }
-            summoned = true;
-        }
+//    public void setUpEnemy() {
+//        for (int i = 0; i < enemy.NUMBER_OF_ENEMIES; i++) {
+//            Enemy enemy = new Enemy(20);
+//            Enemy.add(enemy);
+//        }
+//    }
+//
+//    public void summonEnemy(SpriteBatch batch) {
+//    //    if (roundTime == 0) {
+//            if (summoned == false) {
+//                for (int i = 0; i < enemy.NUMBER_OF_ENEMIES; i++) {
+//                    batch.draw(enemypic, enemy.getBottomLeft(), enemy.getTopLeft());
+//                }
+//            }
+//            summoned = true;
+//        }
   
 private void cameraUpdate() {
         Vector3 position = camera.position;
@@ -225,23 +209,25 @@ private void cameraUpdate() {
 
     @Override
     public boolean keyDown(int keycode) {
-        return false;
+
+        if (keycode == Input.Keys.UP) {
+            camera.translate(0f, 1f);
+        }
+        if (keycode == Input.Keys.DOWN) {
+            camera.translate(0f, -1f);
+        }
+        if (keycode == Input.Keys.RIGHT) {
+            camera.translate(1f, 0f);
+        }
+        if (keycode == Input.Keys.LEFT) {
+            camera.translate(-1f, 0f);
+        }
+        return true;
     }
 
     @Override
     public boolean keyUp(int keycode) {
-//        if (keycode == Input.Keys.LEFT) {
-//            camera.translate(-16, 0);
-//        }
-//        if (keycode == Input.Keys.RIGHT) {
-//            camera.translate(16, 0);
-//        }
-//        if (keycode == Input.Keys.UP) {
-//            camera.translate(0, 16);
-//        }
-//        if (keycode == Input.Keys.DOWN) {
-//            camera.translate(0, -16);
-//        }
         return false;
     }
+
 }

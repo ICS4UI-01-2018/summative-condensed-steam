@@ -39,9 +39,6 @@ public class Enemy {
 //        this.target = target;
     }
 
-    Enemy(int i) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
 //work on this 
     public void movetowardsplayer(Player player) {

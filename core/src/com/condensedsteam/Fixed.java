@@ -24,7 +24,10 @@ public class Fixed {
         this.speed = speed;
         this.fixed = new Rectangle(positionX, positionY, 20, 20);
     }
-
+    
+    public void move(){
+         
+    }
     public Rectangle getBounds() {
         return fixed;
     }
