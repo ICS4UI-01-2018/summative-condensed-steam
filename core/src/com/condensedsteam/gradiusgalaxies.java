@@ -84,13 +84,24 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
 
         batch.begin();
         batch.draw(background, 0, -150);
+        batch.draw(background, 0, 0);
+        batch.draw(background, -450, -150);
+        batch.draw(background, 2000, -150);
+        batch.draw(background, 3000, -150);
+        batch.draw(background, 4000, -150);
+        batch.draw(background, 5000, -150);
+        batch.draw(background, 6000, -150);
+        batch.draw(background, 7000, -150);
+        batch.draw(background, 8000, -150);
+        batch.draw(background, 9000, -150);
+        batch.draw(background, 10000, -150);
         batch.draw(spaceshipPic, player.getBottomLeft(), player.getTopLeft(), 60, 60);
         batch.draw(enemypic, enemy.getBottomLeft(), enemy.getTopLeft(), 40, 40);
 
         for (int i = 0; i < 200; i++) {
             if (Gdx.input.isKeyPressed(Input.Keys.F)) {
                 if (bullets[i].visible()) {
-                    batch.draw(bulletPic, bullets[i].x(), bullets[i].y(), 50, 50);
+                    batch.draw(bulletPic, bullets[i].x(), bullets[i].y(), 25, 25);
                 }
             }
         }
@@ -118,23 +129,6 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
             }
         }
 
-        /*
-        entednds background
-         */
-        batch.begin();
-        batch.draw(background, 0, 0);
-        batch.draw(background, -450, -150);
-        batch.draw(background, 2000, -150);
-        batch.draw(background, 3000, -150);
-        batch.draw(background, 4000, -150);
-        batch.draw(background, 5000, -150);
-        batch.draw(background, 6000, -150);
-        batch.draw(background, 7000, -150);
-        batch.draw(background, 8000, -150);
-        batch.draw(background, 9000, -150);
-        batch.draw(background, 10000, -150);
-        batch.draw(spaceshipPic, player.getBottomLeft(), player.getTopLeft(), 60, 60);
-        batch.end();
     }
 
     @Override
