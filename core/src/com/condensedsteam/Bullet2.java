@@ -15,7 +15,6 @@ import com.badlogic.gdx.math.Rectangle;
  */
 public class Bullet2 {
 
-
     private float width = 80;
     private float height = 40;
     private int speed = 5;
@@ -25,13 +24,16 @@ public class Bullet2 {
 
     public Bullet2(float x, float y) {
         bullet = new Rectangle(x, y, width, height);
-
-        visible = true;
+        visible = false;
     }
 
     public void move() {
-        bullet.x = bullet.x + speed;
+        bullet.x += speed;
         visible = true;
+    }
+
+    public boolean visible() {
+        return this.visible = true;
     }
 
     public float x() {
@@ -40,10 +42,6 @@ public class Bullet2 {
 
     public float y() {
         return bullet.y;
-    }
-
-    public boolean visible() {
-        return this.visible;
     }
 
     public boolean collisionEnemy(Enemy enemy) {
