@@ -138,9 +138,9 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
     }
 
     private void drawBullets() {
-//        ArrayList bullets = player.getBullets();
-//        for (int w = 0; w < bullets.size(); w++) {
-//            Bullet m = (Bullet) bullets.get(w);
+        ArrayList bullets = player.getBullets();
+        for (int w = 0; w < bullets.size(); w++) {
+            Bullet m = (Bullet) bullets.get(w);
 
         }
     }

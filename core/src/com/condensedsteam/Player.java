@@ -39,10 +39,7 @@ public class Player {
 
     }
 
-    public void fire() {
-//        Bullet3 z = new Bullet3(player.width / 2, player.height / 2);
-//        Bullet3.add(z);
- }
+  
 
     public Rectangle Location() {
         return player;
