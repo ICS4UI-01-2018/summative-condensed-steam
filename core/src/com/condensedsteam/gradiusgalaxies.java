@@ -58,7 +58,8 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         enemypic = new Texture("enemyspaceship.png");
         Gdx.input.setInputProcessor(this);
         player = new Player(100, 200, 20, 20, 2, 0);
-        enemy = new Enemy(20, 20, 5);
+
+        enemy = new Enemy(1050, 1000, 5);
 
         bullet = new Bullet2(player.getXPosition(), player.getYPosition());
 
@@ -85,11 +86,11 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         batch.draw(background, 0, -150);
         batch.draw(spaceshipPic, player.getBottomLeft(), player.getTopLeft(), 60, 60);
         batch.draw(enemypic, enemy.getBottomLeft(), enemy.getTopLeft(), 40, 40);
+        batch.end();
         if (Gdx.input.isKeyPressed(Input.Keys.F)) {
             batch.draw(bulletPic, bullet.x(), bullet.y(), 80, 40);
             bullet.move();
         }
-        batch.end();
 
         enemy.movetowardsplayer(player);
         if (player.getYPosition() < 660) {
@@ -112,11 +113,10 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
                 player.moveBack();
             }
         }
-        
-        
+
         /*
         entednds background
-        */
+         */
         batch.begin();
         batch.draw(background, 0, 0);
         batch.draw(background, -450, -150);
@@ -129,10 +129,10 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         batch.draw(background, 8000, -150);
         batch.draw(background, 9000, -150);
         batch.draw(background, 10000, -150);
-        
-      //  batch.draw(fixedPic, fixed.getBottomLeft(), fixed.getTopLeft(), 120, 120);
+
+        //  batch.draw(fixedPic, fixed.getBottomLeft(), fixed.getTopLeft(), 120, 120);
         batch.draw(spaceshipPic, player.getBottomLeft(), player.getTopLeft(), 60, 60);
-     //   batch.draw(enemypic, enemy.getBottomLeft(), enemy.getTopLeft(), 40, 40);
+        //   batch.draw(enemypic, enemy.getBottomLeft(), enemy.getTopLeft(), 40, 40);
         batch.end();
     }
 
