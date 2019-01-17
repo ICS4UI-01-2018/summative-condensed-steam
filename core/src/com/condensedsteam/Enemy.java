@@ -5,6 +5,8 @@
  */
 package com.condensedsteam;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g3d.particles.influencers.ParticleControllerInfluencer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import java.util.ArrayList;
@@ -15,12 +17,19 @@ import java.util.ArrayList;
  */
 public class Enemy {
 
+    static void add(Enemy enemy) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     private Rectangle enemy;
     private BulletShotByEnemy bullet;
     private Player player;
     private int speed = 5;
     private boolean collisionPlayer;
     private boolean visible;
+    public int spawnTime = 2;
+    public int NUMBER_OF_ENEMIES = 20;
+    public int enemies = 20;
 
     public Enemy(float positionX, float positionY, int speed) {
         this.speed = speed;
@@ -28,32 +37,36 @@ public class Enemy {
 //        this.target = target;
     }
 
+
 //work on this 
     public void movetowardsplayer(Player player) {
-        if (player.getYPosition() == this.enemy.y && player.getXPosition()< this.enemy.x) {
+        if (player.getYPosition() == this.enemy.y && player.getXPosition() < this.enemy.x) {
             this.enemy.x -= 1;
-        } else if (player.getYPosition() == this.enemy.y &&  player.getXPosition() > this.enemy.x) {
+        } else if (player.getYPosition() == this.enemy.y && player.getXPosition() > this.enemy.x) {
             this.enemy.x += 1;
-        } else if ( player.getXPosition() == this.enemy.x && player.getYPosition() > this.enemy.y) {
-           this.enemy.y  += 1;
-        } else if ( player.getXPosition() == this.enemy.x && player.getYPosition() < this.enemy.y) {
-            this.enemy.y  -= 1;
-        } else if ( player.getXPosition() <this.enemy.x && player.getYPosition() > this.enemy.y) {
-            this.enemy.y  += 1;
+        } else if (player.getXPosition() == this.enemy.x && player.getYPosition() > this.enemy.y) {
+            this.enemy.y += 1;
+        } else if (player.getXPosition() == this.enemy.x && player.getYPosition() < this.enemy.y) {
+            this.enemy.y -= 1;
+        } else if (player.getXPosition() < this.enemy.x && player.getYPosition() > this.enemy.y) {
+            this.enemy.y += 1;
             this.enemy.x -= 1;
-        } else if ( player.getXPosition() < this.enemy.x && player.getYPosition() < this.enemy.y) {
-            this.enemy.y  -= 1;
+        } else if (player.getXPosition() < this.enemy.x && player.getYPosition() < this.enemy.y) {
+            this.enemy.y -= 1;
             this.enemy.x -= 1;
-        } else if ( player.getXPosition() > this.enemy.x && player.getYPosition() > this.enemy.y) {
-            this.enemy.y  += 1;
+        } else if (player.getXPosition() > this.enemy.x && player.getYPosition() > this.enemy.y) {
+            this.enemy.y += 1;
             this.enemy.x += 1;
-        } else if ( player.getXPosition() > this.enemy.x && player.getYPosition() < this.enemy.y) {
-            this.enemy.y  -= 1;
-            this.enemy.x+= 1;
+        } else if (player.getXPosition() > this.enemy.x && player.getYPosition() < this.enemy.y) {
+            this.enemy.y -= 1;
+            this.enemy.x += 1;
         }
 
     }
-
+ 
+   public static void spawnEnemy() {
+ 
+   }
     public Rectangle getBounds() {
         return enemy;
     }

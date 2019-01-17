@@ -24,16 +24,13 @@ public class Bullet2 {
 
     public Bullet2(float x, float y) {
         bullet = new Rectangle(x, y, width, height);
-        visible = false;
-    }
 
-    public void move() {
-        bullet.x += speed;
         visible = true;
     }
 
-    public boolean visible() {
-        return this.visible = true;
+    public void move() {
+            bullet.x = bullet.x + speed;
+            visible = true;
     }
 
     public float x() {
@@ -42,6 +39,10 @@ public class Bullet2 {
 
     public float y() {
         return bullet.y;
+    }
+
+    public boolean visible() {
+        return this.visible;
     }
 
     public boolean collisionEnemy(Enemy enemy) {

@@ -23,6 +23,7 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
 
     SpriteBatch batch;
     private ShapeRenderer shapeBatch;
+    public SpriteBatch showTime;
     private OrthographicCamera camera;
     // TiledMapRenderer tiledMapRenderer;
     private Texture spaceshipPic;
@@ -74,6 +75,7 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        //camera.combined.scl(PIXEL_PER_METER));
 
         shapeBatch.setColor(Color.WHITE);
         shapeBatch.begin(ShapeRenderer.ShapeType.Line);
@@ -105,6 +107,7 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         batch.end();
 
         enemy.movetowardsplayer(player);
+        
         if (player.getYPosition() < 660) {
 
             if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
@@ -128,6 +131,33 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
 
     }
 
+//        shapeBatch.setProjectionMatrix(camera.combined);
+//        batch.begin();
+//        batch.draw(fixedPic, fixed.getBottom(), fixed.getTop());
+//        batch.end();
+//    public void setUpEnemy() {
+//        for (int i = 0; i < enemy.NUMBER_OF_ENEMIES; i++) {
+//            Enemy enemy = new Enemy(20);
+//            Enemy.add(enemy);
+//        }
+//    }
+//
+//    public void summonEnemy(SpriteBatch batch) {
+//    //    if (roundTime == 0) {
+//            if (summoned == false) {
+//                for (int i = 0; i < enemy.NUMBER_OF_ENEMIES; i++) {
+//                    batch.draw(enemypic, enemy.getBottomLeft(), enemy.getTopLeft());
+//                }
+//            }
+//            summoned = true;
+//        }
+//private void cameraUpdate() {
+//        Vector3 position = camera.position;
+//        position.x = player.getXPosition() * PIXEL_PER_METER;
+//        position.y = player.getYPosition() * PIXEL_PER_METER;
+//        camera.position.set(position);
+//        camera.update();
+//    }
     @Override
     public void resize(int width, int height) {
         camera.viewportWidth = width;

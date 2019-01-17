@@ -22,6 +22,7 @@ import java.util.ArrayList;
  */
 public class Player {
 
+  
     private int score;
     private float speed = 25;
     private Rectangle player;
@@ -38,6 +39,7 @@ public class Player {
 
     }
 
+  
 
     public Rectangle Location() {
         return player;
