@@ -26,16 +26,14 @@ public class Bullet2 {
 
     public Bullet2(float x, float y) {
         bullet = new Rectangle(x, y, width, height);
+        this.x = x;
+        this.y = y;
         visible = true;
     }
 
     public void move() {
         bullet.y = bullet.y + speed;
-        bullet.x = bullet.y + speed;
         visible = true;
-        if (x > 800) {
-            visible = false;
-        }
     }
 
     public float x() {
@@ -59,7 +57,6 @@ public class Bullet2 {
     }
 
     public void update() {
-        this.x += speed;
         this.y += speed;
     }
 
