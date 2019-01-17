@@ -15,8 +15,7 @@ import com.badlogic.gdx.math.Rectangle;
  */
 public class Bullet2 {
 
-    private float x;
-    private float y;
+
     private float width = 80;
     private float height = 40;
     private int speed = 5;
@@ -26,22 +25,21 @@ public class Bullet2 {
 
     public Bullet2(float x, float y) {
         bullet = new Rectangle(x, y, width, height);
-        this.x = x;
-        this.y = y;
+
         visible = true;
     }
 
     public void move() {
-        bullet.y = bullet.y + speed;
+        bullet.x = bullet.x + speed;
         visible = true;
     }
 
     public float x() {
-        return this.x;
+        return bullet.x;
     }
 
     public float y() {
-        return this.y;
+        return bullet.y;
     }
 
     public boolean visible() {
@@ -54,10 +52,6 @@ public class Bullet2 {
         } else {
             return false;
         }
-    }
-
-    public void update() {
-        this.y += speed;
     }
 
     public void drawBullet(ShapeRenderer shapeBatch) {
