@@ -75,18 +75,13 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        //camera.combined.scl(PIXEL_PER_METER));
-
         shapeBatch.setColor(Color.WHITE);
-        shapeBatch.begin(ShapeRenderer.ShapeType.Line);
-        shapeBatch.end();
-
-        shapeBatch.setProjectionMatrix(camera.combined);
-
+        shapeBatch.begin(ShapeRenderer.ShapeType.Filled);
         batch.begin();
         batch.draw(background, 0, -150);
         batch.draw(background, 0, 0);
         batch.draw(background, -450, -150);
+        batch.draw(background, -900, -150);
         batch.draw(background, 2000, -150);
         batch.draw(background, 3000, -150);
         batch.draw(background, 4000, -150);
@@ -96,7 +91,15 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         batch.draw(background, 8000, -150);
         batch.draw(background, 9000, -150);
         batch.draw(background, 10000, -150);
+        batch.end();
+        shapeBatch.rect(-450, -150, 5, 500);
+        shapeBatch.rect(10060, -150, 5, 500);
 
+        shapeBatch.end();
+
+        shapeBatch.setProjectionMatrix(camera.combined);
+
+        batch.begin();
         batch.draw(spaceshipPic, player.getBottomLeft(), player.getTopLeft(), 60, 60);
         batch.draw(enemypic, enemy.getBottomLeft(), enemy.getTopLeft(), 40, 40);
 
@@ -120,10 +123,14 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         }
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
             player.moveBack();
-        } else if ( player.getYPosition() < -159){
+        } else if (player.getYPosition() < -159) {
             player.moveUp();
-        }else if (player.getYPosition() > 301){
+        } else if (player.getYPosition() > 301) {
             player.moveDown();
+        } else if (player.getXPosition() < -450) {
+            player.moveForward();
+        } else if (player.getXPosition() > 10000) {
+            player.moveBack();
         }
 
     }
