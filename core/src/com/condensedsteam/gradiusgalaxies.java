@@ -10,7 +10,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector;
@@ -103,10 +102,8 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         batch.draw(enemypic, enemy.getBottomLeft(), enemy.getTopLeft(), 40, 40);
 
         for (int i = 0; i < 200; i++) {
-            if (Gdx.input.isKeyPressed(Input.Keys.F)) {
-                if (bullets[i].visible()) {
-                    batch.draw(bulletPic, bullets[i].x(), bullets[i].y(), 25, 25);
-                }
+            if (bullets[i].visible()) {
+                batch.draw(bulletPic, bullets[i].x(), bullets[i].y(), 25, 25);
             }
 
         }
@@ -222,7 +219,6 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
             for (int i = 0; i < 200; i++) {
                 bullets[i].move();
             }
-
         }
 
         if (keycode == Input.Keys.UP) {

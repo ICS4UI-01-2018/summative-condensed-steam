@@ -27,7 +27,8 @@ public class Player {
     private float speed = 25;
     private Rectangle player;
     private boolean collisionEnemy;
-    private ArrayList<Bullet2> bullet2;
+    private Bullet2[] bullets;
+    private gradiusgalaxies game;
 
     public Player(float x, float y, float width, float height, float speed, int score) {
 
@@ -35,7 +36,6 @@ public class Player {
         this.score = score;
         player = new Rectangle(x, y, width, height);
         this.collisionEnemy = collisionEnemy;
-        bullet2 = new ArrayList();
 
     }
 
@@ -93,6 +93,7 @@ public class Player {
     public float getTopRight() {
         return player.y + player.width;
     }
+    
 
     public void draw(ShapeRenderer shapeBatch) { //may have some errors
 
