@@ -96,6 +96,7 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         batch.draw(background, 8000, -150);
         batch.draw(background, 9000, -150);
         batch.draw(background, 10000, -150);
+
         batch.draw(spaceshipPic, player.getBottomLeft(), player.getTopLeft(), 60, 60);
         batch.draw(enemypic, enemy.getBottomLeft(), enemy.getTopLeft(), 40, 40);
 
@@ -107,57 +108,26 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         batch.end();
 
         enemy.movetowardsplayer(player);
-        
-        if (player.getYPosition() < 660) {
 
-            if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-                player.moveUp();
-            }
+        if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+            player.moveUp();
         }
-        if (player.getYPosition() > -150) {
-            if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-                player.moveDown();
-            }
+        if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+            player.moveDown();
         }
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
             player.moveForward();
-
         }
-        if (player.getXPosition() > 0) {
-            if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-                player.moveBack();
-            }
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+            player.moveBack();
+        } else if ( player.getYPosition() < -159){
+            player.moveUp();
+        }else if (player.getYPosition() > 301){
+            player.moveDown();
         }
 
     }
 
-//        shapeBatch.setProjectionMatrix(camera.combined);
-//        batch.begin();
-//        batch.draw(fixedPic, fixed.getBottom(), fixed.getTop());
-//        batch.end();
-//    public void setUpEnemy() {
-//        for (int i = 0; i < enemy.NUMBER_OF_ENEMIES; i++) {
-//            Enemy enemy = new Enemy(20);
-//            Enemy.add(enemy);
-//        }
-//    }
-//
-//    public void summonEnemy(SpriteBatch batch) {
-//    //    if (roundTime == 0) {
-//            if (summoned == false) {
-//                for (int i = 0; i < enemy.NUMBER_OF_ENEMIES; i++) {
-//                    batch.draw(enemypic, enemy.getBottomLeft(), enemy.getTopLeft());
-//                }
-//            }
-//            summoned = true;
-//        }
-//private void cameraUpdate() {
-//        Vector3 position = camera.position;
-//        position.x = player.getXPosition() * PIXEL_PER_METER;
-//        position.y = player.getYPosition() * PIXEL_PER_METER;
-//        camera.position.set(position);
-//        camera.update();
-//    }
     @Override
     public void resize(int width, int height) {
         camera.viewportWidth = width;
