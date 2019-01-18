@@ -36,6 +36,7 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
     private FitViewport viewport;
     private Vector3 offset;
     private Bullet2[] bullets;
+    private MainMenu MainMenu;
 
     @Override
     public void create() {
@@ -61,6 +62,7 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         bullets = new Bullet2[200];
         for (int i = 0; i < bullets.length; i++) {
             bullets[i] = new Bullet2(player.getXPosition(), player.getYPosition());
+
         }
 
     }
@@ -107,6 +109,7 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
             if (bullets[i].visible()) {
                 batch.draw(bulletPic, bullets[i].x(), bullets[i].y(), 25, 25);
             }
+
         }
         batch.end();
 
@@ -132,11 +135,14 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         } else if (player.getXPosition() > 10000) {
             player.moveBack();
         }
+       // if (Gdx.input.isKeyPressed(Input.Keys.A)) {
+//            SceneManager.LoadScene(MainMenu);
 
-    }
+        }
 
     @Override
-    public void resize(int width, int height) {
+    public void resize(int width, int height
+    ) {
         camera.viewportWidth = width;
         camera.viewportHeight = height;
     }
@@ -147,37 +153,44 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
     }
 
     @Override
-    public boolean keyTyped(char character) {
+    public boolean keyTyped(char character
+    ) {
         return false;
     }
 
     @Override
-    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+    public boolean touchDown(int screenX, int screenY, int pointer, int button
+    ) {
         return false;
     }
 
     @Override
-    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+    public boolean touchUp(int screenX, int screenY, int pointer, int button
+    ) {
         return false;
     }
 
     @Override
-    public boolean touchDragged(int screenX, int screenY, int pointer) {
+    public boolean touchDragged(int screenX, int screenY, int pointer
+    ) {
         return false;
     }
 
     @Override
-    public boolean mouseMoved(int screenX, int screenY) {
+    public boolean mouseMoved(int screenX, int screenY
+    ) {
         return false;
     }
 
     @Override
-    public boolean scrolled(int amount) {
+    public boolean scrolled(int amount
+    ) {
         return false;
     }
 
     @Override
-    public boolean keyDown(int keycode) {
+    public boolean keyDown(int keycode
+    ) {
         if (keycode == Input.Keys.F) {
             for (int i = 0; i < 200; i++) {
                 bullets[i].move();
@@ -200,7 +213,8 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
     }
 
     @Override
-    public boolean keyUp(int keycode) {
+    public boolean keyUp(int keycode
+    ) {
         return false;
     }
 
