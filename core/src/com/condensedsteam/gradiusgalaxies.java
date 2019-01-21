@@ -57,7 +57,7 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         enemypic = new Texture("enemyspaceship.png");
         Gdx.input.setInputProcessor(this);
         player = new Player(100, 200, 20, 20, 2, 0);
-        enemy = new Enemy(20, 20, 5);
+        enemy = new Enemy(player.getXPosition() + 100, player.getYPosition()+ 100, 5);
         bullets = new Bullet2[200];
         for (int i = 0; i < bullets.length; i++) {
             bullets[i] = new Bullet2(player.getXPosition(), player.getYPosition());
@@ -96,8 +96,11 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         batch.draw(background, 9000, -150);
         batch.draw(background, 10000, -150);
         batch.draw(spaceshipPic, player.getBottomLeft(), player.getTopLeft(), 60, 60);
-        batch.draw(enemypic, enemy.getBottomLeft(), enemy.getTopLeft(), 40, 40);
-
+        
+            if (player.getXPosition() > 500) {
+                batch.draw(enemypic, enemy.getBottomLeft(), enemy.getTopLeft(), 40, 40);
+            }
+        
         for (int i = 0; i < 200; i++) {
             if (Gdx.input.isKeyPressed(Input.Keys.F)) {
                 if (bullets[i].visible()) {
@@ -105,7 +108,7 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
                 }
             }
         }
-
+        batch.end();
         enemy.movetowardsplayer(player);
         if (player.getYPosition() < 660) {
 
