@@ -37,6 +37,7 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
     private FitViewport viewport;
     private Vector3 offset;
     private Bullet2[] bullets;
+    private MainMenu MainMenu;
 
     @Override
     public void create() {
@@ -78,18 +79,13 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        //camera.combined.scl(PIXEL_PER_METER));
-
         shapeBatch.setColor(Color.WHITE);
-        shapeBatch.begin(ShapeRenderer.ShapeType.Line);
-        shapeBatch.end();
-
-        shapeBatch.setProjectionMatrix(camera.combined);
-
+        shapeBatch.begin(ShapeRenderer.ShapeType.Filled);
         batch.begin();
         batch.draw(background, 0, -150);
         batch.draw(background, 0, 0);
         batch.draw(background, -450, -150);
+        batch.draw(background, -900, -150);
         batch.draw(background, 2000, -150);
         batch.draw(background, 3000, -150);
         batch.draw(background, 4000, -150);
@@ -99,6 +95,15 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         batch.draw(background, 8000, -150);
         batch.draw(background, 9000, -150);
         batch.draw(background, 10000, -150);
+        batch.end();
+        shapeBatch.rect(-450, -150, 5, 500);
+        shapeBatch.rect(10060, -150, 5, 500);
+
+        shapeBatch.end();
+
+        shapeBatch.setProjectionMatrix(camera.combined);
+
+        batch.begin();
         batch.draw(spaceshipPic, player.getBottomLeft(), player.getTopLeft(), 60, 60);
         batch.draw(enemypic, enemy.getBottomLeft(), enemy.getTopLeft(), 40, 40);
 
@@ -115,20 +120,29 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         batch.end();
 
         enemy.movetowardsplayer(player);
-        
-        if (player.getYPosition() < 660) {
 
-            if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-                player.moveUp();
-            }
+        if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+            player.moveUp();
         }
-        if (player.getYPosition() > -150) {
-            if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-                player.moveDown();
-            }
+        if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+            player.moveDown();
         }
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
             player.moveForward();
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+            player.moveBack();
+        } else if (player.getYPosition() < -159) {
+            player.moveUp();
+        } else if (player.getYPosition() > 301) {
+            player.moveDown();
+        } else if (player.getXPosition() < -450) {
+            player.moveForward();
+        } else if (player.getXPosition() > 10000) {
+            player.moveBack();
+        }
+       // if (Gdx.input.isKeyPressed(Input.Keys.A)) {
+//            SceneManager.LoadScene(MainMenu);
 
         }
         if (player.getXPosition() > 0) {
@@ -146,37 +160,9 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
            
         }
 
-    }
-
-//        shapeBatch.setProjectionMatrix(camera.combined);
-//        batch.begin();
-//        batch.draw(fixedPic, fixed.getBottom(), fixed.getTop());
-//        batch.end();
-//    public void setUpEnemy() {
-//        for (int i = 0; i < enemy.NUMBER_OF_ENEMIES; i++) {
-//            Enemy enemy = new Enemy(20);
-//            Enemy.add(enemy);
-//        }
-//    }
-//
-//    public void summonEnemy(SpriteBatch batch) {
-//    //    if (roundTime == 0) {
-//            if (summoned == false) {
-//                for (int i = 0; i < enemy.NUMBER_OF_ENEMIES; i++) {
-//                    batch.draw(enemypic, enemy.getBottomLeft(), enemy.getTopLeft());
-//                }
-//            }
-//            summoned = true;
-//        }
-//private void cameraUpdate() {
-//        Vector3 position = camera.position;
-//        position.x = player.getXPosition() * PIXEL_PER_METER;
-//        position.y = player.getYPosition() * PIXEL_PER_METER;
-//        camera.position.set(position);
-//        camera.update();
-//    }
     @Override
-    public void resize(int width, int height) {
+    public void resize(int width, int height
+    ) {
         camera.viewportWidth = width;
         camera.viewportHeight = height;
     }
@@ -187,38 +173,49 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
     }
 
     @Override
-    public boolean keyTyped(char character) {
+    public boolean keyTyped(char character
+    ) {
         return false;
     }
 
     @Override
-    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+    public boolean touchDown(int screenX, int screenY, int pointer, int button
+    ) {
         return false;
     }
 
     @Override
-    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+    public boolean touchUp(int screenX, int screenY, int pointer, int button
+    ) {
         return false;
     }
 
     @Override
-    public boolean touchDragged(int screenX, int screenY, int pointer) {
+    public boolean touchDragged(int screenX, int screenY, int pointer
+    ) {
         return false;
     }
 
     @Override
-    public boolean mouseMoved(int screenX, int screenY) {
+    public boolean mouseMoved(int screenX, int screenY
+    ) {
         return false;
     }
 
     @Override
-    public boolean scrolled(int amount) {
+    public boolean scrolled(int amount
+    ) {
         return false;
     }
 
     @Override
-    public boolean keyDown(int keycode) {
-        
+    public boolean keyDown(int keycode
+    ) {
+        if (keycode == Input.Keys.F) {
+            for (int i = 0; i < 200; i++) {
+                bullets[i].move();
+            }
+        }
 
         if (keycode == Input.Keys.UP) {
             camera.translate(0f, 1f);
@@ -236,7 +233,8 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
     }
 
     @Override
-    public boolean keyUp(int keycode) {
+    public boolean keyUp(int keycode
+    ) {
         return false;
     }
 
