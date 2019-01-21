@@ -62,9 +62,9 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         enemy = new Enemy(20, 20, 5);
         bullets = new Bullet2[200];
         for (int i = 0; i < bullets.length; i++) {
-            
+
             bullets[i] = new Bullet2(player.getXPosition(), player.getYPosition());
-            
+
         }
 
     }
@@ -108,15 +108,12 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         batch.draw(enemypic, enemy.getBottomLeft(), enemy.getTopLeft(), 40, 40);
 
         for (int i = 0; i < 200; i++) {
-            
-                
             if (bullets[i].visible()) {
-                //batch.draw(bulletPic, bullets[i].x(), bullets[i].y(), 25, 25);
-                
+                batch.draw(bulletPic, bullets[i].x(), bullets[i].y(), 25, 25);
+
             }
 
-            
-                    }
+        }
         batch.end();
 
         enemy.movetowardsplayer(player);
@@ -141,24 +138,10 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         } else if (player.getXPosition() > 10000) {
             player.moveBack();
         }
-       // if (Gdx.input.isKeyPressed(Input.Keys.A)) {
+        // if (Gdx.input.isKeyPressed(Input.Keys.A)) {
 //            SceneManager.LoadScene(MainMenu);
 
-        }
-        if (player.getXPosition() > 0) {
-            if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-                player.moveBack();
-            }
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.F)) {
-            for (int i = 0; i < 200; i++) {
-                bullets[i].move();
-                if(bullets[i].BulletX()){
-                    
-                }
-            }
-           
-        }
+    }
 
     @Override
     public void resize(int width, int height

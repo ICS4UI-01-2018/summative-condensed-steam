@@ -62,6 +62,9 @@ public class Bullet2 {
     public float y() {
         return bullet.y;
     }
+    public float x(){
+        return bullet.x;
+    }
     
 
     public boolean visible() {
