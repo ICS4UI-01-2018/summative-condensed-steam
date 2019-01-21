@@ -17,7 +17,7 @@ public class Bullet2 {
 
     private float width = 80;
     private float height = 40;
-    private int speed = 30;
+    private int speed = 100;
     private boolean visible;
     private Player player;
     private Rectangle bullet;
@@ -25,47 +25,27 @@ public class Bullet2 {
     private float y;
 
     public Bullet2(float x, float y) {
-        
-        
         bullet = new Rectangle(x, y, width, height);
-
         visible = true;
     }
 
     public void move() {
+        if (bullet.x < -450) {
+            this.visible = false;
+        } else if (bullet.x > 10060) {
+            this.visible = false;
+        } else if (bullet.x < 10060 && bullet.x > -450) {
             bullet.x = bullet.x + speed;
-            if(bullet.x > 1000){
-            visible = false;
-            }
-            
-            
-            
-    }
-   
-//    public void stop(){
-//        speed = 0;
-//        bullet.x = bullet.x + speed;
-//        visible = false;
-//    }
-    
-//    public void jobDone(){
-//    if (visible = false){
-//        bullet.y = 1000000;
-//    }    
-//    }
-    
-    public float BulletX() {
-     
-        return bullet.x;
+        }
     }
 
     public float y() {
         return bullet.y;
     }
-    public float x(){
+
+    public float x() {
         return bullet.x;
     }
-    
 
     public boolean visible() {
         return this.visible;

@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
 public class gradiusgalaxies extends ApplicationAdapter implements InputProcessor {
-
+    
     SpriteBatch batch;
     private ShapeRenderer shapeBatch;
     public SpriteBatch showTime;
@@ -38,44 +38,44 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
     private Vector3 offset;
     private Bullet2[] bullets;
     private MainMenu MainMenu;
-
+    
     @Override
     public void create() {
         batch = new SpriteBatch();
         shapeBatch = new ShapeRenderer();
-
+        
         float w = Gdx.graphics.getWidth();
         float h = Gdx.graphics.getHeight();
-
+        
         camera = new OrthographicCamera();
         camera.setToOrtho(false);
         viewport = new FitViewport(800, 660, camera);
         viewport.apply();
-
+        
         background = new Texture("GAME MAP (3).png");
         spaceshipPic = new Texture("spaceship.png");
         bulletPic = new Texture("bullet.png");
-
+        
         enemypic = new Texture("enemyspaceship.png");
         Gdx.input.setInputProcessor(this);
         player = new Player(100, 200, 20, 20, 2, 0);
         enemy = new Enemy(20, 20, 5);
         bullets = new Bullet2[200];
         for (int i = 0; i < bullets.length; i++) {
-
+            
             bullets[i] = new Bullet2(player.getXPosition(), player.getYPosition());
-
+            
         }
-
+        
     }
-
+    
     @Override
     public void render() {
-
+        
         camera.position.set(player.getXPosition(), 100, 0);
         camera.update();
         batch.setProjectionMatrix(camera.combined);
-
+        
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -98,26 +98,26 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         batch.end();
         shapeBatch.rect(-450, -150, 5, 500);
         shapeBatch.rect(10060, -150, 5, 500);
-
+        
         shapeBatch.end();
-
+        
         shapeBatch.setProjectionMatrix(camera.combined);
-
+        
         batch.begin();
         batch.draw(spaceshipPic, player.getBottomLeft(), player.getTopLeft(), 60, 60);
         batch.draw(enemypic, enemy.getBottomLeft(), enemy.getTopLeft(), 40, 40);
-
+        
         for (int i = 0; i < 200; i++) {
             if (bullets[i].visible()) {
                 batch.draw(bulletPic, bullets[i].x(), bullets[i].y(), 25, 25);
-
+                
             }
-
+            
         }
         batch.end();
-
+        
         enemy.movetowardsplayer(player);
-
+        
         if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
             player.moveUp();
         }
@@ -138,68 +138,74 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         } else if (player.getXPosition() > 10000) {
             player.moveBack();
         }
+        //code to disappear the enemy once clicked
+        
+        if (Gdx.input.isTouched())
+        
+        
+        
+        
+        //code for bullet to work 
+        if (Gdx.input.isTouched()) {
+            for (int i = 0; i < 200; i++) {
+                bullets[i].move();
+            }
+        }
+
         // if (Gdx.input.isKeyPressed(Input.Keys.A)) {
 //            SceneManager.LoadScene(MainMenu);
-
     }
-
+    
     @Override
     public void resize(int width, int height
     ) {
         camera.viewportWidth = width;
         camera.viewportHeight = height;
     }
-
+    
     @Override
     public void dispose() {
         batch.dispose();
     }
-
+    
     @Override
     public boolean keyTyped(char character
     ) {
         return false;
     }
-
+    
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button
     ) {
         return false;
     }
-
+    
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button
     ) {
         return false;
     }
-
+    
     @Override
     public boolean touchDragged(int screenX, int screenY, int pointer
     ) {
         return false;
     }
-
+    
     @Override
     public boolean mouseMoved(int screenX, int screenY
     ) {
         return false;
     }
-
+    
     @Override
     public boolean scrolled(int amount
     ) {
         return false;
     }
-
+    
     @Override
-    public boolean keyDown(int keycode
-    ) {
-        if (keycode == Input.Keys.F) {
-            for (int i = 0; i < 200; i++) {
-                bullets[i].move();
-            }
-        }
-
+    public boolean keyDown(int keycode) {
         if (keycode == Input.Keys.UP) {
             camera.translate(0f, 1f);
         }
@@ -214,11 +220,11 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         }
         return true;
     }
-
+    
     @Override
     public boolean keyUp(int keycode
     ) {
         return false;
     }
-
+    
 }
