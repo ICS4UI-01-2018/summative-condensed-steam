@@ -95,7 +95,6 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         shapeBatch.begin(ShapeRenderer.ShapeType.Filled);
         batch.begin();
         batch.draw(background, 0, -150);
-        batch.draw(background, 0, 0);
         batch.draw(background, -450, -150);
         batch.draw(background, -900, -150);
         batch.draw(background, 2000, -150);
@@ -139,16 +138,16 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         enemy3.movetowardsplayer(player);
         enemy4.movetowardsplayer(player);
 
-        if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.W)) {
             player.moveUp();
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.S)) {
             player.moveDown();
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.D)) {
             player.moveForward();
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.A)) {
             player.moveBack();
         } else if (player.getYPosition() < -159) {
             player.moveUp();
@@ -160,11 +159,10 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
             player.moveBack();
         }
         //code to disappear the enemy once clicked
+        Gdx.input.isTouched();
+        if (Gdx.input.getX() == enemy.getBottomRight() && Gdx.input.getY() == enemy.getTopLeft() || Gdx.input.getX() == enemy.getBottomLeft() && Gdx.input.getY() == enemy.getTopRight()) {
 
-        if (Gdx.input.justTouched()) {
-            if (Gdx.input.getX() == enemy.getTopLeft() && Gdx.input.getY() == enemy.getTopRight()) {
-                enemy.setVisible(true);
-            }
+            enemy.setVisible(true);
 
         }
 
