@@ -17,12 +17,16 @@ public class Bullet2 {
 
     private float width = 80;
     private float height = 40;
-    private int speed = 5;
+    private int speed = 30;
     private boolean visible;
     private Player player;
     private Rectangle bullet;
+    private float x;
+    private float y;
 
     public Bullet2(float x, float y) {
+        
+        
         bullet = new Rectangle(x, y, width, height);
 
         visible = true;
@@ -30,16 +34,35 @@ public class Bullet2 {
 
     public void move() {
             bullet.x = bullet.x + speed;
-            visible = true;
+            if(bullet.x > 1000){
+            visible = false;
+            }
+            
+            
+            
     }
-
-    public float x() {
+   
+//    public void stop(){
+//        speed = 0;
+//        bullet.x = bullet.x + speed;
+//        visible = false;
+//    }
+    
+//    public void jobDone(){
+//    if (visible = false){
+//        bullet.y = 1000000;
+//    }    
+//    }
+    
+    public float BulletX() {
+     
         return bullet.x;
     }
 
     public float y() {
         return bullet.y;
     }
+    
 
     public boolean visible() {
         return this.visible;

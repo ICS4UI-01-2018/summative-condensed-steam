@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Input;
+import static com.badlogic.gdx.Input.Keys.F;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -61,8 +62,9 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         enemy = new Enemy(player.getXPosition() + 100, player.getYPosition()+ 100, 5);
         bullets = new Bullet2[200];
         for (int i = 0; i < bullets.length; i++) {
+            
             bullets[i] = new Bullet2(player.getXPosition(), player.getYPosition());
-
+            
         }
 
     }
@@ -109,11 +111,15 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
             }
         
         for (int i = 0; i < 200; i++) {
+            
+                
             if (bullets[i].visible()) {
-                batch.draw(bulletPic, bullets[i].x(), bullets[i].y(), 25, 25);
+                //batch.draw(bulletPic, bullets[i].x(), bullets[i].y(), 25, 25);
+                
             }
 
-        }
+            
+                    }
         batch.end();
         enemy.movetowardsplayer(player);
 
@@ -140,6 +146,20 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
        // if (Gdx.input.isKeyPressed(Input.Keys.A)) {
 //            SceneManager.LoadScene(MainMenu);
 
+        }
+        if (player.getXPosition() > 0) {
+            if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+                player.moveBack();
+            }
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.F)) {
+            for (int i = 0; i < 200; i++) {
+                bullets[i].move();
+                if(bullets[i].BulletX()){
+                    
+                }
+            }
+           
         }
 
     @Override
