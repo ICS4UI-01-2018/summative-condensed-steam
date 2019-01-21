@@ -29,7 +29,7 @@ public class Player {
     private boolean collisionEnemy;
     private Bullet2[] bullets;
     private gradiusgalaxies game;
-
+    
     public Player(float x, float y, float width, float height, float speed, int score) {
 
         speed = this.speed;

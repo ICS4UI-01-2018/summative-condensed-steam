@@ -30,9 +30,18 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
     private Texture spaceshipPic;
     private Player player;
     private Enemy enemy;
+    private Enemy enemy2;
+    private Enemy enemy3;
+    private Enemy enemy4;
+    private Enemy enemy5;
+    private Enemy enemy6;
+    private Enemy enemy7;
+    private Enemy enemy8;
+    private Enemy enemy9; 
     private Texture fixedPic;
     private Texture background;
     private Texture enemypic;
+    private Texture enemypic2;
     private Texture bulletPic;
     private FitViewport viewport;
     private Vector3 offset;
@@ -57,14 +66,18 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         bulletPic = new Texture("bullet.png");
 
         enemypic = new Texture("enemyspaceship.png");
+        enemypic2 = new Texture("enemy1.png");
         Gdx.input.setInputProcessor(this);
         player = new Player(100, 200, 20, 20, 2, 0);
-        enemy = new Enemy(player.getXPosition() + 100, player.getYPosition()+ 100, 5);
+        enemy = new Enemy(900, 400, 5);
+        enemy2 = new Enemy(900, 100, 5);
+        enemy3 = new Enemy(900, 300, 5);
+        enemy4 = new Enemy(900, 500, 5);
         bullets = new Bullet2[200];
         for (int i = 0; i < bullets.length; i++) {
-            
+
             bullets[i] = new Bullet2(player.getXPosition(), player.getYPosition());
-            
+
         }
 
     }
@@ -105,23 +118,29 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
 
         batch.begin();
         batch.draw(spaceshipPic, player.getBottomLeft(), player.getTopLeft(), 60, 60);
-        
-            if (player.getXPosition() > 500) {
-                batch.draw(enemypic, enemy.getBottomLeft(), enemy.getTopLeft(), 40, 40);
-            }
-        
+
+        if (player.getXPosition() > 500) {
+            batch.draw(enemypic, enemy.getBottomLeft(), enemy.getTopLeft(), 40, 40);
+            batch.draw(enemypic2, enemy2.getBottomLeft(), enemy2.getTopLeft(), 60, 60);
+            batch.draw(enemypic, enemy3.getBottomLeft(), enemy3.getTopLeft(), 40, 40);
+            batch.draw(enemypic, enemy4.getBottomLeft(), enemy4.getTopLeft(), 40, 40);
+
+
+        }
+
         for (int i = 0; i < 200; i++) {
-            
-                
+
             if (bullets[i].visible()) {
                 //batch.draw(bulletPic, bullets[i].x(), bullets[i].y(), 25, 25);
-                
+
             }
 
-            
-                    }
+        }
         batch.end();
         enemy.movetowardsplayer(player);
+        enemy2.movetowardsplayer(player);
+        enemy3.movetowardsplayer(player);
+        enemy4.movetowardsplayer(player);
 
         if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
             player.moveUp();
@@ -143,10 +162,8 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         } else if (player.getXPosition() > 10000) {
             player.moveBack();
         }
-       // if (Gdx.input.isKeyPressed(Input.Keys.A)) {
+        // if (Gdx.input.isKeyPressed(Input.Keys.A)) {
 //            SceneManager.LoadScene(MainMenu);
-
-        }
         if (player.getXPosition() > 0) {
             if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
                 player.moveBack();
@@ -155,12 +172,12 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         if (Gdx.input.isKeyPressed(Input.Keys.F)) {
             for (int i = 0; i < 200; i++) {
                 bullets[i].move();
-                if(bullets[i].BulletX()){
-                    
-                }
+//                if (bullets[i].BulletX()) {
+
             }
-           
         }
+
+    }
 
     @Override
     public void resize(int width, int height
