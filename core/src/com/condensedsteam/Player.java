@@ -24,12 +24,12 @@ public class Player {
 
   
     private int score;
-    private float speed = 25;
+    private float speed = 10;
     private Rectangle player;
     private boolean collisionEnemy;
     private Bullet2[] bullets;
     private gradiusgalaxies game;
-
+    
     public Player(float x, float y, float width, float height, float speed, int score) {
 
         speed = this.speed;
@@ -66,7 +66,7 @@ public class Player {
         return player;
     }
 
-    public float getBottomLeft() {           //may have some errors
+    public float getBottomLeft() {           // may have some errors
 
         return player.x;
 

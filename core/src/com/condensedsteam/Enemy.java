@@ -37,7 +37,6 @@ public class Enemy {
 //        this.target = target;
     }
 
-
 //work on this 
     public void movetowardsplayer(Player player) {
         if (player.getYPosition() == this.enemy.y && player.getXPosition() < this.enemy.x) {
@@ -63,10 +62,11 @@ public class Enemy {
         }
 
     }
- 
-   public static void spawnEnemy() {
- 
-   }
+
+    public static void spawnEnemy() {
+
+    }
+
     public Rectangle getBounds() {
         return enemy;
     }
@@ -78,7 +78,6 @@ public class Enemy {
             return false;
         }
     }
-
 
     public float getBottomLeft() {
         return this.enemy.x;
@@ -107,6 +106,5 @@ public class Enemy {
     public void draw(ShapeRenderer shapeBatch) {
         shapeBatch.rect(enemy.x, enemy.y, enemy.width, enemy.height);
     }
-
 
 }
