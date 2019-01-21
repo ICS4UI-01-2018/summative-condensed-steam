@@ -15,7 +15,6 @@ import com.badlogic.gdx.math.Rectangle;
  */
 public class Bullet2 {
 
-
     private float width = 80;
     private float height = 40;
     private int speed = 5;
@@ -30,8 +29,8 @@ public class Bullet2 {
     }
 
     public void move() {
-        bullet.x = bullet.x + speed;
-        visible = true;
+            bullet.x = bullet.x + speed;
+            visible = true;
     }
 
     public float x() {
