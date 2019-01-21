@@ -61,8 +61,7 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         player = new Player(100, 200, 20, 20, 2, 0);
         enemy = new Enemy(20, 20, 5);
         bullets = new Bullet2[200];
-        for (int i = 0; i < bullets.length; i++) {
-            
+        for (int i = 0; i < bullets.length; i++){
             bullets[i] = new Bullet2(player.getXPosition(), player.getYPosition());
             
         }
