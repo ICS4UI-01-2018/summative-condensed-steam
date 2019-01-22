@@ -152,16 +152,9 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         }
 
         batch.end();
-        enemy.movetowardsplayer(player);
-        enemy2.movetowardsplayer(player);
-        enemy3.movetowardsplayer(player);
-        enemy4.movetowardsplayer(player);
-        enemy5.movetowardsplayer(player);
-        enemy6.movetowardsplayer(player);
-        enemy7.movetowardsplayer(player);
-        enemy8.movetowardsplayer(player);
-        enemy9.movetowardsplayer(player);
-        enemy10.movetowardsplayer(player);
+        for (int  i = 0;  i < enemies.length;  i++) {
+            enemies[i].movetowardsplayer(player);
+        }
 
         if (Gdx.input.isKeyPressed(Input.Keys.W)) {
             player.moveUp();
@@ -189,15 +182,6 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
                 }
 
             }
-//            enemy.setVisible(false);
-//            enemy3.setVisible(false);
-//            enemy4.setVisible(false);
-//            enemy5.setVisible(false);
-//            enemy6.setVisible(false);
-//            enemy7.setVisible(false);
-//            enemy8.setVisible(false);
-//            enemy9.setVisible(false);
-//            enemy10.setVisible(false);
 
         }
 
