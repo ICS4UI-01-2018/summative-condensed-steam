@@ -17,15 +17,13 @@ import java.util.ArrayList;
  */
 public class Enemy {
 
-    static void add(Enemy enemy) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     private Rectangle enemy;
     private BulletShotByEnemy bullet;
     private Player player;
     private int speed = 5;
     private boolean collisionPlayer;
+    private boolean collisionEnemy;
     private boolean visible;
     public int spawnTime = 2;
     public int NUMBER_OF_ENEMIES = 20;
@@ -78,6 +76,11 @@ public class Enemy {
             return false;
         }
     }
+//    public boolean collisionEnemy(Enemy enemy) {
+//        if (enemy.overlaps(enemy.getBounds())){
+//            return true;
+//        }
+//    }
 
     public float getBottomLeft() {
         return this.enemy.x;
@@ -106,5 +109,7 @@ public class Enemy {
     public void draw(ShapeRenderer shapeBatch) {
         shapeBatch.rect(enemy.x, enemy.y, enemy.width, enemy.height);
     }
+
+
 
 }

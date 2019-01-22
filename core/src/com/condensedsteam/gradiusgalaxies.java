@@ -38,10 +38,17 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
     private Enemy enemy7;
     private Enemy enemy8;
     private Enemy enemy9;
+    private Enemy enemy10;
+    private Enemy enemy11;
+    private Enemy enemy12;
+    private Enemy enemy13;
+    private Enemy enemy14;
+    private Enemy enemy15;
     private Texture fixedPic;
     private Texture background;
     private Texture enemypic;
     private Texture enemypic2;
+    private Texture enemypic3;
     private Texture bulletPic;
     private FitViewport viewport;
     private Vector3 offset;
@@ -67,12 +74,20 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
 
         enemypic = new Texture("enemyspaceship.png");
         enemypic2 = new Texture("enemy1.png");
+        enemypic3 = new Texture("enemy2.png");
         Gdx.input.setInputProcessor(this);
         player = new Player(100, 200, 20, 20, 2, 0);
         enemy = new Enemy(900, 400, 5);
         enemy2 = new Enemy(900, 100, 5);
         enemy3 = new Enemy(900, 300, 5);
         enemy4 = new Enemy(900, 500, 5);
+        enemy5 = new Enemy(900, 250, 5);
+        enemy6 = new Enemy(1600, 100, 5);
+        enemy7 = new Enemy(1600, 300, 5);
+        enemy8 = new Enemy(1600, 500, 5);
+        enemy9 = new Enemy(1600, 250, 5);
+        enemy10 = new Enemy(1600, 250, 5);
+        enemy11 = new Enemy(2100, 100, 5);
         bullets = new Bullet2[200];
         for (int i = 0; i < bullets.length; i++) {
             bullets[i] = new Bullet2(player.getXPosition(), player.getYPosition());
@@ -122,7 +137,19 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
             batch.draw(enemypic2, enemy2.getBottomLeft(), enemy2.getTopLeft(), 60, 60);
             batch.draw(enemypic, enemy3.getBottomLeft(), enemy3.getTopLeft(), 40, 40);
             batch.draw(enemypic, enemy4.getBottomLeft(), enemy4.getTopLeft(), 40, 40);
+            batch.draw(enemypic, enemy5.getBottomLeft(), enemy5.getTopLeft(), 40, 40);
 
+        }
+        if(player.getXPosition() > 1200){
+            batch.draw(enemypic, enemy6.getBottomLeft(), enemy6.getTopLeft(), 40, 40);
+            batch.draw(enemypic, enemy7.getBottomLeft(), enemy7.getTopLeft(), 40, 40);
+            batch.draw(enemypic2, enemy8.getBottomLeft(), enemy8.getTopLeft(), 40, 40);
+            batch.draw(enemypic3, enemy9.getBottomLeft(), enemy9.getTopLeft(), 40, 40);
+            batch.draw(enemypic, enemy10.getBottomLeft(), enemy10.getTopLeft(), 40, 40);
+            
+        }
+        if(player.getXPosition() > 1600){
+            
         }
 
         for (int i = 0; i < 200; i++) {
@@ -137,6 +164,12 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         enemy2.movetowardsplayer(player);
         enemy3.movetowardsplayer(player);
         enemy4.movetowardsplayer(player);
+        enemy5.movetowardsplayer(player);
+        enemy6.movetowardsplayer(player);
+        enemy7.movetowardsplayer(player);
+        enemy8.movetowardsplayer(player);
+        enemy9.movetowardsplayer(player);
+        enemy10.movetowardsplayer(player);
 
         if (Gdx.input.isKeyPressed(Input.Keys.W)) {
             player.moveUp();
