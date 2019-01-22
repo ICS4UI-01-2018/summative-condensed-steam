@@ -32,6 +32,7 @@ public class Enemy {
     public Enemy(float positionX, float positionY, int speed) {
         this.speed = speed;
         this.enemy = new Rectangle(positionX, positionY, 20, 30);
+        this.visible = true;
 //        this.target = target;
     }
 
@@ -98,12 +99,12 @@ public class Enemy {
         return this.enemy.y + +this.enemy.height;
     }
 
-    public boolean isVisible() {
-        return visible;
-    }
-
+    
     public void setVisible(boolean visible) {
         this.visible = visible;
+    }
+    public boolean isVisible() {
+        return visible;
     }
 
     public void draw(ShapeRenderer shapeBatch) {
