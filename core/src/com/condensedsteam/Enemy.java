@@ -19,11 +19,9 @@ public class Enemy {
 
 
     private Rectangle enemy;
-    private BulletShotByEnemy bullet;
     private Player player;
     private int speed = 5;
     private boolean collisionPlayer;
-    private boolean collisionEnemy;
     private boolean visible;
     public int spawnTime = 2;
     public int NUMBER_OF_ENEMIES = 20;
@@ -33,10 +31,9 @@ public class Enemy {
         this.speed = speed;
         this.enemy = new Rectangle(positionX, positionY, 20, 30);
         this.visible = true;
-//        this.target = target;
     }
 
-//work on this 
+
     public void movetowardsplayer(Player player) {
         if (player.getYPosition() == this.enemy.y && player.getXPosition() < this.enemy.x) {
             this.enemy.x -= 1;
@@ -61,7 +58,16 @@ public class Enemy {
         }
 
     }
+    
 
+    public void moveup(){
+        this.enemy.x += 200;
+    }
+    
+    public void movedown(){
+        this.enemy.y += 200;
+    }
+    
     public static void spawnEnemy() {
 
     }
@@ -77,11 +83,6 @@ public class Enemy {
             return false;
         }
     }
-//    public boolean collisionEnemy(Enemy enemy) {
-//        if (enemy.overlaps(enemy.getBounds())){
-//            return true;
-//        }
-//    }
 
     public float getBottomLeft() {
         return this.enemy.x;

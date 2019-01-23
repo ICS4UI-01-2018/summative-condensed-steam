@@ -29,21 +29,7 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
     // TiledMapRenderer tiledMapRenderer;
     private Texture spaceshipPic;
     private Player player;
-    private Enemy enemy;
-    private Enemy enemy2;
-    private Enemy enemy3;
-    private Enemy enemy4;
-    private Enemy enemy5;
-    private Enemy enemy6;
-    private Enemy enemy7;
-    private Enemy enemy8;
-    private Enemy enemy9;
-    private Enemy enemy10;
-    private Enemy enemy11;
-    private Enemy enemy12;
-    private Enemy enemy13;
-    private Enemy enemy14;
-    private Enemy enemy15;
+
     private Texture fixedPic;
     private Texture background;
     private Texture enemypic;
@@ -129,22 +115,12 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
             for (int i = 0; i < 4; i++) {
                 batch.draw(enemypic, enemies[i].getBottomLeft(), enemies[i].getTopLeft(), 40, 40);
             }
-//            batch.draw(enemypic, enemy.getBottomLeft(), enemy.getTopLeft(), 40, 40);
-//            batch.draw(enemypic2, enemy2.getBottomLeft(), enemy2.getTopLeft(), 60, 60);
-//            batch.draw(enemypic, enemy3.getBottomLeft(), enemy3.getTopLeft(), 40, 40);
-//            batch.draw(enemypic, enemy4.getBottomLeft(), enemy4.getTopLeft(), 40, 40);
-//            batch.draw(enemypic, enemy5.getBottomLeft(), enemy5.getTopLeft(), 40, 40);
 
         }
         if (player.getXPosition() > 1200) {
             for (int i = 5; i < 11; i++) {
                 batch.draw(enemypic2, enemies[i].getBottomLeft(), enemies[i].getTopLeft(), 60, 60);
             }
-//            batch.draw(enemypic, enemy6.getBottomLeft(), enemy6.getTopLeft(), 40, 40);
-//            batch.draw(enemypic, enemy7.getBottomLeft(), enemy7.getTopLeft(), 40, 40);
-//            batch.draw(enemypic2, enemy8.getBottomLeft(), enemy8.getTopLeft(), 40, 40);
-//            batch.draw(enemypic3, enemy9.getBottomLeft(), enemy9.getTopLeft(), 40, 40);
-//            batch.draw(enemypic, enemy10.getBottomLeft(), enemy10.getTopLeft(), 40, 40);
 
         }
         if (player.getXPosition() > 1600) {
@@ -152,7 +128,7 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         }
 
         batch.end();
-        for (int  i = 0;  i < enemies.length;  i++) {
+        for (int i = 0; i < enemies.length; i++) {
             enemies[i].movetowardsplayer(player);
         }
 
@@ -185,8 +161,16 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
 
         }
 
-        // if (Gdx.input.isKeyPressed(Input.Keys.A)) {
-//            SceneManager.LoadScene(MainMenu);
+        //code for getting enemies to stay away from each other
+        for (int i = 0; i < enemies.length - 1; i++) {
+
+            if (enemies[i].getBounds().overlaps(enemies[i + 1].getBounds())) {
+                System.out.println("hello");
+                enemies[i].moveup();
+                enemies[i + 1].movedown();
+            }
+        }
+
     }
 
     @Override

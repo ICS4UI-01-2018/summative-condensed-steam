@@ -27,20 +27,15 @@ public class Player {
     private float speed = 10;
     private Rectangle player;
     private boolean collisionEnemy;
-    private Bullet2[] bullets;
     private gradiusgalaxies game;
     
     public Player(float x, float y, float width, float height, float speed, int score) {
-
         speed = this.speed;
         this.score = score;
         player = new Rectangle(x, y, width, height);
         this.collisionEnemy = collisionEnemy;
 
     }
-
-  
-
     public Rectangle Location() {
         return player;
     }
@@ -109,8 +104,8 @@ public class Player {
 
     // 10 points added when player shoots enemy
     public int setScore() {
-        if (collisionEnemy = true) {
-            return this.score += 10;
+        if (collisionEnemy == true) {
+            return this.score -= 10;
         } else {
             return this.score;
         }
