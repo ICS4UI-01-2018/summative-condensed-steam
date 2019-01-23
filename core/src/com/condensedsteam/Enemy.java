@@ -61,11 +61,11 @@ public class Enemy {
     
 
     public void moveup(){
-        this.enemy.x += 200;
+        this.enemy.x +=  this.enemy.width;
     }
     
     public void movedown(){
-        this.enemy.y += 200;
+        this.enemy.y +=  this.enemy.height;
     }
     
     public static void spawnEnemy() {
