@@ -17,7 +17,6 @@ import java.util.ArrayList;
  */
 public class Enemy {
 
-
     private Rectangle enemy;
     private Player player;
     private int speed = 5;
@@ -33,41 +32,47 @@ public class Enemy {
         this.visible = true;
     }
 
-
     public void movetowardsplayer(Player player) {
         if (player.getYPosition() == this.enemy.y && player.getXPosition() < this.enemy.x) {
             this.enemy.x -= 1;
         } else if (player.getYPosition() == this.enemy.y && player.getXPosition() > this.enemy.x) {
             this.enemy.x += 1;
         } else if (player.getXPosition() == this.enemy.x && player.getYPosition() > this.enemy.y) {
-            this.enemy.y += 1;
+            //this.enemy.y += 1;
         } else if (player.getXPosition() == this.enemy.x && player.getYPosition() < this.enemy.y) {
-            this.enemy.y -= 1;
+           // this.enemy.y -= 1;
         } else if (player.getXPosition() < this.enemy.x && player.getYPosition() > this.enemy.y) {
-            this.enemy.y += 1;
+           // this.enemy.y += 1;
             this.enemy.x -= 1;
         } else if (player.getXPosition() < this.enemy.x && player.getYPosition() < this.enemy.y) {
-            this.enemy.y -= 1;
+            //this.enemy.y -= 1;
             this.enemy.x -= 1;
         } else if (player.getXPosition() > this.enemy.x && player.getYPosition() > this.enemy.y) {
-            this.enemy.y += 1;
+           // this.enemy.y += 1;
             this.enemy.x += 1;
         } else if (player.getXPosition() > this.enemy.x && player.getYPosition() < this.enemy.y) {
-            this.enemy.y -= 1;
+           // this.enemy.y -= 1;
             this.enemy.x += 1;
         }
 
     }
-    
 
-    public void moveup(){
-        this.enemy.x +=  this.enemy.width;
+    public void moveup() {
+        this.enemy.y += this.enemy.height;
     }
-    
-    public void movedown(){
-        this.enemy.y +=  this.enemy.height;
+
+    public void movedown() {
+        this.enemy.y -= this.enemy.height;
     }
-    
+
+    public void moveright() {
+        this.enemy.x += this.enemy.width;
+    }
+
+    public void moveleft() {
+        this.enemy.x -= this.enemy.width;
+    }
+
     public static void spawnEnemy() {
 
     }
@@ -100,10 +105,10 @@ public class Enemy {
         return this.enemy.y + +this.enemy.height;
     }
 
-    
     public void setVisible(boolean visible) {
         this.visible = visible;
     }
+
     public boolean isVisible() {
         return visible;
     }
@@ -111,7 +116,5 @@ public class Enemy {
     public void draw(ShapeRenderer shapeBatch) {
         shapeBatch.rect(enemy.x, enemy.y, enemy.width, enemy.height);
     }
-
-
 
 }

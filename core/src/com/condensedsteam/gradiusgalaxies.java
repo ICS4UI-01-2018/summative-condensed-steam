@@ -58,20 +58,20 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         enemypic2 = new Texture("enemy1.png");
         enemypic3 = new Texture("enemy2.png");
         Gdx.input.setInputProcessor(this);
-        player = new Player(100, 200, 20, 20, 2, 0);
+        player = new Player(-450, 150, 20, 20, 2, 0);
         enemies = new Enemy[11];
         for (int i = 0; i < enemies.length; i++) {
-            enemies[0] = new Enemy(900, 400, 5);
-            enemies[1] = new Enemy(900, 100, 5);
-            enemies[2] = new Enemy(900, 300, 5);
-            enemies[3] = new Enemy(900, 500, 5);
-            enemies[4] = new Enemy(900, 250, 5);
-            enemies[5] = new Enemy(1600, 100, 5);
-            enemies[6] = new Enemy(1600, 300, 5);
-            enemies[7] = new Enemy(1600, 500, 5);
-            enemies[8] = new Enemy(1600, 250, 5);
-            enemies[9] = new Enemy(1600, 250, 5);
-            enemies[10] = new Enemy(2100, 100, 5);
+            enemies[0] = new Enemy(900, 250, 5);
+            enemies[1] = new Enemy(900, -50, 5);
+            enemies[2] = new Enemy(900, 150, 5);
+            enemies[3] = new Enemy(900, 350, 5);
+            enemies[4] = new Enemy(900, 100, 5);
+            enemies[5] = new Enemy(1600, -50, 5);
+            enemies[6] = new Enemy(1600, 150, 5);
+            enemies[7] = new Enemy(1600, 350, 5);
+            enemies[8] = new Enemy(1600, 100, 5);
+            enemies[9] = new Enemy(1600, 100, 5);
+            enemies[10] = new Enemy(2100, -50, 5);
         }
     }
 
@@ -141,6 +141,10 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         if (Gdx.input.isKeyPressed(Input.Keys.D)) {
             player.moveForward();
 
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.A)) {
+            player.moveBack();
+
         } else if (player.getYPosition() < -159) {
             player.moveUp();
         } else if (player.getYPosition() > 301) {
@@ -165,9 +169,10 @@ public class gradiusgalaxies extends ApplicationAdapter implements InputProcesso
         for (int i = 0; i < enemies.length - 1; i++) {
 
             if (enemies[i].getBounds().overlaps(enemies[i + 1].getBounds())) {
-                System.out.println("hello");
-                enemies[i].moveup();
-                enemies[i + 1].movedown();
+                if (enemies[i].getBounds().y == enemies[i + 1].getBounds().y) {
+                    enemies[i].moveup();
+                    enemies[i + 1].movedown();
+                }
             }
         }
 
